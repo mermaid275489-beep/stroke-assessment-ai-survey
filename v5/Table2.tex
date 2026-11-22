@@ -1,0 +1,37 @@
+% Main-text Table 2: computational feature families (revised round 4).
+% Required packages: booktabs, tabularx, array, ragged2e.
+
+\begin{table*}[t]
+\centering
+\caption{Computational feature families: the scoring criteria they quantify directly and the constructs they only indicate.}
+\label{tab:computational_feature_families}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{tabularx}{\textwidth}{@{}
+>{\RaggedRight\arraybackslash}p{0.13\textwidth}
+>{\RaggedRight\arraybackslash}p{0.15\textwidth}
+>{\RaggedRight\arraybackslash}X
+>{\RaggedRight\arraybackslash}p{0.17\textwidth}
+>{\RaggedRight\arraybackslash}p{0.17\textwidth}
+>{\RaggedRight\arraybackslash}p{0.10\textwidth}
+@{}}
+\toprule
+\textbf{Feature family} & \textbf{Example variables} & \textbf{Quantifies a scoring criterion directly} & \textbf{Indicates only (validation needed)} & \textbf{Requirements for video} & \textbf{Other sensors} \\
+\midrule
+Temporal and event & Duration, count, cadence, phase timing & Test time (10MWT, TUG); repetitions; time-limited holds (TIS static items) & Overall mobility or fall risk inferred from test time & Visible task onset and end; adequate frame rate & IMU, pressure \\
+Spatial and trajectory & Path length, displacement, endpoint error, foot clearance & Distance walked (6MWT); reach distance (FRT); trunk-displacement thresholds (TIS) & Dysmetria or motor-planning deficits inferred from path shape & Scale calibration from a known distance; whole path in view & IMU, depth camera, robot \\
+Joint and segment kinematics & Joint angle, active ROM, angular velocity & Active range where criteria grade range (FMA; Mini-BESTest rise to toes) & Abnormal synergy; selective motor control & View aligned with the plane of motion; 3D estimation for out-of-plane motion & IMU, depth camera, exoskeleton \\
+Inter-segment and relational & Bilateral symmetry, phase difference, joint coupling, trunk--limb relation & Use of arm or rail support where criteria define it (TIS, POMA) & Coordination; compensation; interlimb control & Both sides and relevant segments visible; synchronised tracking & Multi-IMU, depth camera \\
+Trajectory-derived quality & Smoothness, jerk, movement units, path efficiency & Rarely graded by scoring criteria (6 entries in 6 tools; Fig.~\ref{fig:video_availability}c) & Movement quality; restitution versus compensation & Low tracking noise; adequate frame rate; reported filtering & IMU, robot, motion capture \\
+\midrule
+\textit{Non-kinematic information} & \textit{Force, passive tone, reflex, sensation, pain, self-report; amount of assistance, verbal cues and safety judgements} & \textit{Not quantified by motion features} & -- & \textit{Force, tone, reflexes, sensation and self-report not available from video; assistance visible as events but its amount only partly; verbal cues need audio} & \textit{Force or pressure, EMG/MMG, audio, clinical examination, interview} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{3pt}
+\begin{minipage}{\textwidth}
+\footnotesize
+\textit{Notes.} \textit{Quantifies a scoring criterion directly}: the measure is the graded quantity, so measurement accuracy is the main requirement. \textit{Indicates only}: the measure informs but does not establish a construct graded by clinical judgement or lying outside the scale, and needs construct validation. One variable can fall in both columns (an active joint angle quantifies graded range but only indicates abnormal synergy), and one item can yield measures from several families. The last row marks an observability boundary, not a sixth family. Entry-level computability (Direct, Proxy or Judgement) is given in Supplementary Table~\ref{tab:supplementary_tool_library_motion}. Abbreviations follow Table~\ref{tab:representative_scales_compact}; EMG, electromyography; FRT, Functional Reach Test; IMU, inertial measurement unit; MMG, mechanomyography; POMA, Performance-Oriented Mobility Assessment; ROM, range of motion.
+\end{minipage}
+\end{table*}

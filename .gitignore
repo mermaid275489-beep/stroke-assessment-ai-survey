@@ -1,0 +1,38 @@
+# Whitelist: ignore everything at the top level, then re-include what is published.
+/*
+!/.gitignore
+!/README.md
+
+# Final manuscript and submission package
+!/v5/
+!/v5_overleaf_2026-11-21/
+
+# Data
+!/ai_literature_supplement/
+!/ai_gait_factor_restart/
+!/Bridge_matrix_v5_final.xlsx
+!/Guideline Summary.xlsx
+!/Stroke_Gait_Tools_v5_1.xlsx
+!/ai_gait_literature_screened.csv
+!/candidate_supplementary_tools.csv
+!/references_cleaned_project.bib
+
+# Notebooks and scripts
+!/01_retrieve_ai_gait_literature.ipynb
+!/New feature Extraction.ipynb
+!/PubMed_guideline_search_notebook.ipynb
+!/build_*.py
+!/generate_*.py
+
+# Excluded even inside published folders
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+node_modules/
+*.crdownload
+*.zip
+*.tiff
+*.tif
+~$*
+.env
+ai_literature_supplement/raw/

@@ -1,0 +1,9 @@
+﻿database,source_stream,status,reported_count,retrieved_count,complete_retrieval,note
+PubMed,gait_mobility,completed,4072,4072,True,PubMed retrieval completed from the recorded query.
+PubMed,upper_limb_dexterity,completed,5090,5090,True,PubMed retrieval completed from the recorded query.
+PubMed,trunk_balance_compensation,completed,1232,1232,True,PubMed retrieval completed from the recorded query.
+PubMed,strength_power,incomplete_retrieval,3928,3926,False,PubMed retrieval was incomplete; do not use this stream as a locked count.
+OpenAlex,gait_mobility,not completed,,0,False,Public cross-disciplinary attempt returned HTTP 429; no OpenAlex records were merged.
+OpenAlex,upper_limb_dexterity,not completed,,0,False,Public cross-disciplinary attempt returned HTTP 429; no OpenAlex records were merged.
+OpenAlex,trunk_balance_compensation,not completed,,0,False,Public cross-disciplinary attempt returned HTTP 429; no OpenAlex records were merged.
+OpenAlex,strength_power,not completed,,0,False,Public cross-disciplinary attempt returned HTTP 429; no OpenAlex records were merged.

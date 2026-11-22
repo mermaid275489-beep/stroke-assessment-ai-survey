@@ -1,0 +1,16 @@
+fig:figure1
+fig:figure2
+fig:video_availability
+sec:background
+sec:challenge
+sec:clinical_rating_scales
+sec:constructs
+sec:framework
+sec:limitations
+sec:scales
+sec:validation
+tab:computational_feature_families
+tab:representative_scales_compact
+tab:s1_guidelines_compact
+tab:supplementary_tool_library_clinical
+tab:supplementary_tool_library_motion

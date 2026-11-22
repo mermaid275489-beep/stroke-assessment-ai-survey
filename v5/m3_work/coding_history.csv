@@ -1,0 +1,197 @@
+﻿Entry ID,Tool,Item / task,S1,S2,S3,S4,S5,S6,Checked record
+E001,Berg Balance Scale (BBS),Sitting to standing,Full,Full,Full,Partial,Partial,Partial,True
+E002,Berg Balance Scale (BBS),Standing unsupported,Full,Full,Full,Partial,Partial,Full,True
+E003,Berg Balance Scale (BBS),Sitting unsupported,Full,Full,Full,Partial,Partial,Full,True
+E004,Berg Balance Scale (BBS),Standing to sitting,Full,Full,Full,Partial,Partial,Full,True
+E005,Berg Balance Scale (BBS),Transfers,Partial,Partial,Partial,Partial,Partial,Partial,True
+E006,Berg Balance Scale (BBS),Standing with eyes closed,Partial,Full,Partial,Partial,Partial,Full,True
+E007,Berg Balance Scale (BBS),Standing with feet together,Full,Full,Full,Partial,Partial,Full,True
+E008,Berg Balance Scale (BBS),Reaching forward with outstretched arm,Partial,Full,Partial,Partial,Partial,Full,True
+E009,Berg Balance Scale (BBS),Retrieving object from floor,Partial,Partial,Partial,Partial,Partial,Full,True
+E010,Berg Balance Scale (BBS),Turning to look behind,Partial,Full,Partial,Partial,Partial,Full,True
+E011,Berg Balance Scale (BBS),Turning 360 degrees,Partial,Full,Partial,Partial,Partial,Partial,True
+E012,Berg Balance Scale (BBS),Placing alternate foot on stool,Partial,Full,Partial,Partial,Partial,Partial,True
+E013,Berg Balance Scale (BBS),Standing one foot in front (tandem),Partial,Full,Partial,Partial,Partial,Full,True
+E014,Berg Balance Scale (BBS),Standing on one foot,Full,Full,Full,Partial,Partial,Full,True
+E015,Mini-BESTest,Sit to stand [Anticipatory],Full,Full,Full,Partial,Partial,Full,True
+E016,Mini-BESTest,Rise to toes [Anticipatory],Full,Full,Full,Full,Full,Full,True
+E017,Mini-BESTest,Stand on one leg [Anticipatory],Full,Full,Full,Full,Full,Full,True
+E018,Mini-BESTest,Compensatory stepping forward [Reactive],Partial,Partial,Partial,Full,Full,Full,True
+E019,Mini-BESTest,Compensatory stepping backward [Reactive],Partial,Partial,Partial,Full,Full,Full,True
+E020,Mini-BESTest,Compensatory stepping lateral [Reactive],Partial,Partial,Partial,Full,Full,Full,True
+E021,Mini-BESTest,"Stance feet together, eyes open, firm [Sensory orientation]",Full,Full,Full,Full,Full,Full,True
+E022,Mini-BESTest,"Stance feet together, eyes closed, foam [Sensory orientation]",Partial,Full,Full,Full,Full,Full,True
+E023,Mini-BESTest,"Incline, eyes closed [Sensory orientation]",Partial,Full,Full,Full,Full,Full,True
+E024,Mini-BESTest,Change in gait speed [Dynamic gait],Partial,Full,Full,Full,Full,Full,True
+E025,Mini-BESTest,Walk with horizontal head turns [Dynamic gait],Partial,Full,Full,Full,Full,Full,True
+E026,Mini-BESTest,Walk with pivot turns [Dynamic gait],Full,Full,Full,Full,Full,Full,True
+E027,Mini-BESTest,Step over obstacles [Dynamic gait],Full,Full,Full,Full,Full,Full,True
+E028,Mini-BESTest,Timed Up & Go with dual task [Dynamic gait],Partial,Partial,Partial,Full,Full,Partial,True
+E029,Functional Gait Assessment,Gait level surface,Full,Full,Full,Full,Full,Full,True
+E030,Functional Gait Assessment,Change in gait speed,Full,Full,Full,Full,Full,Full,True
+E031,Functional Gait Assessment,Gait with horizontal head turns,Full,Full,Full,Full,Full,Full,True
+E032,Functional Gait Assessment,Gait with vertical head turns,Full,Full,Full,Full,Full,Full,True
+E033,Functional Gait Assessment,Gait and pivot turn,Full,Full,Full,Partial,Partial,Partial,True
+E034,Functional Gait Assessment,Step over obstacle,Full,Full,Full,Partial,Partial,Full,True
+E035,Functional Gait Assessment,Gait with narrow base of support,Full,Full,Full,Full,Full,Full,True
+E036,Functional Gait Assessment,Gait with eyes closed,Partial,Full,Full,Full,Full,Full,True
+E037,Functional Gait Assessment,Ambulating backwards,Full,Full,Full,Full,Full,Full,True
+E038,Functional Gait Assessment,Steps,Partial,Full,Partial,Partial,Partial,Full,True
+E039,"Trunk Impairment Scale (TIS, Verheyden)",Static: Starting position,Full,Full,Full,Full,Full,Full,True
+E040,"Trunk Impairment Scale (TIS, Verheyden)",Static: Therapist crosses unaffected leg over hemiplegic leg,Partial,Full,Full,Full,Full,Full,True
+E041,"Trunk Impairment Scale (TIS, Verheyden)",Static: Patient crosses unaffected leg over hemiplegic leg,Partial,Full,Full,Full,Full,Full,True
+E042,"Trunk Impairment Scale (TIS, Verheyden)",Touch bed with hemiplegic elbow (shorten hemiplegic/lengthen unaffected side) & return,Partial,Full,Full,Full,Full,Full,True
+E043,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 1 — quality of shortening/lengthening,Partial,Full,Full,Full,Full,Full,True
+E044,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 1 — compensation,Partial,Full,Full,Full,Full,Full,True
+E045,"Trunk Impairment Scale (TIS, Verheyden)",Touch bed with unaffected elbow (shorten unaffected/lengthen hemiplegic) & return,Partial,Full,Full,Full,Full,Full,True
+E046,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 4 — quality,Partial,Full,Full,Full,Full,Full,True
+E047,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 4 — compensation,Partial,Full,Full,Full,Full,Full,True
+E048,"Trunk Impairment Scale (TIS, Verheyden)","Lift pelvis, hemiplegic side (shorten hemiplegic/lengthen unaffected) & return",Partial,Full,Full,Full,Full,Full,True
+E049,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 7 — compensation,Partial,Full,Full,Full,Full,Full,True
+E050,"Trunk Impairment Scale (TIS, Verheyden)","Lift pelvis, unaffected side (shorten unaffected/lengthen hemiplegic) & return",Partial,Full,Full,Full,Full,Full,True
+E051,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 9 — compensation,Partial,Full,Full,Full,Full,Full,True
+E052,"Trunk Impairment Scale (TIS, Verheyden)","Coordination: Rotate upper trunk 6× (shoulders, head fixated)",Partial,Full,Full,Full,Full,Full,True
+E053,"Trunk Impairment Scale (TIS, Verheyden)",Coordination: Repeat item 1 within 6 s,Partial,Full,Full,Full,Full,Full,True
+E054,"Trunk Impairment Scale (TIS, Verheyden)","Coordination: Rotate lower trunk 6× (knees, upper trunk fixated)",Partial,Full,Full,Full,Full,Full,True
+E055,"Trunk Impairment Scale (TIS, Verheyden)",Coordination: Repeat item 3 within 6 s,Partial,Full,Full,Full,Full,Full,True
+E056,10-Metre Walk Test,Comfortable & fast gait speed over middle 6 m of a 10 m path (2 m accel + 6 m timed + 2 m decel),Full,Full,Full,Full,Full,Full,True
+E057,6-Minute Walk Test,Total distance walked in 6 minutes on a measured course,Full,Full,Full,Full,Full,Full,True
+E058,Timed Up and Go,Stand from chair → walk 3 m → turn → walk back → sit; timed,Full,Full,Full,Full,Full,Full,True
+E059,Five Times Sit-to-Stand,"Stand & sit 5× as fast as possible, arms folded across chest, back not touching chair between reps",Full,Full,Full,Full,Full,Full,True
+E060,Dynamic Gait Index,Gait level surface,Full,Full,Full,Full,Full,Full,True
+E061,Dynamic Gait Index,Change in gait speed,Full,Full,Full,Full,Full,Full,True
+E062,Dynamic Gait Index,Gait with horizontal head turns,Full,Full,Full,Full,Full,Full,True
+E063,Dynamic Gait Index,Gait with vertical head turns,Full,Full,Full,Full,Full,Full,True
+E064,Dynamic Gait Index,Gait and pivot turn,Full,Full,Full,Partial,Partial,Partial,True
+E065,Dynamic Gait Index,Step over obstacle,Full,Full,Full,Partial,Partial,Full,True
+E066,Dynamic Gait Index,Step around obstacles,Full,Full,Full,Full,Full,Partial,True
+E067,Dynamic Gait Index,Steps,Full,Full,Full,Partial,Partial,Full,True
+E068,Modified Emory Functional Ambulation Profile,5 timed terrains: hard floor 5 m · carpet 5 m · Up&Go · obstacles · stairs,Partial,Partial,Partial,Partial,Partial,Full,True
+E069,STREAM,Upper-limb voluntary movement (10 items),Partial,Partial,Partial,Full,Full,Full,True
+E070,STREAM,Lower-limb voluntary movement (10 items),Partial,Partial,Partial,Full,Full,Full,True
+E071,STREAM,Basic mobility (10 items),Partial,Partial,Partial,Partial,Partial,Full,True
+E072,Motor Assessment Scale (MAS),Supine to side lying,Full,Full,Full,Full,Full,Full,True
+E073,Motor Assessment Scale (MAS),Supine to sitting over side of bed,Full,Full,Full,Full,Full,Full,True
+E074,Motor Assessment Scale (MAS),Balanced sitting,Full,Full,Full,Partial,Partial,Full,True
+E075,Motor Assessment Scale (MAS),Sitting to standing,Full,Full,Full,Partial,Partial,Full,True
+E076,Motor Assessment Scale (MAS),Walking,Full,Full,Full,Partial,Partial,Full,True
+E077,Motor Assessment Scale (MAS),Upper-arm function,Partial,Full,Full,Full,Full,Full,True
+E078,Motor Assessment Scale (MAS),Hand movements,None,Full,Full,Full,Full,Full,True
+E079,Motor Assessment Scale (MAS),Advanced hand activities,None,Full,Full,Full,Full,Full,True
+E081,Action Research Arm Test (ARAT),Grasp subscale (6 items),Partial,Full,Full,Full,Full,Full,True
+E082,Action Research Arm Test (ARAT),Grip subscale (4 items),Partial,Full,Full,Full,Full,Full,True
+E083,Action Research Arm Test (ARAT),Pinch subscale (6 items),None,Full,Full,Full,Full,Full,True
+E084,Action Research Arm Test (ARAT),Gross movement subscale (3 items),Partial,Full,Full,Full,Full,Full,True
+E085,Wolf Motor Function Test (WMFT),Performance time of 15 timed tasks,,,,Full,Full,Full,False
+E086,Wolf Motor Function Test (WMFT),Functional Ability Scale ratings of 15 tasks,,,,Full,Full,Full,False
+E087,Wolf Motor Function Test (WMFT),Grip strength (dynamometry),None,None,None,None,None,None,True
+E197,Wolf Motor Function Test (WMFT),Weight to box: heaviest weight lifted onto the box (recorded in lb),,,,,Partial,Full,False
+E088,Box and Block Test (BBT),"Transport blocks over partition, 60 s, each hand",Full,Full,Full,Full,Full,Full,True
+E089,Nine-Hole Peg Test (9HPT),"Place 9 pegs then remove, each hand, timed",Full,Full,Full,Full,Full,Full,True
+E090,Chedoke Arm and Hand Activity Inventory (CAHAI),"13 bimanual functional ADL tasks (open jar, pour, buttons, zip, wring cloth, phone, carry bag, etc.)",Partial,Partial,Partial,Partial,Partial,Partial,True
+E091,Fugl-Meyer UE (FMA-UE),A. UE motor — synergies (II-IV),Partial,Partial,Partial,Full,Full,Full,True
+E092,Fugl-Meyer UE (FMA-UE),B. Wrist,Partial,Partial,Partial,Partial,Partial,Partial,True
+E093,Fugl-Meyer UE (FMA-UE),C. Hand grasp (a-e),None,Partial,Partial,Partial,Partial,Partial,True
+E094,Fugl-Meyer UE (FMA-UE),D. Coordination/speed,Partial,Partial,Partial,Full,Full,Full,True
+E095,Fugl-Meyer UE (FMA-UE),"Reflex items (I, V) of the motor score",,,,None,None,None,False
+E096,Fugl-Meyer LE (FMA-LE),E. LE motor — synergies & isolated (II-IV),Partial,Partial,Partial,Full,Partial,Partial,True
+E097,Fugl-Meyer LE (FMA-LE),F. Coordination/speed,Partial,Partial,Partial,Full,Full,Full,True
+E098,Fugl-Meyer LE (FMA-LE),"Reflex items (I, V) of the motor score",,,,None,None,None,False
+E099,Functional Ambulation Category (FAC),Walking-assistance category 0-5,Partial,Partial,Partial,Partial,Partial,Partial,True
+E100,Motricity Index,"Limb strength: 3 movements/limb (UE pinch grip, elbow flexion, shoulder abduction; LE ankle DF, knee ext, hip flexion)",None,None,None,Partial,Partial,Partial,True
+E101,Modified Ashworth Scale,Passive-stretch tone rating per muscle group,None,None,None,None,None,None,True
+E102,Modified Tardieu Scale,Passive stretch at velocities V1/V2/V3; rate reaction quality (X) & catch angle (Y),None,None,None,None,Partial,Partial,True
+E103,Chedoke-McMaster Stroke Assessment,"Impairment Inventory — stage of motor recovery (7 stages) for arm, hand, leg, foot, postural control (+ separate Activity Inventory)",Partial,Partial,Partial,Partial,Partial,Partial,True
+E104,modified Rankin Scale (mRS),Global disability grade 0-6,None,None,None,None,Partial,Partial,True
+E105,NIH Stroke Scale (NIHSS),Motor arm and leg (drift),,,,Full,Full,Full,False
+E106,NIH Stroke Scale (NIHSS),Limb ataxia,,,,Full,Full,Full,False
+E107,Activities-specific Balance Confidence (ABC),"16 activities, self-rated balance confidence 0-100%",None,None,None,None,None,None,True
+E108,Motor Activity Log (MAL),Amount of Use (0-5) & Quality of Movement (0-5) for daily arm activities,None,None,None,None,None,None,True
+E109,Stroke Impact Scale (SIS),59 items / 8 domains + global recovery 0-100,None,None,None,None,None,None,True
+E110,Barthel Index,Mobility (on level),Partial,Partial,Partial,Partial,Partial,Partial,True
+E111,Barthel Index,Stairs,Partial,Partial,Partial,Partial,Partial,Partial,True
+E112,Barthel Index,Transfers (bed↔chair),Partial,Partial,Partial,Partial,Partial,Partial,True
+E113,Functional Independence Measure (FIM),"13 motor items (self-care, sphincter control, transfers, locomotion), each 1-7",,,,Partial,Partial,Partial,False
+E114,Rivermead Mobility Index (RMI),Turning over in bed (self-reported),Partial,Partial,Partial,None,None,None,True
+E115,Rivermead Mobility Index (RMI),Lying to sitting (self-reported),Partial,Partial,Partial,None,None,None,True
+E116,Rivermead Mobility Index (RMI),Sitting balance (edge of bed 10 s) (self-reported),Full,Full,Full,None,None,None,True
+E117,Rivermead Mobility Index (RMI),"Sitting to standing (<15 s, stand 15 s) (self-reported)",Full,Full,Full,None,None,None,True
+E118,Rivermead Mobility Index (RMI),"Standing unsupported (10 s, no aid) (directly observed)",Full,Full,Full,Full,Full,Full,True
+E119,Rivermead Mobility Index (RMI),Transfer (self-reported),Partial,Partial,Partial,None,None,None,True
+E120,Rivermead Mobility Index (RMI),"Walking inside (10 m, aid ok, no standby help) (self-reported)",Partial,Partial,Partial,None,None,None,True
+E121,Rivermead Mobility Index (RMI),Stairs (a flight without help) (self-reported),Full,Full,Full,None,None,None,True
+E122,Rivermead Mobility Index (RMI),Walking outside (even ground) (self-reported),Partial,Partial,Partial,None,None,None,True
+E123,Rivermead Mobility Index (RMI),"Walking inside, no aid (self-reported)",Partial,Partial,Partial,None,None,None,True
+E124,Rivermead Mobility Index (RMI),"Picking off floor (walk 5 m, pick object, walk back) (self-reported)",Full,Full,Full,None,None,None,True
+E125,Rivermead Mobility Index (RMI),"Walking outside, uneven ground (self-reported)",Partial,Partial,Partial,None,None,None,True
+E126,Rivermead Mobility Index (RMI),Bathing (self-reported),None,None,None,None,None,None,True
+E127,Rivermead Mobility Index (RMI),Up & down 4 steps (no rail/aid) (self-reported),Full,Full,Full,None,None,None,True
+E128,Rivermead Mobility Index (RMI),"Running (10 m, no limp) (self-reported)",Full,Full,Full,None,None,None,True
+E129,Trunk Control Test (TCT),Roll to weak side,Partial,Full,Partial,Partial,Partial,Full,True
+E130,Trunk Control Test (TCT),Roll to strong side,Partial,Full,Partial,Partial,Partial,Full,True
+E131,Trunk Control Test (TCT),"Balance in sitting (edge of bed, feet off ground, ≥30 s)",Full,Full,Full,Partial,Partial,Full,True
+E132,Trunk Control Test (TCT),Sit up from lying down,Partial,Full,Partial,Partial,Partial,Full,True
+E133,Functional Reach Test (FRT),"Forward reach along yardstick, standing, arm at 90° shoulder flexion, feet fixed",Partial,Full,Full,Full,Full,Full,True
+E134,Tinetti / POMA,Sitting balance,Full,Full,Full,Full,Full,Full,True
+E135,Tinetti / POMA,Arises,Full,Full,Full,Partial,Partial,Full,True
+E136,Tinetti / POMA,Attempts to arise,Full,Full,Full,Partial,Partial,Full,True
+E137,Tinetti / POMA,Immediate standing balance (first 5 s),Full,Full,Full,Full,Full,Full,True
+E138,Tinetti / POMA,Standing balance,Full,Full,Full,Full,Full,Full,True
+E139,Tinetti / POMA,Nudged (sternal push ×3),Partial,Partial,Partial,Partial,Partial,Full,True
+E140,Tinetti / POMA,Eyes closed (standing),Partial,Full,Full,Full,Full,Full,True
+E141,Tinetti / POMA,Turning 360°,Full,Full,Full,Full,Full,Full,True
+E142,Tinetti / POMA,Sitting down,Full,Full,Full,Full,Full,Full,True
+E143,Tinetti / POMA,Initiation of gait,Full,Full,Full,Full,Full,Full,True
+E144,Tinetti / POMA,Step length & height (each foot),Full,Full,Full,Full,Full,Full,True
+E145,Tinetti / POMA,Step symmetry,Full,Full,Full,Full,Full,Full,True
+E146,Tinetti / POMA,Step continuity,Full,Full,Full,Full,Full,Full,True
+E147,Tinetti / POMA,Path (deviation),Full,Full,Full,Full,Full,Full,True
+E148,Tinetti / POMA,Trunk,Full,Full,Full,Full,Full,Full,True
+E149,Tinetti / POMA,Walking stance,Full,Full,Full,Full,Full,Full,True
+E150,2-Minute Walk Test (2MWT),"Distance walked in 2 minutes, fastest safe pace",Full,Full,Full,Full,Full,Full,True
+E151,Short Physical Performance Battery (SPPB),"Balance (side-by-side, semi-tandem, full-tandem)",Full,Full,Full,Full,Full,Full,True
+E152,Short Physical Performance Battery (SPPB),"Gait speed (4 m walk, 2 trials, faster used)",Full,Full,Full,Full,Full,Full,True
+E153,Short Physical Performance Battery (SPPB),"Chair stand (5× sit-to-stand, arms folded)",Full,Full,Full,Full,Full,Full,True
+E154,Six-Spot Step Test (SSST),Walk fastest across 1×5 m field kicking blocks out of 5 circles,Full,Full,Full,Full,Full,Full,True
+E155,Brunel Balance Assessment (BBA),Section 1: Sitting (Levels 1-3: supported sitting / static sitting / dynamic sitting),Partial,Partial,Partial,Full,Full,Full,True
+E156,Brunel Balance Assessment (BBA),Section 2: Standing (static & dynamic standing balance levels),Partial,Partial,Partial,Full,Full,Full,True
+E157,Brunel Balance Assessment (BBA),Section 3: Stepping/Walking (stepping & gait levels),Partial,Partial,Partial,Full,Full,Full,True
+E158,Elderly Mobility Scale (EMS),Lying to sitting,Partial,Partial,Partial,Partial,Partial,Full,True
+E159,Elderly Mobility Scale (EMS),Sitting to lying,Partial,Partial,Partial,Partial,Partial,Full,True
+E160,Elderly Mobility Scale (EMS),Sit to stand,Full,Full,Full,Partial,Partial,Partial,True
+E161,Elderly Mobility Scale (EMS),Standing,Full,Full,Full,Partial,Partial,Partial,True
+E162,Elderly Mobility Scale (EMS),Gait,Partial,Partial,Partial,Partial,Partial,Partial,True
+E163,Elderly Mobility Scale (EMS),Timed walk (6 m),Full,Full,Full,Full,Full,Full,True
+E164,Elderly Mobility Scale (EMS),Functional reach,Partial,Full,Full,Full,Full,Full,True
+E165,Community Balance & Mobility Scale (CB&M),"13 high-level balance/mobility tasks (e.g. unilateral stance, tandem walking, 360° turns, lateral foot scooting, hopping, running with controlled stop, walking & looking, descending stairs, crouch-and-walk)",Partial,Partial,Partial,Full,Full,Full,True
+E166,Function In Sitting Test (FIST),"14 seated-balance tasks (static sitting, anterior/posterior/lateral nudges, eyes closed, lateral & forward reach, pick object from floor, scooting, etc.)",Partial,Partial,Partial,Partial,Partial,Partial,True
+E167,ABILHAND,Manual ability questionnaire (perceived difficulty of bimanual ADL tasks),None,None,None,None,None,None,True
+E168,Frenchay Arm Test (FAT),5 functional UL tasks (stabilise ruler & draw line; lift 12 mm cylinder; lift & drink half-full glass; clip clothes-peg on dowel; comb hair),Full,Full,Full,Full,Full,Full,True
+E169,Jebsen-Taylor Hand Function Test (JTHFT),"7 timed subtests (writing, card turning, small common objects, simulated feeding, stacking checkers, lifting large light cans, lifting large heavy cans)",Full,Full,Full,Full,Full,Full,True
+E170,Manual Function Test (MFT),FE — Forward elevation of upper extremity (arm motion),Full,Full,Full,Full,Full,Full,True
+E171,Manual Function Test (MFT),LE — Lateral elevation of upper extremity (arm motion),Full,Full,Full,Full,Full,Full,True
+E172,Manual Function Test (MFT),PO — Touch the occiput with the palm (arm motion),Full,Full,Full,Full,Full,Full,True
+E173,Manual Function Test (MFT),PD — Touch the dorsum (back) with the palm (arm motion),Full,Full,Full,Full,Full,Full,True
+E174,Manual Function Test (MFT),GR — Grasp (manipulative: grasp & release of a rubber ball),Full,Full,Full,Partial,Partial,Full,True
+E175,Manual Function Test (MFT),PI — Pinch (manipulative: pick up pencil / coin / needle),Full,Full,Full,Full,Full,Full,True
+E176,Manual Function Test (MFT),"CC — Carry a cube (arm & hand activity, timed)",Full,Full,Full,Full,Full,Full,True
+E177,Manual Function Test (MFT),"PP — Peg-board (arm & hand activity, timed fine dexterity)",Full,Full,Full,Full,Full,Full,True
+E178,Stroke Upper Limb Capacity Scale (SULCS),10 hierarchical UL capacity tasks (proximal support → reach → grasp/manipulate → fine tasks),Full,Full,Full,Full,Full,Full,True
+E179,Shoulder Abduction Finger Extension (SAFE) score,Sum of MRC grades for shoulder abduction + finger extension (PREP2 component),None,None,None,Partial,Partial,Partial,True
+E180,Stroke Impairment Assessment Set (SIAS),"Motor function items (knee-mouth, finger-function, hip-flexion, knee-extension, foot-pat)",Partial,Partial,Partial,Full,Full,Full,True
+E181,Stroke Impairment Assessment Set (SIAS),"Muscle tone, deep tendon reflex and range-of-motion items",,,,None,None,Partial,False
+E182,Stroke Impairment Assessment Set (SIAS),Trunk control / abdominal / verticality items,Partial,Partial,Partial,Full,Full,Partial,True
+E183,Composite Spasticity Index (CSI),Sum of tendon jerk + resistance to passive ankle dorsiflexion + ankle clonus,None,None,None,None,None,None,True
+E184,Falls Efficacy Scale (FES),"10 activities, self-rated fall-related confidence (1-10)",None,None,None,None,None,None,True
+E185,Medical Research Council (MRC) muscle scale,"Manual muscle strength grade 0-5 (per muscle; MRC sum score = 6 muscles bilaterally, 0-60)",None,None,None,Partial,Partial,Partial,True
+E186,Scale for Contraversive Pushing (SCP),"Symmetry of spontaneous posture (B: tilt toward paretic side, sitting & standing)",Partial,Full,Full,Full,Full,Full,True
+E187,Scale for Contraversive Pushing (SCP),Use of nonparetic extremities for abduction/extension (push-off) (sitting & standing),Partial,Full,Full,Full,Full,Full,True
+E188,Scale for Contraversive Pushing (SCP),Resistance to passive correction of posture (sitting & standing),None,None,None,None,None,None,True
+E189,Activity Measure for Post-Acute Care (AM-PAC),"Basic Mobility Inpatient Short Form (turning in bed, sit-to-stand, transfers, walking, stairs) — Daily Activity form separate",None,None,None,None,None,Partial,True
+E190,Brunnstrom Recovery Stages,6 stages of post-stroke motor recovery (flaccidity → synergies emerge → synergy with spasticity → movements out of synergy → complex combinations → near-normal/isolated),Partial,Partial,Partial,Partial,Partial,Partial,True
+E191,Ability for Basic Movement Scale II (ABMS II),Turn over from supine position,,,,Partial,Partial,Partial,False
+E192,Ability for Basic Movement Scale II (ABMS II),Sit up to edge of bed,,,,Partial,Partial,Partial,False
+E193,Ability for Basic Movement Scale II (ABMS II),Remain sitting on edge of bed > 30 s,,,,Partial,Partial,Partial,False
+E194,Ability for Basic Movement Scale II (ABMS II),Stand up from edge of bed,,,,Partial,Partial,Partial,False
+E195,Ability for Basic Movement Scale II (ABMS II),Remain standing at bedside > 30 s,,,,Partial,Partial,Partial,False
+E196,Falls Efficacy Scale-International (FES-I),"16 activities, self-rated concern about falling (1-4); total 16-64",,,,None,None,None,False

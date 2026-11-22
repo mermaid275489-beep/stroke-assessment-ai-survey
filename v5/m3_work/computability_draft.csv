@@ -1,0 +1,197 @@
+﻿Entry ID,Tool,Item / task,Video availability,C,Rationale
+E001,Berg Balance Scale (BBS),Sitting to standing,Partial,D,"Visible part: hand use, number of attempts and stability without help"
+E002,Berg Balance Scale (BBS),Standing unsupported,Full,P,Safely vs with supervision is a rater judgement of visible steadiness
+E003,Berg Balance Scale (BBS),Sitting unsupported,Full,P,Safely vs with supervision is a rater judgement of visible steadiness
+E004,Berg Balance Scale (BBS),Standing to sitting,Full,P,Controlled vs uncontrolled descent and degree of hand use are rated
+E005,Berg Balance Scale (BBS),Transfers,Partial,P,Minor use of the hands vs clearly needs the hands is a rated degree
+E006,Berg Balance Scale (BBS),Standing with eyes closed,Full,P,Safely vs with supervision is a rater judgement of visible steadiness
+E007,Berg Balance Scale (BBS),Standing with feet together,Full,P,Safely vs with supervision is a rater judgement of visible steadiness
+E008,Berg Balance Scale (BBS),Reaching forward with outstretched arm,Full,P,Reach distances are direct; confident or safe reach vs supervision is rated
+E009,Berg Balance Scale (BBS),Retrieving object from floor,Full,P,Picking up safely and easily vs with supervision is rated
+E010,Berg Balance Scale (BBS),Turning to look behind,Full,P,Good vs less weight shift is rated without a threshold
+E011,Berg Balance Scale (BBS),Turning 360 degrees,Partial,P,Turn time is direct; safely but slowly and close supervision are rated
+E012,Berg Balance Scale (BBS),Placing alternate foot on stool,Partial,P,Step count and time are direct; independently and safely vs supervision is rated
+E013,Berg Balance Scale (BBS),Standing one foot in front (tandem),Full,D,"Foot placement, holding time and help to step are measurable events"
+E014,Berg Balance Scale (BBS),Standing on one foot,Full,D,Independent leg lift and holding times
+E015,Mini-BESTest,Sit to stand [Anticipatory],Full,D,"Hand use, number of attempts and assistance are discrete events"
+E016,Mini-BESTest,Rise to toes [Anticipatory],Full,P,Heel height relative to the supported trial is measurable; noticeable instability is rated
+E017,Mini-BESTest,Stand on one leg [Anticipatory],Full,D,Holding time
+E018,Mini-BESTest,Compensatory stepping forward [Reactive],Full,D,Number of recovery steps; fall
+E019,Mini-BESTest,Compensatory stepping backward [Reactive],Full,D,Number of recovery steps; fall
+E020,Mini-BESTest,Compensatory stepping lateral [Reactive],Full,D,Number of recovery steps; fall
+E021,Mini-BESTest,"Stance feet together, eyes open, firm [Sensory orientation]",Full,D,Holding time
+E022,Mini-BESTest,"Stance feet together, eyes closed, foam [Sensory orientation]",Full,D,Holding time
+E023,Mini-BESTest,"Incline, eyes closed [Sensory orientation]",Full,D,Holding time; trunk alignment with gravity vs with the surface is an angle
+E024,Mini-BESTest,Change in gait speed [Dynamic gait],Full,P,Significant change in speed and signs of imbalance are rated without thresholds
+E025,Mini-BESTest,Walk with horizontal head turns [Dynamic gait],Full,P,Change in gait speed and good balance vs imbalance are rated
+E026,Mini-BESTest,Walk with pivot turns [Dynamic gait],Full,P,Step count is direct; good balance vs imbalance is rated
+E027,Mini-BESTest,Step over obstacles [Dynamic gait],Full,P,Touching the box is an event; minimal speed change and cautious behaviour are rated
+E028,Mini-BESTest,Timed Up & Go with dual task [Dynamic gait],Partial,D,Visible part: walking slows by more than 10% relative to the single-task TUG
+E029,Functional Gait Assessment,Gait level surface,Full,J,Normal gait pattern vs mild gait deviations is an overall pattern judgement
+E030,Functional Gait Assessment,Change in gait speed,Full,J,Gait deviation is an overall pattern judgement
+E031,Functional Gait Assessment,Gait with horizontal head turns,Full,P,Path deviation is measured; smoothness and change in gait velocity are rated
+E032,Functional Gait Assessment,Gait with vertical head turns,Full,P,Path deviation is measured; smoothness and change in gait velocity are rated
+E033,Functional Gait Assessment,Gait and pivot turn,Partial,P,Pivot time is direct; mild imbalance and safety of the turn are rated
+E034,Functional Gait Assessment,Step over obstacle,Full,P,Obstacle height is fixed; change in speed and evidence of imbalance are rated
+E035,Functional Gait Assessment,Gait with narrow base of support,Full,D,Number of heel-to-toe steps without staggering
+E036,Functional Gait Assessment,Gait with eyes closed,Full,J,Normal gait pattern vs mild gait deviations is an overall pattern judgement
+E037,Functional Gait Assessment,Ambulating backwards,Full,J,Normal gait pattern vs mild gait deviations is an overall pattern judgement
+E038,Functional Gait Assessment,Steps,Full,D,Rail use and foot placement pattern
+E039,"Trunk Impairment Scale (TIS, Verheyden)",Static: Starting position,Full,D,Holding time; arm support; fall
+E040,"Trunk Impairment Scale (TIS, Verheyden)",Static: Therapist crosses unaffected leg over hemiplegic leg,Full,D,Holding time; arm support; fall
+E041,"Trunk Impairment Scale (TIS, Verheyden)",Static: Patient crosses unaffected leg over hemiplegic leg,Full,D,"Trunk displacement threshold (10 cm), hand assistance and arm support"
+E042,"Trunk Impairment Scale (TIS, Verheyden)",Touch bed with hemiplegic elbow (shorten hemiplegic/lengthen unaffected side) & return,Full,D,Elbow contact with the bed; arm support; fall
+E043,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 1 — quality of shortening/lengthening,Full,P,Appropriate shortening and lengthening of the trunk sides is rated without a threshold
+E044,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 1 — compensation,Full,P,Five listed compensation strategies need detection thresholds
+E045,"Trunk Impairment Scale (TIS, Verheyden)",Touch bed with unaffected elbow (shorten unaffected/lengthen hemiplegic) & return,Full,D,Elbow contact with the bed; arm support; fall
+E046,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 4 — quality,Full,P,Appropriate shortening and lengthening of the trunk sides is rated without a threshold
+E047,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 4 — compensation,Full,P,Five listed compensation strategies need detection thresholds
+E048,"Trunk Impairment Scale (TIS, Verheyden)","Lift pelvis, hemiplegic side (shorten hemiplegic/lengthen unaffected) & return",Full,P,Appropriate shortening and lengthening of the trunk sides is rated without a threshold
+E049,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 7 — compensation,Full,D,Upper-extremity use or heel lift-off are discrete events
+E050,"Trunk Impairment Scale (TIS, Verheyden)","Lift pelvis, unaffected side (shorten unaffected/lengthen hemiplegic) & return",Full,P,Appropriate shortening and lengthening of the trunk sides is rated without a threshold
+E051,"Trunk Impairment Scale (TIS, Verheyden)",Repeat item 9 — compensation,Full,D,Upper-extremity use or heel lift-off are discrete events
+E052,"Trunk Impairment Scale (TIS, Verheyden)","Coordination: Rotate upper trunk 6× (shoulders, head fixated)",Full,P,Symmetrical vs asymmetrical rotation has no threshold
+E053,"Trunk Impairment Scale (TIS, Verheyden)",Coordination: Repeat item 1 within 6 s,Full,P,Symmetry is rated; the 6-s limit is direct
+E054,"Trunk Impairment Scale (TIS, Verheyden)","Coordination: Rotate lower trunk 6× (knees, upper trunk fixated)",Full,P,Symmetrical vs asymmetrical rotation has no threshold
+E055,"Trunk Impairment Scale (TIS, Verheyden)",Coordination: Repeat item 3 within 6 s,Full,P,Symmetry is rated; the 6-s limit is direct
+E056,10-Metre Walk Test,Comfortable & fast gait speed over middle 6 m of a 10 m path (2 m accel + 6 m timed + 2 m decel),Full,D,Gait speed over 6 m
+E057,6-Minute Walk Test,Total distance walked in 6 minutes on a measured course,Full,D,Distance in 6 min
+E058,Timed Up and Go,Stand from chair → walk 3 m → turn → walk back → sit; timed,Full,D,Test time
+E059,Five Times Sit-to-Stand,"Stand & sit 5× as fast as possible, arms folded across chest, back not touching chair between reps",Full,D,Test time
+E060,Dynamic Gait Index,Gait level surface,Full,J,Normal gait pattern vs mild gait deviations is an overall pattern judgement
+E061,Dynamic Gait Index,Change in gait speed,Full,J,Gait deviation is an overall pattern judgement
+E062,Dynamic Gait Index,Gait with horizontal head turns,Full,P,"Change in gait speed, smoothness and staggering are rated"
+E063,Dynamic Gait Index,Gait with vertical head turns,Full,P,"Change in gait speed, smoothness and staggering are rated"
+E064,Dynamic Gait Index,Gait and pivot turn,Partial,P,Turn time is direct; safety and loss of balance are rated
+E065,Dynamic Gait Index,Step over obstacle,Full,P,Change in speed and step adjustment are rated
+E066,Dynamic Gait Index,Step around obstacles,Partial,P,Contact with the cones is an event; slowing and step adjustment are rated
+E067,Dynamic Gait Index,Steps,Full,D,Rail use and foot placement pattern
+E068,Modified Emory Functional Ambulation Profile,5 timed terrains: hard floor 5 m · carpet 5 m · Up&Go · obstacles · stairs,Full,D,Sum of subtask times; device and assistance are recorded separately
+E069,STREAM,Upper-limb voluntary movement (10 items),Full,J,Comparable to the unaffected side vs marked deviation from the normal pattern
+E070,STREAM,Lower-limb voluntary movement (10 items),Full,J,Comparable to the unaffected side vs marked deviation from the normal pattern
+E071,STREAM,Basic mobility (10 items),Full,J,Grossly normal pattern vs marked deviation from the normal pattern
+E072,Motor Assessment Scale (MAS),Supine to side lying,Full,P,"Time is direct; rolling strategies (block rolling, overbalancing) need movement-pattern recognition"
+E073,Motor Assessment Scale (MAS),Supine to sitting over side of bed,Full,D,"Time, stand-by help and therapist help with the legs are visible events"
+E074,Motor Assessment Scale (MAS),Balanced sitting,Full,P,"Reach targets are direct; weight forward, spinal extension and even weight distribution are rated"
+E075,Motor Assessment Scale (MAS),Sitting to standing,Full,P,Time and repetitions are direct; even weight distribution and full hip and knee extension are rated
+E076,Motor Assessment Scale (MAS),Walking,Full,D,"Distances, times, aid and stand-by help"
+E077,Motor Assessment Scale (MAS),Upper-arm function,Full,P,Arm angles and holding times are direct; maintained external rotation and no excessive shoulder elevation are rated
+E078,Motor Assessment Scale (MAS),Hand movements,Full,P,Tap counts and ranges are direct; absence of elbow flexion or pronation and cup deformation are rated
+E079,Motor Assessment Scale (MAS),Advanced hand activities,Full,D,"Task completion, counts, time and spilling"
+E081,Action Research Arm Test (ARAT),Grasp subscale (6 items),Full,P,"Time limits are direct; grasp type, abnormal release and trunk contact are specified components that need detection thresholds"
+E082,Action Research Arm Test (ARAT),Grip subscale (4 items),Full,P,"Time limits are direct; grasp type, abnormal release and trunk contact are specified components that need detection thresholds"
+E083,Action Research Arm Test (ARAT),Pinch subscale (6 items),Full,P,"Time limits are direct; grasp type, abnormal release and trunk contact are specified components that need detection thresholds"
+E084,Action Research Arm Test (ARAT),Gross movement subscale (3 items),Full,P,"Time limits are direct; neck flexion, forearm pronation and trunk contact need detection thresholds"
+E085,Wolf Motor Function Test (WMFT),Performance time of 15 timed tasks,Full,D,Task time with a ceiling
+E086,Wolf Motor Function Test (WMFT),Functional Ability Scale ratings of 15 tasks,Full,J,Movement appears normal vs influenced by synergy is an overall judgement
+E087,Wolf Motor Function Test (WMFT),Grip strength (dynamometry),None,NA,Dynamometer force; no visible score-defining content
+E197,Wolf Motor Function Test (WMFT),Weight to box: heaviest weight lifted onto the box (recorded in lb),Full,D,Heaviest weight lifted with the back against the chair
+E088,Box and Block Test (BBT),"Transport blocks over partition, 60 s, each hand",Full,D,Block count in 60 s
+E089,Nine-Hole Peg Test (9HPT),"Place 9 pegs then remove, each hand, timed",Full,D,Test time
+E090,Chedoke Arm and Hand Activity Inventory (CAHAI),"13 bimanual functional ADL tasks (open jar, pour, buttons, zip, wring cloth, phone, carry bag, etc.)",Partial,J,"Visible part rests on safety concerns, poor motor control and reasonable time"
+E091,Fugl-Meyer UE (FMA-UE),A. UE motor — synergies (II-IV),Full,P,"Ranges are direct; trunk compensation, gravity tricks and pure movement need detection thresholds"
+E092,Fugl-Meyer UE (FMA-UE),B. Wrist,Partial,P,Visible part: 15-degree extension and cycles are direct; smooth circumduction is rated
+E093,Fugl-Meyer UE (FMA-UE),"C. Hand: mass flexion, mass extension and grasps a-e (7 items)",Partial,D,Visible part: finger flexion and extension and grasp postures
+E094,Fugl-Meyer UE (FMA-UE),D. Coordination/speed,Full,P,Time difference is direct; slight vs marked tremor and dysmetria are rated
+E095,Fugl-Meyer UE (FMA-UE),"Reflex items (I, V) of the motor score",None,NA,Reflexes; no visible score-defining content
+E096,Fugl-Meyer LE (FMA-LE),E. LE motor — synergies & isolated (II-IV),Partial,D,Visible part: active ranges and joint angles
+E097,Fugl-Meyer LE (FMA-LE),F. Coordination/speed,Full,P,Time difference is direct; slight vs marked tremor and dysmetria are rated
+E098,Fugl-Meyer LE (FMA-LE),"Reflex items (I, V) of the motor score",None,NA,Reflexes; no visible score-defining content
+E099,Functional Ambulation Category (FAC),Walking-assistance category 0-5,Partial,D,Visible part: walking surfaces and continuous vs intermittent manual contact
+E100,Motricity Index,"Limb strength: 3 movements/limb (UE pinch grip, elbow flexion, shoulder abduction; LE ankle DF, knee ext, hip flexion)",Partial,D,Visible part: movement and range against gravity
+E101,Modified Ashworth Scale,Passive-stretch tone rating per muscle group,None,NA,Tone by touch; no visible score-defining content
+E102,Modified Tardieu Scale,Passive stretch at velocities V1/V2/V3; rate reaction quality (X) & catch angle (Y),Partial,D,Visible part: catch angle and passive range
+E103,Chedoke-McMaster Stroke Assessment,"Impairment Inventory — stage of motor recovery (7 stages) for arm, hand, leg, foot, postural control (+ separate Activity Inventory)",Partial,J,Recovery stages rest on synergy and coordination judgements
+E104,modified Rankin Scale (mRS),Global disability grade 0-6,Partial,J,Global disability grade
+E105,NIH Stroke Scale (NIHSS),Motor arm and leg (drift),Full,D,"Holding time, drift and contact with the bed"
+E106,NIH Stroke Scale (NIHSS),Limb ataxia,Full,J,Ataxia is scored only when out of proportion to weakness
+E107,Activities-specific Balance Confidence (ABC),"16 activities, self-rated balance confidence 0-100%",None,NA,Self-report; no visible score-defining content
+E108,Motor Activity Log (MAL),Amount of Use (0-5) & Quality of Movement (0-5) for daily arm activities,None,NA,Self-report; no visible score-defining content
+E109,Stroke Impact Scale (SIS),59 items / 8 domains + global recovery 0-100,None,NA,Self-report; no visible score-defining content
+E110,Barthel Index,Mobility (on level),Partial,D,"Visible part: distance walked, aid and occurrence of help"
+E111,Barthel Index,Stairs,Partial,D,"Visible part: stairs completed, rail or aid use and carrying the aid"
+E112,Barthel Index,Transfers (bed↔chair),Partial,D,Visible part: independence and occurrence of help
+E113,Functional Independence Measure (FIM),"13 motor items (self-care, sphincter control, transfers, locomotion), each 1-7",Partial,J,Visible part rests on safety concern and reasonable time
+E114,Rivermead Mobility Index (RMI),Turning over in bed (self-reported),None,NA,Self-report; no visible score-defining content
+E115,Rivermead Mobility Index (RMI),Lying to sitting (self-reported),None,NA,Self-report; no visible score-defining content
+E116,Rivermead Mobility Index (RMI),Sitting balance (edge of bed 10 s) (self-reported),None,NA,Self-report; no visible score-defining content
+E117,Rivermead Mobility Index (RMI),"Sitting to standing (<15 s, stand 15 s) (self-reported)",None,NA,Self-report; no visible score-defining content
+E118,Rivermead Mobility Index (RMI),"Standing unsupported (10 s, no aid) (directly observed)",Full,D,Standing time without aid
+E119,Rivermead Mobility Index (RMI),Transfer (self-reported),None,NA,Self-report; no visible score-defining content
+E120,Rivermead Mobility Index (RMI),"Walking inside (10 m, aid ok, no standby help) (self-reported)",None,NA,Self-report; no visible score-defining content
+E121,Rivermead Mobility Index (RMI),Stairs (a flight without help) (self-reported),None,NA,Self-report; no visible score-defining content
+E122,Rivermead Mobility Index (RMI),Walking outside (even ground) (self-reported),None,NA,Self-report; no visible score-defining content
+E123,Rivermead Mobility Index (RMI),"Walking inside, no aid (self-reported)",None,NA,Self-report; no visible score-defining content
+E124,Rivermead Mobility Index (RMI),"Picking off floor (walk 5 m, pick object, walk back) (self-reported)",None,NA,Self-report; no visible score-defining content
+E125,Rivermead Mobility Index (RMI),"Walking outside, uneven ground (self-reported)",None,NA,Self-report; no visible score-defining content
+E126,Rivermead Mobility Index (RMI),Bathing (self-reported),None,NA,Self-report; no visible score-defining content
+E127,Rivermead Mobility Index (RMI),Up & down 4 steps (no rail/aid) (self-reported),None,NA,Self-report; no visible score-defining content
+E128,Rivermead Mobility Index (RMI),Running 10 m in 4 seconds without limping (self-reported),None,NA,Self-report; no visible score-defining content
+E129,Trunk Control Test (TCT),Roll to weak side,Full,J,Completes the task normally vs in an abnormal style is an overall judgement
+E130,Trunk Control Test (TCT),Roll to strong side,Full,J,Completes the task normally vs in an abnormal style is an overall judgement
+E131,Trunk Control Test (TCT),"Balance in sitting (edge of bed, feet off ground, ≥30 s)",Full,J,Normal posture vs abnormal style is an overall judgement
+E132,Trunk Control Test (TCT),Sit up from lying down,Full,J,Completes the task normally vs in an abnormal style is an overall judgement
+E133,Functional Reach Test (FRT),"Forward reach along yardstick, standing, arm at 90° shoulder flexion, feet fixed",Full,D,Reach distance
+E134,Tinetti / POMA,Sitting balance,Full,P,Steady and safe vs leans or slides is rated
+E135,Tinetti / POMA,Arises,Full,D,Arm use and help
+E136,Tinetti / POMA,Attempts to arise,Full,D,Number of attempts and help
+E137,Tinetti / POMA,Immediate standing balance (first 5 s),Full,P,Steadiness and marked trunk sway are rated; support use is an event
+E138,Tinetti / POMA,Standing balance,Full,P,Stance-width threshold is direct; steadiness is rated
+E139,Tinetti / POMA,Nudged (sternal push ×3),Full,P,Steady vs staggers or grabs vs begins to fall
+E140,Tinetti / POMA,Eyes closed (standing),Full,P,Steady vs unsteady
+E141,Tinetti / POMA,Turning 360°,Full,P,Step continuity and steadiness are rated
+E142,Tinetti / POMA,Sitting down,Full,P,Smooth motion and misjudged distance are rated
+E143,Tinetti / POMA,Initiation of gait,Full,P,Hesitancy is rated
+E144,Tinetti / POMA,Step length & height (each foot),Full,D,Swing foot passes the stance foot; foot clears the floor
+E145,Tinetti / POMA,Step symmetry,Full,P,Step lengths appear equal; no threshold
+E146,Tinetti / POMA,Step continuity,Full,P,Step continuity is rated
+E147,Tinetti / POMA,Path (deviation),Full,P,"Mild, moderate or marked path deviation"
+E148,Tinetti / POMA,Trunk,Full,P,"Sway, knee or back flexion and arm spreading are rated"
+E149,Tinetti / POMA,Walking stance,Full,P,Heels almost touching vs apart; no threshold
+E150,2-Minute Walk Test (2MWT),"Distance walked in 2 minutes, fastest safe pace",Full,D,Distance in 2 min
+E151,Short Physical Performance Battery (SPPB),"Balance (side-by-side, semi-tandem, full-tandem)",Full,D,Holding times
+E152,Short Physical Performance Battery (SPPB),"Gait speed (4 m walk, 2 trials, faster used)",Full,D,Walk-time bands
+E153,Short Physical Performance Battery (SPPB),"Chair stand (5× sit-to-stand, arms folded)",Full,D,Chair-stand time bands
+E154,Six-Spot Step Test (SSST),Walk fastest across 1×5 m field kicking blocks out of 5 circles,Full,D,Run time
+E155,Brunel Balance Assessment (BBA),Section 1: Sitting (Levels 1-3: supported sitting / static sitting / dynamic sitting),Full,D,"Holding time, arm-lift counts, reach distance and arm support"
+E156,Brunel Balance Assessment (BBA),Section 2: Standing (static & dynamic standing balance levels),Full,D,"Holding time, arm-lift counts, reach distance and arm support"
+E157,Brunel Balance Assessment (BBA),Section 3: Stepping/Walking (stepping & gait levels),Full,D,"Holding time, walking time, weight-transfer counts and support"
+E158,Elderly Mobility Scale (EMS),Lying to sitting,Full,D,Number of helpers
+E159,Elderly Mobility Scale (EMS),Sitting to lying,Full,D,Number of helpers
+E160,Elderly Mobility Scale (EMS),Sit to stand,Partial,D,Visible part: time and occurrence of physical help
+E161,Elderly Mobility Scale (EMS),Standing,Partial,D,Visible part: support use and reach
+E162,Elderly Mobility Scale (EMS),Gait,Partial,P,Visible part: erratic or unsafe walking is rated
+E163,Elderly Mobility Scale (EMS),Timed walk (6 m),Full,D,Walk time
+E164,Elderly Mobility Scale (EMS),Functional reach,Full,D,Reach distance
+E165,Community Balance & Mobility Scale (CB&M),"13 high-level balance/mobility tasks (e.g. unilateral stance, tandem walking, 360° turns, lateral foot scooting, hopping, running with controlled stop, walking & looking, descending stairs, crouch-and-walk)",Full,P,"Times and steps are direct; coordinated, controlled and excessive equilibrium reactions are rated"
+E166,Function In Sitting Test (FIST),"14 seated-balance tasks (static sitting, anterior/posterior/lateral nudges, eyes closed, lateral & forward reach, pick object from floor, scooting, etc.)",Partial,P,Visible part: normal speed and safety and tentative or slow performance are rated
+E167,ABILHAND,Manual ability questionnaire (perceived difficulty of bimanual ADL tasks),None,NA,Self-report; no visible score-defining content
+E168,Frenchay Arm Test (FAT),5 functional UL tasks (stabilise ruler & draw line; lift 12 mm cylinder; lift & drink half-full glass; clip clothes-peg on dowel; comb hair),Full,D,Task success: completion without dropping or spilling
+E169,Jebsen-Taylor Hand Function Test (JTHFT),"7 timed subtests (writing, card turning, small common objects, simulated feeding, stacking checkers, lifting large light cans, lifting large heavy cans)",Full,D,Subtest times
+E170,Manual Function Test (MFT),FE — Forward elevation of upper extremity (arm motion),Full,D,Shoulder flexion angle bands
+E171,Manual Function Test (MFT),LE — Lateral elevation of upper extremity (arm motion),Full,D,Shoulder abduction angle bands
+E172,Manual Function Test (MFT),PO — Touch the occiput with the palm (arm motion),Full,D,Hand position targets
+E173,Manual Function Test (MFT),PD — Touch the dorsum (back) with the palm (arm motion),Full,D,Hand position targets
+E174,Manual Function Test (MFT),GR — Grasp (manipulative: grasp & release of a rubber ball),Full,D,"Grasp, hold and release events"
+E175,Manual Function Test (MFT),PI — Pinch (manipulative: pick up pencil / coin / needle),Full,D,Object picked up
+E176,Manual Function Test (MFT),"CC — Carry a cube (arm & hand activity, timed)",Full,D,Cube count in 5 s
+E177,Manual Function Test (MFT),"PP — Peg-board (arm & hand activity, timed fine dexterity)",Full,D,Peg count
+E178,Stroke Upper Limb Capacity Scale (SULCS),10 hierarchical UL capacity tasks (proximal support → reach → grasp/manipulate → fine tasks),Full,D,Task success with specified angles and object conditions
+E179,Shoulder Abduction Finger Extension (SAFE) score,Sum of MRC grades for shoulder abduction + finger extension (PREP2 component),Partial,D,Visible part: range against gravity
+E180,Stroke Impairment Assessment Set (SIAS),"Motor function items (knee-mouth, finger-function, hip-flexion, knee-extension, foot-pat)",Full,J,"As smooth as the unaffected side vs mild, moderate or marked clumsiness"
+E181,Stroke Impairment Assessment Set (SIAS),"Muscle tone, deep tendon reflex and range-of-motion items",Partial,D,Visible part: passive range-of-motion angles
+E182,Stroke Impairment Assessment Set (SIAS),Trunk control / abdominal / verticality items,Partial,D,Visible part: lateral tilt of 15 degrees and its correction
+E183,Composite Spasticity Index (CSI),Sum of tendon jerk + resistance to passive ankle dorsiflexion + ankle clonus,None,NA,Reflexes and tone; no visible score-defining content
+E184,Falls Efficacy Scale (FES),"10 activities, self-rated fall-related confidence (1-10)",None,NA,Self-report; no visible score-defining content
+E185,Medical Research Council (MRC) muscle scale,"Manual muscle strength grade 0-5 (per muscle; MRC sum score = 6 muscles bilaterally, 0-60)",Partial,D,"Visible part: movement against gravity, range and visible contraction"
+E186,Scale for Contraversive Pushing (SCP),"Symmetry of spontaneous posture (B: tilt toward paretic side, sitting & standing)",Full,P,Severe vs mild tilt is rated; falling is an event
+E187,Scale for Contraversive Pushing (SCP),Use of nonparetic extremities for abduction/extension (push-off) (sitting & standing),Full,P,Spontaneous abduction and extension of the nonparetic limbs needs pattern recognition
+E188,Scale for Contraversive Pushing (SCP),Resistance to passive correction of posture (sitting & standing),None,NA,Resistance to passive correction; no visible score-defining content
+E189,Activity Measure for Post-Acute Care (AM-PAC),"Basic Mobility Inpatient Short Form (turning in bed, sit-to-stand, transfers, walking, stairs) — Daily Activity form separate",Partial,J,Visible part: degree of difficulty is rated globally
+E190,Brunnstrom Recovery Stages,6 stages of post-stroke motor recovery (flaccidity → synergies emerge → synergy with spasticity → movements out of synergy → complex combinations → near-normal/isolated),Partial,J,Recovery stages rest on synergy and coordination judgements
+E191,Ability for Basic Movement Scale II (ABMS II),Turn over from supine position,Partial,D,Visible part: rail or bed-edge use and occurrence of physical support
+E192,Ability for Basic Movement Scale II (ABMS II),Sit up to edge of bed,Partial,D,Visible part: rail or bed-edge use and occurrence of physical support
+E193,Ability for Basic Movement Scale II (ABMS II),Remain sitting on edge of bed > 30 s,Partial,D,Visible part: rail or bed-edge use and occurrence of physical support
+E194,Ability for Basic Movement Scale II (ABMS II),Stand up from edge of bed,Partial,D,Visible part: rail or bed-edge use and occurrence of physical support
+E195,Ability for Basic Movement Scale II (ABMS II),Remain standing at bedside > 30 s,Partial,D,Visible part: rail or bed-edge use and occurrence of physical support
+E196,Falls Efficacy Scale-International (FES-I),"16 activities, self-rated concern about falling (1-4); total 16-64",None,NA,Self-report; no visible score-defining content

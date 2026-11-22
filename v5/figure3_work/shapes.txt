@@ -1,0 +1,310 @@
+slide size pt: 720 x 504
+Main panel divider	367,29,1x441	[5]
+a and b divider	28,220,320x1	[5]
+b and c divider	28,317,320x1	[5]
+Panel b letter	28,229,14x18	15pt		b
+Panel b heading	47,229,319x18	12.15pt		Overall video availability
+b weighting 1	30,254,101x16	8.63pt		Entry-weighted (n = 196)
+b Entry-weighted (n = 196) Full bar	137,254,144x16	[1]
+b Entry-weighted (n = 196) Full percentage	137,254,143x16	9.07pt		68%
+b Entry-weighted (n = 196) Partial bar	281,254,39x16	[1]
+b Entry-weighted (n = 196) Partial percentage	281,254,37x16	9.07pt		18%
+b Entry-weighted (n = 196) None bar	319,254,28x16	[1]
+b Entry-weighted (n = 196) None percentage	320,254,26x16	9.07pt		13%
+b weighting 2	30,277,101x16	8.63pt		Tool-weighted (n = 57)
+b Tool-weighted (n = 57) Full bar	137,277,112x16	[1]
+b Tool-weighted (n = 57) Full percentage	137,277,111x16	9.07pt		53%
+b Tool-weighted (n = 57) Partial bar	249,277,61x16	[1]
+b Tool-weighted (n = 57) Partial percentage	250,277,60x16	9.07pt		29%
+b Tool-weighted (n = 57) None bar	310,277,37x16	[1]
+b Tool-weighted (n = 57) None percentage	311,277,36x16	9.07pt		18%
+b horizontal percentage axis	137,298,211x1	[5]
+b 0% tick	137,298,1x3	[5]
+b 0% label	124,302,26x11	8.1pt		0%
+b 20% tick	179,298,1x3	[5]
+b 20% label	166,302,26x11	8.1pt		20%
+b 40% tick	221,298,1x3	[5]
+b 40% label	208,302,26x11	8.1pt		40%
+b 60% tick	263,298,1x3	[5]
+b 60% label	250,302,26x11	8.1pt		60%
+b 80% tick	305,298,1x3	[5]
+b 80% label	292,302,26x11	8.1pt		80%
+b 100% tick	347,298,1x3	[5]
+b 100% label	335,302,26x11	8.1pt		100%
+Panel c letter	28,324,14x18	15pt		c
+Panel c heading	47,324,319x18	12.15pt		Computational feature families
+c vertical axis	139,344,1x102	[5]
+c horizontal axis	139,446,164x1	[5]
+c feature family 1	25,345,109x14	8.4pt		Temporal and event
+c Temporal and event lollipop 153 entries	139,352,125x1	[5]
+c Temporal and event endpoint	261,349,6x6	[1]
+c Temporal and event entry and tool totals	270,346,79x12	8.32pt		153 entries ¡¤ 42 tools
+c feature family 2	25,366,109x14	8.4pt		Spatial and trajectory
+c Spatial and trajectory lollipop 81 entries	139,372,66x1	[5]
+c Spatial and trajectory endpoint	202,369,6x6	[1]
+c Spatial and trajectory entry and tool totals	211,366,79x12	8.32pt		81 entries ¡¤ 24 tools
+c feature family 3	25,386,109x14	8.4pt	OVERFLOW	Joint and segment kinematics
+c Joint and segment kinematics lollipop 52 entries	139,393,43x1	[5]
+c Joint and segment kinematics endpoint	178,390,6x6	[1]
+c Joint and segment kinematics entry and tool totals	187,387,79x12	8.32pt		52 entries ¡¤ 21 tools
+c feature family 4	25,407,109x14	8.4pt		Inter-segment and relational
+c Inter-segment and relational lollipop 46 entries	139,414,38x1	[5]
+c Inter-segment and relational endpoint	173,411,6x6	[1]
+c Inter-segment and relational entry and tool totals	182,408,79x12	8.32pt		46 entries ¡¤ 19 tools
+c feature family 5	25,428,109x14	8.4pt		Trajectory-derived quality
+c Trajectory-derived quality lollipop 6 entries	139,434,5x1	[5]
+c Trajectory-derived quality endpoint	141,431,6x6	[1]
+c Trajectory-derived quality entry and tool totals	150,428,79x12	8.32pt		6 entries ¡¤ 6 tools
+c 0 tick	139,446,1x3	[5]
+c 0 label	128,450,21x12	8.1pt		0
+c 50 tick	180,446,1x3	[5]
+c 50 label	169,450,21x12	8.1pt		50
+c 100 tick	221,446,1x3	[5]
+c 100 label	210,450,21x12	8.1pt		100
+c 150 tick	261,446,1x3	[5]
+c 150 label	251,450,21x12	8.1pt		150
+c 200 tick	302,446,1x3	[5]
+c 200 label	292,450,21x12	8.1pt		200
+c count axis title	139,463,164x14	8.4pt		Number of mapping entries (n)
+Panel d letter	380,29,14x18	15pt		d
+Panel d heading	394,29,319x18	12.15pt		Tool-level distribution of video availability
+d domain Upper limb	382,53,311x14	10.05pt		1. Upper limb (13 tools)
+d tool MFT	442,70,61x13	9pt		MFT
+d MFT Full 1	509,72,9x9	[1]
+d MFT Full 2	519,72,9x9	[1]
+d MFT Full 3	529,72,9x9	[1]
+d MFT Full 4	539,72,9x9	[1]
+d MFT Full 5	549,72,9x9	[1]
+d MFT Full 6	559,72,9x9	[1]
+d MFT Full 7	569,72,9x9	[1]
+d MFT Full 8	579,72,9x9	[1]
+d MFT total	686,70,14x13	9pt		8
+d tool FMA-UE	442,83,61x13	9pt		FMA-UE
+d FMA-UE Full 1	509,85,9x9	[1]
+d FMA-UE Full 2	519,85,9x9	[1]
+d FMA-UE Partial 1	529,85,9x9	[1]
+d FMA-UE Partial 2	539,85,9x9	[1]
+d FMA-UE None 1	549,85,9x9	[1]
+d FMA-UE total	686,83,14x13	9pt		5
+d tool ARAT	442,96,61x13	9pt		ARAT
+d ARAT Full 1	509,98,9x9	[1]
+d ARAT Full 2	519,98,9x9	[1]
+d ARAT Full 3	529,98,9x9	[1]
+d ARAT Full 4	539,98,9x9	[1]
+d ARAT total	686,96,14x13	9pt		4
+d tool WMFT	442,108,61x13	9pt		WMFT
+d WMFT Full 1	509,110,9x9	[1]
+d WMFT Full 2	519,110,9x9	[1]
+d WMFT Full 3	529,110,9x9	[1]
+d WMFT None 1	539,110,9x9	[1]
+d WMFT total	686,108,14x13	9pt		4
+d tool 9HPT	442,121,61x13	9pt		9HPT
+d 9HPT Full 1	509,123,9x9	[1]
+d 9HPT total	686,121,14x13	9pt		1
+d Upper limb more tools	508,133,19x12	9pt		¡­
+d domain Trunk and balance	382,147,311x14	10.05pt		2. Trunk and balance (13 tools)
+d tool TIS	442,164,61x13	9pt		TIS
+d TIS Full 1	509,166,9x9	[1]
+d TIS Full 2	519,166,9x9	[1]
+d TIS Full 3	529,166,9x9	[1]
+d TIS Full 4	539,166,9x9	[1]
+d TIS Full 5	549,166,9x9	[1]
+d TIS Full 6	559,166,9x9	[1]
+d TIS Full 7	569,166,9x9	[1]
+d TIS Full 8	579,166,9x9	[1]
+d TIS Full 9	588,166,9x9	[1]
+d TIS Full 10	598,166,9x9	[1]
+d TIS Full 11	608,166,9x9	[1]
+d TIS Full 12	618,166,9x9	[1]
+d TIS Full 13	628,166,9x9	[1]
+d TIS Full 14	638,166,9x9	[1]
+d TIS Full 15	648,166,9x9	[1]
+d TIS Full 16	658,166,9x9	[1]
+d TIS Full 17	668,166,9x9	[1]
+d TIS total	686,164,14x13	9pt		17
+d tool POMA	442,177,61x13	9pt		POMA
+d POMA Full 1	509,179,9x9	[1]
+d POMA Full 2	519,179,9x9	[1]
+d POMA Full 3	529,179,9x9	[1]
+d POMA Full 4	539,179,9x9	[1]
+d POMA Full 5	549,179,9x9	[1]
+d POMA Full 6	559,179,9x9	[1]
+d POMA Full 7	569,179,9x9	[1]
+d POMA Full 8	579,179,9x9	[1]
+d POMA Full 9	588,179,9x9	[1]
+d POMA Full 10	598,179,9x9	[1]
+d POMA Full 11	608,179,9x9	[1]
+d POMA Full 12	618,179,9x9	[1]
+d POMA Full 13	628,179,9x9	[1]
+d POMA Full 14	638,179,9x9	[1]
+d POMA Full 15	648,179,9x9	[1]
+d POMA Full 16	658,179,9x9	[1]
+d POMA total	686,177,14x13	9pt		16
+d tool Mini-BESTest	442,189,61x13	9pt		Mini-BESTest
+d Mini-BESTest Full 1	509,191,9x9	[1]
+d Mini-BESTest Full 2	519,191,9x9	[1]
+d Mini-BESTest Full 3	529,191,9x9	[1]
+d Mini-BESTest Full 4	539,191,9x9	[1]
+d Mini-BESTest Full 5	549,191,9x9	[1]
+d Mini-BESTest Full 6	559,191,9x9	[1]
+d Mini-BESTest Full 7	569,191,9x9	[1]
+d Mini-BESTest Full 8	579,191,9x9	[1]
+d Mini-BESTest Full 9	588,191,9x9	[1]
+d Mini-BESTest Full 10	598,191,9x9	[1]
+d Mini-BESTest Full 11	608,191,9x9	[1]
+d Mini-BESTest Full 12	618,191,9x9	[1]
+d Mini-BESTest Full 13	628,191,9x9	[1]
+d Mini-BESTest Partial 1	638,191,9x9	[1]
+d Mini-BESTest total	686,189,14x13	9pt		14
+d tool BBS	442,202,61x13	9pt		BBS
+d BBS Full 1	509,204,9x9	[1]
+d BBS Full 2	519,204,9x9	[1]
+d BBS Full 3	529,204,9x9	[1]
+d BBS Full 4	539,204,9x9	[1]
+d BBS Full 5	549,204,9x9	[1]
+d BBS Full 6	559,204,9x9	[1]
+d BBS Full 7	569,204,9x9	[1]
+d BBS Full 8	579,204,9x9	[1]
+d BBS Full 9	588,204,9x9	[1]
+d BBS Full 10	598,204,9x9	[1]
+d BBS Partial 1	608,204,9x9	[1]
+d BBS Partial 2	618,204,9x9	[1]
+d BBS Partial 3	628,204,9x9	[1]
+d BBS Partial 4	638,204,9x9	[1]
+d BBS total	686,202,14x13	9pt		14
+d tool TCT	442,215,61x13	9pt		TCT
+d TCT Full 1	509,217,9x9	[1]
+d TCT Full 2	519,217,9x9	[1]
+d TCT Full 3	529,217,9x9	[1]
+d TCT Full 4	539,217,9x9	[1]
+d TCT total	686,215,14x13	9pt		4
+d Trunk and balance more tools	508,227,19x12	9pt		¡­
+d domain Gait and mobility	382,241,311x14	10.05pt		3. Gait and mobility (16 tools)
+d tool RMI	442,258,61x13	9pt		RMI
+d RMI Full 1	509,260,9x9	[1]
+d RMI None 1	519,260,9x9	[1]
+d RMI None 2	529,260,9x9	[1]
+d RMI None 3	539,260,9x9	[1]
+d RMI None 4	549,260,9x9	[1]
+d RMI None 5	559,260,9x9	[1]
+d RMI None 6	569,260,9x9	[1]
+d RMI None 7	579,260,9x9	[1]
+d RMI None 8	588,260,9x9	[1]
+d RMI None 9	598,260,9x9	[1]
+d RMI None 10	608,260,9x9	[1]
+d RMI None 11	618,260,9x9	[1]
+d RMI None 12	628,260,9x9	[1]
+d RMI None 13	638,260,9x9	[1]
+d RMI None 14	648,260,9x9	[1]
+d RMI total	686,258,14x13	9pt		15
+d tool FGA	442,270,61x13	9pt		FGA
+d FGA Full 1	509,272,9x9	[1]
+d FGA Full 2	519,272,9x9	[1]
+d FGA Full 3	529,272,9x9	[1]
+d FGA Full 4	539,272,9x9	[1]
+d FGA Full 5	549,272,9x9	[1]
+d FGA Full 6	559,272,9x9	[1]
+d FGA Full 7	569,272,9x9	[1]
+d FGA Full 8	579,272,9x9	[1]
+d FGA Full 9	588,272,9x9	[1]
+d FGA Partial 1	598,272,9x9	[1]
+d FGA total	686,270,14x13	9pt		10
+d tool DGI	442,283,61x13	9pt		DGI
+d DGI Full 1	509,285,9x9	[1]
+d DGI Full 2	519,285,9x9	[1]
+d DGI Full 3	529,285,9x9	[1]
+d DGI Full 4	539,285,9x9	[1]
+d DGI Full 5	549,285,9x9	[1]
+d DGI Full 6	559,285,9x9	[1]
+d DGI Partial 1	569,285,9x9	[1]
+d DGI Partial 2	579,285,9x9	[1]
+d DGI total	686,283,14x13	9pt		8
+d tool EMS	442,296,61x13	9pt		EMS
+d EMS Full 1	509,298,9x9	[1]
+d EMS Full 2	519,298,9x9	[1]
+d EMS Full 3	529,298,9x9	[1]
+d EMS Full 4	539,298,9x9	[1]
+d EMS Partial 1	549,298,9x9	[1]
+d EMS Partial 2	559,298,9x9	[1]
+d EMS Partial 3	569,298,9x9	[1]
+d EMS total	686,296,14x13	9pt		7
+d tool ABMS II	442,309,61x13	9pt		ABMS II
+d ABMS II Partial 1	509,311,9x9	[1]
+d ABMS II Partial 2	519,311,9x9	[1]
+d ABMS II Partial 3	529,311,9x9	[1]
+d ABMS II Partial 4	539,311,9x9	[1]
+d ABMS II Partial 5	549,311,9x9	[1]
+d ABMS II total	686,309,14x13	9pt		5
+d Gait and mobility more tools	508,320,19x12	9pt		¡­
+d domain Impairment and global	382,335,311x14	10.05pt		4. Impairment and global (15 tools)
+d tool MoAS	442,351,61x13	9pt		MoAS
+d MoAS Full 1	509,353,9x9	[1]
+d MoAS Full 2	519,353,9x9	[1]
+d MoAS Full 3	529,353,9x9	[1]
+d MoAS Full 4	539,353,9x9	[1]
+d MoAS Full 5	549,353,9x9	[1]
+d MoAS Full 6	559,353,9x9	[1]
+d MoAS Full 7	569,353,9x9	[1]
+d MoAS Full 8	579,353,9x9	[1]
+d MoAS total	686,351,14x13	9pt		8
+d tool STREAM	442,364,61x13	9pt		STREAM
+d STREAM Full 1	509,366,9x9	[1]
+d STREAM Full 2	519,366,9x9	[1]
+d STREAM Full 3	529,366,9x9	[1]
+d STREAM total	686,364,14x13	9pt		3
+d tool SIAS	442,377,61x13	9pt		SIAS
+d SIAS Full 1	509,379,9x9	[1]
+d SIAS Partial 1	519,379,9x9	[1]
+d SIAS Partial 2	529,379,9x9	[1]
+d SIAS total	686,377,14x13	9pt		3
+d tool BI	442,390,61x13	9pt		BI
+d BI Partial 1	509,392,9x9	[1]
+d BI Partial 2	519,392,9x9	[1]
+d BI Partial 3	529,392,9x9	[1]
+d BI total	686,390,14x13	9pt		3
+d tool NIHSS	442,402,61x13	9pt		NIHSS
+d NIHSS Full 1	509,404,9x9	[1]
+d NIHSS Full 2	519,404,9x9	[1]
+d NIHSS total	686,402,14x13	9pt		2
+d Impairment and global more tools	508,414,19x12	9pt		¡­
+d legend divider	381,431,320x1	[5]
+d legend title	382,434,98x11	9pt		Video availability
+d legend Full	479,435,9x9	[1]
+d legend label Full	492,433,42x14	8.63pt		Full
+d legend Partial	537,435,9x9	[1]
+d legend label Partial	550,433,42x14	8.63pt		Partial
+d legend None	596,435,9x9	[1]
+d legend label None	608,433,42x14	8.63pt		None
+d legend explanation	382,449,319x12	7.95pt		Each square represents one mapping entry. The number at right is the tool total.
+d selected tools note	382,462,319x11	7.95pt		Selected tools shown.
+Picture 305	391,75,50x41	[13]
+Picture 306	392,165,50x51	[13]
+Picture 307	398,258,39x53	[13]
+Picture 308	393,353,35x49	[13]
+Picture 309	427,362,27x35	[13]
+Panel a letter	28,29,14x18	15pt		a
+Panel a heading	47,29,319x18	12.15pt		Sources of score-defining information (n = 196)
+a | Examiner-applied force, tone or reflexes to None | 6	144,186,139x7	[5]
+a | Patient report to None | 20	144,190,139x25	[5]
+a | Assistance, verbal or safety information to Partial | 25	144,147,139x31	[5]
+a | Examiner-applied force, tone or reflexes to Partial | 11	144,162,139x28	[5]
+a | Movement, time, distance or count only to Full | 104	144,53,139x83	[5]
+a | Assistance, verbal or safety information to Full | 30	144,114,139x49	[5]
+a source node 1	137,74,8x62	[1]
+a source node 2	137,146,8x33	[1]
+a source node 3	137,183,8x10	[1]
+a source node 4	137,203,8x12	[1]
+a availability node Full	283,53,17x79	[1]
+a Full count and percentage	305,80,54x24	9.38pt		Full | 134 (68%)
+a availability node Partial	283,147,17x21	[1]
+a Partial count and percentage	305,146,54x24	9.38pt		Partial | 36 (18%)
+a availability node None	283,186,17x15	[1]
+a None count and percentage	305,182,54x24	9.38pt		None | 26 (13%)
+a information type 1	65,79,68x32	8.51pt		Movement, time, | distance or count | only (n = 104)
+a information type 2	20,132,114x51	8.51pt		Assistance, verbal | or safety information(n = 55)
+a information type 3	38,178,95x20	8.29pt		Examiner-applied force, | tone or reflexes (n = 17)
+a information type 4	48,200,84x18	8.51pt	OVERFLOW	Patient report (n = 20)
+Picture 301	32,86,29x20	[13]
+Picture 302	32,139,27x21	[13]
+Picture 303	30,178,14x21	[13]
+Picture 304	32,198,15x20	[13]

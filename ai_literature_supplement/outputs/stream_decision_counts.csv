@@ -1,0 +1,17 @@
+﻿source_stream,automated_screening_decision,count
+gait_mobility,exclude_title_abstract,2077
+gait_mobility,include_candidate_tier_a,106
+gait_mobility,include_candidate_tier_b,360
+gait_mobility,uncertain,1848
+strength_power,exclude_title_abstract,1750
+strength_power,include_candidate_tier_a,89
+strength_power,include_candidate_tier_b,336
+strength_power,uncertain,1750
+trunk_balance_compensation,exclude_title_abstract,384
+trunk_balance_compensation,include_candidate_tier_a,45
+trunk_balance_compensation,include_candidate_tier_b,190
+trunk_balance_compensation,uncertain,613
+upper_limb_dexterity,exclude_title_abstract,2016
+upper_limb_dexterity,include_candidate_tier_a,164
+upper_limb_dexterity,include_candidate_tier_b,475
+upper_limb_dexterity,uncertain,2433

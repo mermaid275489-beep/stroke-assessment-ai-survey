@@ -1,0 +1,9 @@
+﻿metric,count,note
+raw source records,14794,
+unique records after deduplication,10084,
+duplicate source records consolidated,4710,
+Tier A title/abstract candidates,245,
+Tier B title/abstract candidates,812,
+uncertain records requiring adjudication,4245,
+title/abstract exclusions,4782,
+full-text included Tier A studies,0,Not locked; requires full-text and second-reviewer adjudication

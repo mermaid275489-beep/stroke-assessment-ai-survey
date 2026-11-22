@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,tabularx,array,multirow}
+\usepackage{ragged2e}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+\setmainfont{TeX Gyre Termes}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 日文单独指定字体
+\newCJKfontfamily\japanesefont{Noto Serif CJK JP}
+
+
+\usepackage[
+    backend=biber,
+    style=numeric-comp,
+    sorting=none,
+    sortcites=true,
+    natbib=true,
+    urldate=iso
+]{biblatex}
+
+\addbibresource{references.bib}
+\title{Toward Objective Stroke Assessment: An Item-Level Analysis of Clinical Rating Scales for AI-Based Motion Analysis}
+
+\author{
+    Siqi Yang$^{1}$ \and
+    Wenbo Qi$^{1}$ \and
+    xxx$^{3}$ \and
+    xxx$^{3}$ \and
+    Baosheng Yu$^{1,2,3}$
+}
+\date{
+    $^{1}$Lee Kong Chian School of Medicine, Nanyang Technological University, Singapore \\
+    $^{2}$Centre of AI in Medicine, Nanyang Technological University, Singapore\\
+    $^{3}$Rehabilitation Research Institute of Singapore, Nanyang Technological University, Singapore \\[1ex]
+    \texttt{\{xxx,xxx\}@ntu.edu.sg, xxx@xxx.org}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Stroke is a leading cause of long-term disability worldwide, making objective assessment essential for consistent evaluation of motor function, personalized rehabilitation, and longitudinal recovery monitoring. Conventional clinical rating scales remain subjective and rely heavily on expert clinicians, limiting their consistency, scalability, and accessibility, particularly for frequent and remote assessments. 
+Recent advances in computer vision, wearable sensing, and machine learning have enabled AI-based motion analysis for automated stroke assessment. However, most existing approaches formulate stroke assessment as end-to-end prediction of clinical scores, thereby inheriting the subjectivity of the underlying rating scales while providing limited insight into the quantitative movement features that underpin clinical assessment.
+This survey presents a component-level framework that links clinical assessment with AI-based motion analysis. Rather than treating clinical scores as prediction targets, it examines how established rating scales can be decomposed into quantitative movement features that AI can objectively quantify. The survey reviews clinical rating scales, maps their assessment criteria to measurable movement features, and discusses sensing modalities and AI techniques for objective movement analysis. By explicitly linking clinical assessment with quantitative movement analysis, it provides a more interpretable and clinically grounded framework for AI-based stroke assessment and a foundation for developing next-generation objective clinical rating scales.
+\end{abstract}
+
+
+\section{Introduction}
+
+Stroke is a leading cause of long-term disability worldwide, making accurate and objective assessment essential for personalized rehabilitation and longitudinal recovery monitoring. Across the stroke continuum, human movement serves as a key functional biomarker, reflecting both pre-stroke risk and post-stroke impairment and recovery. Consequently, objective quantification of human movement provides a natural foundation for stroke assessment. However, current clinical practice relies predominantly on standardized rating scales based on clinician observation and qualitative judgment rather than quantitative analysis of movement. Widely used scales, such as the Fugl-Meyer Assessment (FMA), summarize motor performance through coarse ordinal ratings that are inherently subjective, susceptible to inter-rater variability, and dependent on trained clinicians, limiting their scalability and suitability for frequent or continuous assessment.
+
+Recent advances in computer vision, wearable sensing, and machine learning have enabled AI-based motion analysis to quantify human movement from video and wearable sensor data. Most existing approaches formulate stroke assessment as end-to-end prediction of clinical scores, learning direct mappings from raw motion signals to clinician-assigned ratings without explicitly modeling the quantitative movement features that underpin clinical assessment. Consequently, these models inherit the subjectivity and limited granularity of the target rating scales while providing little insight into how specific movement abnormalities contribute to clinical outcomes. More fundamentally, treating clinical scores as the primary prediction target overlooks the fact that these scores are higher-level clinical interpretations of underlying movement characteristics. As illustrated in Figure~\ref{fig:figure1}, effective AI-based stroke assessment should therefore explicitly quantify clinically meaningful movement features and relate them to clinical evaluation, rather than directly predicting clinical scores alone. This perspective enables more interpretable representations of motor dysfunction and better supports rehabilitation planning, longitudinal monitoring, and clinical decision-making.
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.9\linewidth,height=0.55\linewidth]{figure1.pdf}
+    \caption{\textbf{Overview of the component-level framework linking clinical rating scales with AI-based motion analysis.} Clinical rating scales grade observed task performance against ordinal scoring criteria (left). Instead of directly predicting clinical scores, the framework maps the observable part of each criterion to five families of quantitative movement features (centre; Section~\ref{sec:framework}) and combines task-specific measures into a movement profile that supports criterion scoring, longitudinal monitoring and clinical decisions (right). Some features quantify a criterion directly, such as Timed Up and Go (TUG) duration; others only indicate a construct, such as trunk displacement during reaching as a possible sign of compensation. The amount of assistance, verbal cues, applied force, tone and self-report are not captured by motion features and require other sources. Clinical use requires analytical, task-level and clinical-construct validity and clinical utility. The movement profile and monitoring trend are illustrative.}
+    \label{fig:figure1}
+\end{figure}
+
+
+Motivated by this perspective, this survey introduces a component-level framework that bridges established clinical assessment with AI-based motion analysis. Rather than treating clinical scores as end-to-end prediction targets, it investigates how widely used stroke assessment scales can be decomposed into quantitative movement features that AI can objectively quantify. Specifically, the survey reviews established clinical rating scales, maps their assessment criteria to quantitative movement features, and systematically examines AI-based motion analysis methods through this lens. It further evaluates the extent to which current approaches capture clinically meaningful aspects of motor function and identifies important gaps between clinical assessment requirements and existing computational capabilities. By explicitly connecting clinical evaluation to quantitative movement analysis, this survey provides a roadmap for developing more interpretable, clinically grounded, and objective AI systems for stroke assessment.
+
+The remainder of this paper is organized as follows. Section~\ref{sec:background} provides the background on stroke assessment and AI-based motion analysis. Section~\ref{sec:scales} reviews commonly used clinical rating scales and analyzes their constituent assessment components from a motion analysis perspective. Section~\ref{sec:framework} presents the proposed component-level framework for objective AI-driven stroke assessment. Finally, Section~\ref{sec:challenge} discusses the key challenges, emerging opportunities, and future research directions toward objective and interpretable AI-driven stroke assessment.
+
+
+\section{Background and Preliminaries}
+\label{sec:background}
+
+Stroke results from cerebral ischaemia or haemorrhage. Motor impairment can disrupt voluntary control, coordination, balance, gait and upper-limb function, limiting mobility and daily activities \cite{WHO2025StrokeFactSheet,S1VADoD2024StrokeRehab}. The purpose of assessment changes along the care pathway. In acute care, the National Institutes of Health Stroke Scale (NIHSS) grades neurological severity and tracks early change \cite{S1Prabhakaran2026AHAASAAIS,ScaleBrott1989NIHSS}. During rehabilitation and after discharge, clinicians assess motor impairment, balance, gait, upper-limb activity and independence to guide goal setting and follow-up \cite{S1Winstein2016AHAASARehab,S1VADoD2024StrokeRehab,S1NICE2023NG236}. Ordinal ratings, times, speeds, distances and counts describe complementary aspects of recovery. Each requires its own interpretation \cite{ScaleHarrison2013Clinimetric,CoreKwakkel2017SRRRSensorimotor,CoreVanCriekinge2024SRRRBalanceMobility}.
+
+We distinguish four levels of description. The \emph{clinical construct} is what the scale measures, such as standing balance. A \emph{score-defining criterion} distinguishes adjacent grades, for example by whether a patient uses their hands to stand up. The \emph{observable movement information} in a criterion may include hand use, duration or loss of balance. A criterion can also depend on information outside the recording. \emph{Computational features} are quantities derived from motion signals, such as gait speed, joint angle or trunk displacement. A feature may quantify a criterion directly, indicate it indirectly or have no counterpart in any scale.
+
+Pose estimation recovers body landmarks and trajectories from RGB or depth video. These trajectories yield estimates of timing, displacement and joint angles for visible segments. Accuracy depends on viewpoint, calibration, occlusion and tracking \cite{S3Luvizutto202234115576,S3Lonini202235224426,S3John202437682075}. Inertial measurement units (IMUs) record segment acceleration and angular velocity even outside the camera's field of view \cite{S3OBrien202236304845,Yang2013SpatiotemporalGait}. Neither modality records force, muscle tone or what the patient perceives. The motion signals yield five feature families that describe how a movement is executed (Section~\ref{sec:framework}).
+
+\section{Clinical Rating Scales: A Motion Analysis Perspective}
+\label{sec:scales}
+
+\subsection{Review Methodology}
+
+\paragraph{Tool library.} We built a purposive library of standardised motor and mobility assessments to map their scoring criteria (Fig.~\ref{fig:figure2}). The guideline search covered adult-stroke guidelines, standards and consensus documents. Eligible documents made assessment recommendations and had a complete English text. We searched PubMed, Embase, the Guidelines International Network, TRIP, World Health Organization resources, issuing-body websites and reference lists. The search ended in May 2026, with no subsequent update. For documents already published online by that date, we cite the final print version. One example is the 2026 AHA/ASA acute ischaemic stroke guideline, first published online in January 2026. For coding and verification, we continued to consult web-based scoring manuals and tool specifications until August 2026, as indicated by their access dates.
+
+Two reviewers screened records independently and resolved disagreements by consensus. They excluded 13 of the 41 full-text documents, seven because a complete English text was unavailable. The 28 included guidelines covered nine regions and named 37 tools (Supplementary Table~\ref{tab:s1_guidelines_compact}). We searched for each tool's full name and read the passage to confirm the match. A full-name mention qualified a tool for inclusion even without a formal recommendation. We did not grade recommendation strength.
+
+A supplementary search identified standardised tools used in stroke research but absent from the included guidelines. PubMed-indexed stroke studies published in 2022--2026 and citation tracking yielded 240 candidates. Of these, 184 had support from at least one meta-analysis, systematic review or multicentre study. We checked the source specifications and scoring manuals in 58 reports and retained 22 tools. Retention depended on their relevance to motor and mobility assessment and whether we could verify their scoring specifications. We did not record individual reasons for excluding the other 162 leads, making this the least reproducible step. Only an excluded non-English guideline recommended the Modified Tardieu Scale. As an exception to the guideline language rule, we included the scale using its English specification \cite{S2RehabMeasuresModifiedTardieu}.
+
+We merged walking speed into the 10-Metre Walk Test (10MWT). We also removed two records that lacked standardised motor scoring (observational gait analysis and the Frenchay Activities Index). The final library comprised 57 tools. Supplementary Data~1 provides the search strings and screening logs.
+
+\paragraph{COA classification.} We applied clinical outcome assessment (COA) definitions according to how each tool generates a score \cite{FDANIH2016BESTCOA,Walton2015COAConceptualFoundation}. Performance outcomes (PerfO) use measured quantities or observable task outcomes. Clinician-reported outcomes (ClinRO) require judgement of assistance, supervision, safety, movement normality, examination signs, recovery stage or global status, even on a standardised task.
+
+Under this operational classification, the library comprised 16 PerfO tools, 33 ClinRO tools, six patient-reported outcome (PRO) tools and two tools with mixed outputs. The Wolf Motor Function Test (WMFT) combines timed and strength outputs (PerfO) with its Functional Ability Scale (ClinRO). The Rivermead Mobility Index (RMI) combines 14 self-reported items with one observed item (Supplementary Table~\ref{tab:supplementary_tool_library_clinical}).
+
+A task-based interpretation, common in regulatory use, treats an instructed standardised task as PerfO when the score derives from the performance, regardless of who rates it. This would move 17 ClinRO tools into PerfO, among them the BBS, Mini-BESTest, DGI, ARAT and FMA. The mixed-output WMFT would also qualify. It yields 34 PerfO, 16 ClinRO, six PRO and one mixed tool (Supplementary Table~\ref{tab:supplementary_tool_library_clinical}). Tools graded by examiner-applied force or touch, tone or reflex examination, recovery stage, global status or usual performance remain ClinRO under both readings.
+
+We retained the operational classification to identify grades that require rater judgement. Neither classification affected availability or computability coding.
+
+\paragraph{Mapping entries.} We mapped each tool at the level at which its scoring rules differed, yielding 196 entries. Thirteen tools had item-specific ordinal criteria and contributed 129 item-level entries. Examples include the Berg Balance Scale (BBS), Trunk Impairment Scale (TIS), Mini-Balance Evaluation Systems Test (Mini-BESTest) and Tinetti Performance-Oriented Mobility Assessment (POMA). Ten tools shared criteria within subtests and contributed 33 subtest-level entries. Examples include the Action Research Arm Test (ARAT), Fugl-Meyer Assessment (FMA) and WMFT.
+
+We mapped 34 tools as a whole (34 entries). Most yielded a single time, distance, count or category, as in the 10MWT, Timed Up and Go (TUG) and Functional Ambulation Category (FAC). This group also included global ratings and questionnaires. We mapped some item-structured instruments as whole tools, including the Function in Sitting Test, Community Balance and Mobility Scale and Chedoke Arm and Hand Activity Inventory. We therefore report tool-weighted proportions alongside entry counts. For multi-domain tools, we mapped only motor and mobility content, using the versions listed in Supplementary Table~\ref{tab:supplementary_tool_library_clinical}.
+
+\paragraph{Coded attributes.} We coded five attributes for each entry using the official scoring criteria. We included tool-wide rules whenever they changed an item's score. Supplementary Data~1 provides the rules and worked examples.
+
+(i) We marked a \emph{movement component} only when the criteria graded performance in that component. A task could require a component without grading it.
+
+(ii) We recorded each \emph{information type} used to distinguish grades. The types covered kinematics or movement quality, time, distance or count, assistance or supervision, and safety judgement. They also included verbal cues or responses, applied force or touch, tone or reflexes, and self-report. An entry could have more than one type.
+
+(iii) We assessed \emph{availability from ordinary video} assuming one RGB camera framed the task as administered. We coded an entry as Full if all grade-defining information was visible in an adequate recording. This included visible assistance or support. An examiner's presence, guarding, standard instructions or visible physical help did not by itself lower the code. We coded an entry as Partial if only some grade-defining information was visible. Missing information could include how much help the examiner gave, force or resistance applied during examination, events confirmed by touch, verbal cues or responses, or judgements with no visible trace. It could also include usual performance outside the recording. We coded an entry as None if its score did not derive from visible performance. Examples include patient report, reflexes, and tone or force assessed by touch or instrument.
+
+For example, BBS standing items graded partly by supervision were Full because the instability that prompts supervision is visible. BBS sit-to-stand was Partial because lower grades distinguish minimal assistance from moderate or maximal assistance. Clinician ratings of observed or usual performance were Partial in the Barthel Index (BI), Functional Independence Measure (FIM) and modified Rankin Scale. RMI questionnaire items were None because patients supply the answers. This code applies to video alone. An interview can supply patient-reported information for use alongside video-derived measures. We repeated the availability coding under two alternative recording conditions. One added audio to RGB video. The other assumed a routine recording with one viewpoint per task, no hand close-up, no added calibration reference and no simultaneous second view.
+
+(iv) We linked each entry to the \emph{computational feature families} that could quantify the observable part of its criteria (Section~\ref{sec:framework}).
+
+(v) We coded the \emph{computability} of the visible criteria according to the least computable grade boundary. We used Direct if every grade boundary specified a threshold for time, distance, count, angle or displacement, or a discrete visible event. Events included task completion, a step, contact, use of the hands, an aid or physical help, and a fall. We used Proxy when at least one boundary graded the degree of a named observable property, such as steadiness, path deviation, symmetry or a listed compensation. A feature can target that property, but its grade thresholds require validation against rater scores. We used Judgement when at least one boundary required an overall clinical judgement without naming a single property. Examples include a normal or abnormal movement pattern, recovery stage and global disability. For Partial entries, computability applied only to the visible part.
+
+Availability describes what a rater could observe. Computability describes whether a computed quantity could reproduce a grade boundary. Neither code establishes measurement accuracy or validates automated scoring. A feature-family link identifies a class of measures and does not establish the validity of an individual feature. For each entry, Supplementary Data~1 gives the task, full scoring criteria, coding rationale and recording requirements. It also identifies information that video cannot supply and gives an alternative source.
+
+\paragraph{Verification.} We checked availability codes in three stages. Supplementary Data~1 traces each entry through all three.
+
+First, two reviewers independently coded the initial 193 entries. The first reviewer classified 82 as Full, 82 as Partial and 29 as None. Agreement was 77.2\% (Cohen's $\kappa$ = 0.63). With Full, Partial and None treated as ordered categories, linearly weighted $\kappa$ was 0.68. Of the 44 disagreements, 40 concerned the distinction between Partial and Full. The reviewers checked the scoring manuals and changed 34 codes by consensus, yielding 115 Full, 53 Partial and 25 None.
+
+Second, one coder documented the rules and applied them across tools. A check of tool versions, outputs and scoring manuals led to the exclusion, splitting or redefinition of 12 previously checked entries. This step also added or redefined 15 entries. The resulting set comprised 196 entries (106 Full, 62 Partial and 28 None). Of these, 181 had been checked in the initial exercise, and 54 of those had changed code since consensus. The other 15 had not been checked independently.
+
+Third, we revised the availability rule so that visible assistance alone no longer lowered the code. The same coder re-examined all 196 entries against the scoring manuals, changed 36 availability codes and 19 information types, and flagged 22 borderline decisions. The final counts were 134 Full, 36 Partial and 26 None. Of the 181 previously checked entries, 129 retained their consensus code. The same coder assigned movement components, information types, feature-family links and computability. The agreement statistics apply only to the two reviewers' initial availability ratings under the earlier rule (Section~\ref{sec:limitations}).
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[
+        height=0.58\textheight,
+        width=\linewidth,
+        keepaspectratio
+    ]{figure2.pdf}
+    \captionsetup{justification=raggedright,singlelinecheck=false}
+    \caption{\textbf{Construction of the assessment-tool library.} This library-level diagram does not trace individual records through the PRISMA stages. \textbf{a,} Guideline record counts cover the PubMed cross-check only. Full-text assessment pooled all sources. \textbf{b,} The supplementary stream lacked exclusion counts by reason. Harmonisation merged walking speed into the 10MWT and removed two records without standardised motor scoring. PerfO, ClinRO and PRO denote performance, clinician-reported and patient-reported outcomes (Section~\ref{sec:scales}). GIN denotes the Guidelines International Network, TRIP the TRIP Database and WHO the World Health Organization.}
+    \label{fig:figure2}
+\end{figure}
+
+
+\subsection{Clinical Rating Scales}
+\label{sec:clinical_rating_scales}
+
+Table~\ref{tab:representative_scales_compact} summarises 13 representative tools. Of these, 11 reflect priorities from the three Stroke Recovery and Rehabilitation Roundtable (SRRR) consensus rounds \cite{CoreKwakkel2017SRRRSensorimotor,CoreKwakkel2019SRRRUpperLimb,CoreVanCriekinge2024SRRRBalanceMobility}. Guidelines supplied the TUG for transitional mobility and the BI for daily activities \cite{S1Winstein2016AHAASARehab,S1VADoD2024StrokeRehab}. Outputs include ordinal grades, measures of time, speed or distance, and categories of independence.
+
+We grouped recurrent item content into six movement components. Three concern joint mobility and range of motion, muscle strength and force production, and coordination and selective motor control. The other three cover balance and postural control, manual dexterity and upper-limb task execution, and gait and functional mobility. Movement quality and compensation can modify performance in any component. A patient may achieve the same task outcome through restitution or compensation \cite{Levin2009RecoveryCompensation,CoreKwakkel2019SRRRUpperLimb}. The grouping draws on the International Classification of Functioning, Disability and Health (ICF) and SRRR domains \cite{WHO2001ICF,Cieza2019ICFLinking,CoreKwakkel2017SRRRSensorimotor}. It supports cross-scale comparison but has yet to be validated as a taxonomy.
+
+Table~\ref{tab:representative_scales_compact} marks a component only when the scoring criteria grade it. Walking 10~m requires balance, for example, but the 10MWT records speed. Gait is therefore its only score-defining component. Postural control determines most BBS and Mini-BESTest grades, whereas the ARAT does not grade it.
+
+Scales that share a movement component can still grade different aspects of performance. The FMA upper-extremity motor subscale (FMA-UE) grades synergy-dependent and selective movement \cite{ScaleFuglMeyer1975PhysicalPerformance,ScaleSee2013StandardizedFMA}. The ARAT grades completion of 19 tasks \cite{ScaleYozbatiran2008StandardizedARAT}. A patient who completes a task through trunk or shoulder compensation can therefore score on an activity measure without regaining motor control \cite{Levin2009RecoveryCompensation,Santisteban2016UpperLimbOutcome}. The TIS, BBS and Mini-BESTest all grade postural control but differ in the body segment, task context and information used for scoring \cite{ScaleVerheyden2004TIS,ScaleBerg1992BalanceValidation,ScaleFranchignoni2010MiniBESTest}.
+
+Lower-limb tools grade impairment (FMA lower-extremity subscale, FMA-LE), walking independence (FAC), speed (10MWT) or endurance (6-Minute Walk Test, 6MWT). The Dynamic Gait Index (DGI) and TUG address adaptive and transitional mobility, respectively \cite{ScaleHolden1984FAC,ScaleCheng2020StrokeWalkTests,ScaleAn2017DGIStroke,ScaleNg2005TUGStroke}. SRRR considers the 10MWT, 6MWT and DGI untestable when the FAC is below 3 \cite{CoreVanCriekinge2024SRRRBalanceMobility}. What can be observed therefore depends on the patient's walking independence. In the NIHSS and BI, only the motor and mobility items relate to movement \cite{ScaleBrott1989NIHSS,ScaleMahoney1965Barthel}.
+
+\input{Table1}
+\clearpage
+
+\section{Toward Objective AI-Driven Stroke Assessment}
+\label{sec:framework}
+\subsection{From Clinical Scores to Computational Feature Families}
+
+AI models can estimate selected clinical scores from motion data \cite{Lee2021SmartphoneVideoAmbulation,Formstone2021IMUMMG,Zamin2023BIONICS,Li2017IMUEMGMotorEvaluation}. A depth-camera study reported accuracies of 65--87\% across 13 FMA-UE items \cite{Kim2016KinectFMA}. Yet the same grade can reflect limited excursion, slowness, asymmetry, instability or compensation. SRRR recommends kinematic and kinetic measures alongside clinical scales \cite{CoreKwakkel2019SRRRUpperLimb,CoreVanCriekinge2024SRRRBalanceMobility}.
+
+Our mapping follows the sequence clinical item $\rightarrow$ scoring criterion $\rightarrow$ observable information $\rightarrow$ computational feature $\rightarrow$ clinical interpretation. In BBS sit-to-stand, video can show hand push-off, transition time and instability. Lower grades also depend on how much help the examiner gives, which motion alone cannot quantify. In the TUG, onset and return to sitting define the score. Phase durations and turning steps add detail.
+
+A movement component can yield several feature families, and a feature can apply to several components. A gait item, for example, yields temporal, spatial and relational measures. The same joint-angle computation can quantify FMA range of motion or describe trunk inclination during TIS items.
+
+Features vary in their correspondence to scoring criteria (Table~\ref{tab:computational_feature_families}). Test time, walking speed, reach distance or active joint excursion may measure the criterion directly. Joint coupling or trunk displacement may indicate abnormal synergy or compensation, but interpreting the pattern still requires clinical judgement.
+
+Measuring distance or joint angles requires calibration, an aligned view and reliable tracking. Video cannot capture force, passive tone, reflexes, sensation, pain or self-report. Parts of the examination may still be visible, such as the angle of a catch during passive stretch.
+
+\input{Table2}
+
+Of 196 entries, video could provide all score-defining information for 134 (68\%), some for 36 (18\%) and none for 26 (13\%) (Fig.~\ref{fig:video_availability}a). The 104 entries graded solely on movement, time, distance or count were Full by definition.
+
+In 19 tools, 55 entries combined movement with assistance, supervision, safety or verbal information. Of these, 30 were Full because the relevant assistance, support or instability was visible. The other 25 were Partial. Their grades depended on the amount of assistance (nine), verbal cues or responses (eight), usual performance outside the recording (six) or a supervision judgement with no visible trace (two). Of the 17 entries graded partly by examiner-applied force, tone or reflexes, 11 were Partial and six were None. None of the 20 entries that used patient report was Full.
+
+Item-level balance scales such as the TIS, POMA, Mini-BESTest and BBS contribute many entries (Fig.~\ref{fig:video_availability}d). Giving each tool equal weight reduced the fully available share to 53\% and raised the unavailable share to 18\% (Fig.~\ref{fig:video_availability}b). The Rivermead Mobility Index contributed 15 entries (8\% of the total), including 14 of the 26 unavailable entries. After its exclusion, 133 of 181 entries (73\%) were Full, 36 (20\%) were Partial and 12 (7\%) were None.
+
+Among 176 entries based on observed performance or examination, 134 (76\%) were Full, 36 (20\%) Partial and six (3\%) None. All six unavailable entries depended on force, tone or reflexes.
+
+Adding audio changed five Partial entries to Full (139 Full, 71\%). These lacked only a verbal cue or response, as in BBS transfers and turns or the Mini-BESTest dual task. The other 17 entries needing audio also required an examiner's record, interview or daily-life information (Supplementary Data~1).
+
+With one routine viewpoint per task, 30 entries from 17 tools changed from Full to Partial. This left 104 Full entries (53\%, or 34\% with equal tool weighting). Of the affected entries, 14 required a close-up of finger or grasp detail, as in the ARAT pinch subscale and Nine-Hole Peg Test. Seven used a ruler to measure distances in centimetres, as in the Functional Reach Test. Another seven combined frontal-plane deviation or weight distribution with sagittal timing or extension, as in the FGA walking items. The 2MWT and 6MWT required locating the end of a partial lap on a course extending beyond one field of view. Combining routine camera set-up with audio yielded 109 Full entries (56\%). A Full code therefore depends on how the task is recorded.
+
+Of 134 fully available entries, 61 (46\%) were Direct. Another 57 (43\%) were Proxy because a boundary graded a visible property, such as steadiness or symmetry, without specifying a threshold. The remaining 16 (12\%) required overall Judgement, as when DGI or FGA walking items grade gait as normal or abnormal. The 104 entries that were Full by construction also spanned all three categories (49 Direct, 44 Proxy, 11 Judgement).
+
+Across the library, 61 of 196 entries (31\%, or 34\% with equal tool weighting) were both fully available and directly computable. They came from 27 tools. In 16 tools, every entry met both conditions. Most were timed, counted or distance tests, including the 10MWT, TUG, Box and Block Test, Nine-Hole Peg Test and Manual Function Test. Among the 36 Partial entries, the visible part was Direct in 21, Proxy in nine and Judgement in six. Direct examples included hand or rail use and the occurrence of help in the Ability for Basic Movement Scale and BI.
+
+Fully available Proxy and Judgement entries (73) outnumbered Partial and None entries combined (62). Grading a visible movement was therefore a more frequent obstacle than missing information. Learning or validating thresholds against rater grades also carries forward disagreements between raters (Supplementary Table~\ref{tab:supplementary_tool_library_motion}).
+
+Temporal and event measures had anchors in 153 entries across 42 tools, and spatial and trajectory measures in 81 entries across 24 tools. Joint and segment kinematics had anchors in 52 entries across 21 tools, and inter-segment and relational measures in 46 across 19. Only six entries across six tools anchored trajectory-derived quality measures (Fig.~\ref{fig:video_availability}c). Few scale criteria therefore provide a reference for features such as smoothness or jerk (Section~\ref{sec:constructs}).
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figure3.pdf}
+    \caption{\textbf{What ordinary video can provide for scale scoring.} \textbf{a,} Scoring information (left) and its availability from video (right) for 196 entries. Band width shows entry count. Entries graded solely by movement, time, distance or count are Full by definition. \textbf{b,} Availability with equal weight per entry or per tool. \textbf{c,} Entries and tools linked to each feature family. An entry can link to several families. \textbf{d,} Each square represents an entry from one of the five tools with the most entries in its domain (Supplementary Table~\ref{tab:supplementary_tool_library_clinical} and Supplementary Data~1). Full means all grade-defining information is visible in an adequate recording, including any assistance that occurs. Partial means some information is missing, such as the amount of help or a verbal cue. None means that the grade does not derive from visible performance. These codes describe availability to a rater. Percentages may not sum to 100 because of rounding. Abbreviations follow Supplementary Table~\ref{tab:supplementary_tool_library_motion}.}
+    \label{fig:video_availability}
+\end{figure}
+\clearpage
+
+\subsection{Illustrative Examples Across Feature Families}
+We identified the following studies during mapping. They illustrate what each feature family has measured and how investigators assessed validity. Dedicated reviews discuss the wider literature \cite{S3Luvizutto202234115576,Senadheera2024AIStrokeScoping,Nicora2025AIRoboticRehab}.
+
+\emph{Temporal and event measures} correspond most closely to scoring criteria. Studies have compared walking speed, cadence and gait-phase timing from IMUs and single-camera pose estimation with instrumented references. Upper-limb studies have used joint and object tracking to segment actions and detect task completion \cite{Yang2013SpatiotemporalGait,S3Lonini202235224426,S3Stenum202438530801,Ahmed2021AutomatedMovement}. The validity of these measures depends on reproducible definitions of onset, termination and phase transitions.
+
+\emph{Spatial and trajectory measures} from depth and RGB systems describe reaching paths, endpoint behaviour, sway and gait paths \cite{Scano2018KinectReaching,Proffitt2023DepthMovement,Zamin2023BIONICS,S3Stenum202438530801}. Metric distances require calibration. Viewpoint, occlusion and keypoint tracking failures can distort the estimated paths.
+
+Studies of \emph{joint and segment kinematics} have compared estimates from IMUs, exoskeleton sensors and video pose estimation with motion capture \cite{Held2018UpperLimbIMU,Grimm2021KinematicValidation,Formstone2021IMUMMG,S3John202437682075}. Agreement supports the accuracy of an angle measurement. Whether that angle captures the synergy or selective control graded by the FMA is a separate question.
+
+\emph{Inter-segment and relational measures} describe symmetry, phase, joint coupling and trunk--limb relations. Studies using smartphone video, Kinect or multi-IMU systems have applied these measures to classify ambulation dependence, compensation, fall risk or later walking function \cite{Lee2021SmartphoneVideoAmbulation,Zhi2018CompensationDetection,S3Abdollahi202438339529,S3OBrien202236304845}. High classification accuracy shows that a labelled pattern is detectable. Establishing that the features measure coordination, compensation or risk requires further evidence.
+
+\emph{Trajectory-derived quality} measures include smoothness, jerk, movement units, path efficiency and variability. Researchers have used them to classify therapist-rated movement quality, monitor rehabilitation and distinguish correct from compensatory movements \cite{Jung2017MovementQuality,Lu2021MotionFeaturesProgress,Proffitt2023DepthMovement,Lin2019ManualDexterity,Seo2024WearableQuality}. One study trained a wrist-IMU model on movements simulated by neurotypical adults \cite{Li2023DeepLearningTaskPractice}. Few scoring criteria grade these qualities, so the studies rely on therapist labels or study-specific references.
+
+\subsection{Integrating Feature-Level Measures for Clinical Interpretation}
+Two patients can record the same TUG time yet differ in whether rising or turning takes longer. Likewise, one may reach by extending the elbow and another by flexing the trunk. The training targets may differ. Interpreting trunk displacement requires joint excursion, endpoint accuracy and task completion because seating and task strategy can also affect it.
+
+Report features as a task-specific profile. For each measure, state whether it quantifies a criterion or indirectly indicates a construct (Table~\ref{tab:computational_feature_families}). Report the protocol, assistance, uncertainty and normative or within-person reference. Record non-motor information separately. Any composite score requires validation against clinical references.
+
+The V3 framework distinguishes verification, analytical validation and clinical validation \cite{Goldsack2020V3}. We adapt it to feature profiles and include utility. \emph{Analytical validity} concerns measurement accuracy and reliability against a reference. \emph{Task-level validity} concerns repeatability and responsiveness under a defined protocol. \emph{Clinical-construct validity} asks whether a feature represents the intended impairment or activity. \emph{Clinical utility} asks whether it improves assessment or decisions.
+
+Pose error, test--retest reliability, classification accuracy and correlation with a scale each address different questions (Section~\ref{sec:validation}). We use the COSMIN taxonomy for measurement properties \cite{Mokkink2010COSMINTaxonomy}.
+
+\section{Challenges and Future Directions}
+\label{sec:challenge}
+
+\subsection{Standardisation of Quantitative Movement Features}
+
+Temporal and event measures have the most anchors in scoring criteria. Even these measures depend on how investigators define onset, termination and phase transitions. For relational and quality features, studies may use the same name for different equations, event rules, reference frames or normalisations. Sampling rate, filtering and differentiation also affect the resulting values \cite{Jung2017MovementQuality,Proffitt2023DepthMovement,Yang2013SpatiotemporalGait,S3Stenum202438530801}. A systematic review of upper-limb kinematics after stroke identified 151 metrics in 225 studies. Only 62 metrics had undergone any evaluation of their measurement properties \cite{Schwarz2019UpperLimbKinematicsSR}.
+
+Protocols should state the task and instructions, coordinate system, units and event rules. They should also report the sampling rate, filtering, handling of missing data, feature formula and method for aggregating trials. Benchmarks that pair raw signals with annotated events on clinically defined tasks would help separate the effects of analytical choices from differences in patient performance. Standardisation improves comparability. Clinical interpretation requires separate evidence.
+
+\subsection{From Computational Features to Clinical Constructs}
+\label{sec:constructs}
+
+Asymmetry, joint coupling, trunk displacement and smoothness can each reflect impairment, an adaptive strategy, task constraints, assistance or measurement error. Classifying therapist labels or correlating features with scale scores provides concurrent evidence. Neither result alone establishes that a feature measures the intended construct \cite{Zhi2018CompensationDetection,Lee2021SmartphoneVideoAmbulation,Li2017IMUEMGMotorEvaluation,Grimm2021KinematicValidation}.
+
+Only six entries anchored movement quality. Some unanchored features may lack an established clinical interpretation. Others may capture dimensions omitted by visual scales, as SRRR recognises \cite{CoreKwakkel2019SRRRUpperLimb}. A feature intended to reproduce a grade should be tested against that item. A feature intended to detect residual deficits near the scale ceiling, or distinguish restitution from compensation, needs a different reference. Known-group comparisons, longitudinal data and independent measures can test these claims.
+
+Pre-specify the component and whether each feature measures it directly or by proxy. Validate at task and item level before estimating totals. Test across severity, assistance, devices and settings, and report agreement between the raters who provide reference grades.
+
+\subsection{Score-Defining Content Beyond Movement Kinematics}
+
+Across 55 of 196 entries, scoring incorporated assistance, supervision, safety or verbal information. Visible events determined the grade in 30 of these entries. To reproduce these scores, datasets should annotate events such as therapist contact, aid use, loss of balance and corrective steps alongside kinematics.
+
+The other 25 entries require information beyond the image. The Ability for Basic Movement Scale and Function in Sitting Test, for example, grade how much effort a helper provides. Verbal cues or responses enter the BBS transfer and turning items, the Mini-BESTest dual-task item and the FAC supervision category. Some supervision decisions have no corresponding visible event. Clinicians should document the amount of help and such decisions. Audio can capture cues and responses. Daily-activity tools such as the BI and FIM also rate usual performance, whereas a recording shows a single occasion. Separate annotations for assistance events, the amount of help, cues and context would allow models to be evaluated on the information available to them.
+
+\subsection{Multimodal Assessment Beyond Video}
+
+Video cannot supply the examiner-applied force or resistance, passive tone or reflex findings used to score 17 entries. It also cannot supply patient-reported content (20 entries), verbal information or movement outside the camera's view. Sensation and pain are further examples from examination items outside the mapped motor content \cite{S3John202437682075,S3Stenum202438530801}.
+
+IMUs measure segment orientation and acceleration outside a fixed camera view \cite{Yang2013SpatiotemporalGait,Held2018UpperLimbIMU}. Electromyography and mechanomyography provide muscle-related signals. Pressure, force and robotic sensors quantify contact loads and interaction dynamics \cite{Li2017IMUEMGMotorEvaluation,Formstone2021IMUMMG,Grimm2021KinematicValidation}. Each signal needs a clinical interpretation. Muscle activity alone does not measure strength. Using device-measured resistance to assign a Modified Ashworth grade requires validation.
+
+Choose sensors for a specific clinical question, such as pressure sensing for weight transfer during sit-to-stand or force measurement for strength. Synchronise clocks and validate each input. A tiered design could retain video for repeated measurements and add sensors only when essential. This could help balance completeness against set-up time, cost, patient burden, acceptability and privacy.
+
+\subsection{Validation and Clinical Utility}
+\label{sec:validation}
+
+A correlation with a scale provides only partial evidence of construct validity. Convergent, discriminant and known-group comparisons test whether a feature reflects the intended impairment or activity. Repeated measurements assess reliability. Detecting meaningful within-person change addresses responsiveness. Generalisability requires testing across patients, sites, devices and recording conditions.
+
+Most cited studies used proof-of-concept cohorts, internal cross-validation or correlations with clinical scores \cite{S3Lonini202235224426,Lee2021SmartphoneVideoAmbulation,Proffitt2023DepthMovement,Grimm2021KinematicValidation}. A scoping review of AI for spasticity assessment, mainly in post-stroke upper limbs, found no external validation \cite{Cao2026AISpasticity}. Generalisability and clinical utility therefore remain uncertain.
+
+Future evaluations should pre-specify the intended use, population, task and comparator. Prospective testing should cover different severity and assistance levels, devices and sites. Evaluators should report subgroup performance and failure rates. Comparisons with standard assessment should examine set-up time, workflow integration, acceptability and cost.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+Five limitations affect the interpretation of the mapping. First, we assembled the library purposively from English-language guidelines and supplementary literature. The search was not exhaustive, and the two streams used different inclusion procedures. Most included guidelines came from North America, Europe, Australasia and East Asia. Eight came from the United States, six from Canada, three from the United Kingdom and three from Australia and New Zealand. None came from Latin America, Africa or South Asia.
+
+We excluded Japanese and mainland Chinese guidelines without complete English texts. Japanese tools, including the Stroke Impairment Assessment Set, Manual Function Test and Ability for Basic Movement Scale, entered through the supplementary search. Reasons for individual exclusions in that search were not recorded. We did not retain the Postural Assessment Scale for Stroke Patients or identify the Rivermead Motor Assessment. The FMA balance section lay outside the mapped motor scores. The proportions therefore apply only to this library.
+
+Second, no single a priori rule determined the mapping unit. Entry counts favour item-level balance and mobility scales. The unavailable share was 13\% with entry weighting, 18\% with tool weighting and 7\% after excluding the RMI. Comparisons across studies require a common unit.
+
+Third, independent agreement was measured only for the initial availability ratings ($\kappa$ = 0.63, weighted $\kappa$ = 0.68). A single coder changed 54 codes before the rule revision and 36 afterwards. The final set included 22 borderline decisions, such as whether visible instability warranted supervision or an optional cue affected a grade.
+
+One coder assessed the 15 new or redefined entries and all attributes other than availability. The feature-family distribution, few anchors for movement quality and computability categories therefore await independent confirmation.
+
+Fourth, we coded written criteria under an assumed adequate recording. Full does not establish that raters or algorithms can score routine video reliably. Direct identifies a measurable grade boundary whose tracking accuracy still requires testing.
+
+Studies of video-based administration provide a reference for clinician scoring. FMA and ARAT scores from standardised recordings agreed with scores from direct observation (ICC 0.99) \cite{Amano2018RemoteFMAARAT}. BBS scores from patient-recorded videos correlated with face-to-face scores ($r$ = 0.95) \cite{Onal2025TeleBBS}. Telerehabilitation versions of the FMA-LE, BBS, POMA gait subscale and RMI showed moderate to good parallel-forms reliability (ICC 0.72--0.84) \cite{Zhang2024TeleMobilityScales}. These studies used trained raters and defined filming procedures. They did not test automated extraction.
+
+Full codes assume the task, support surfaces and helper stay in frame, with distance references, hand close-ups and a marked start signal where needed. A routine single viewpoint would downgrade 30 of 134 Full entries (Section~\ref{sec:framework}). Examiner perturbations also vary in reactive balance tasks. A calibration study comparing routine video with live BBS and TIS ratings could test these assumptions.
+
+For the 62 entries that were not fully available, Supplementary Data~1 lists each additional source needed. An entry may require several sources. Patient interviews or questionnaires were needed for 26 entries, audio for verbal cues or responses for 22, and an examiner's record of decisions such as the amount of assistance for 22. Manual examination of tone, reflexes, resistance or events confirmed by palpation was needed for 16 entries, records of usual performance for 11, and force measurement for 6.
+
+These counts include secondary criteria. For example, 22 entries needed audio, but verbal content was the main reason for incomplete availability in only eight (Section~\ref{sec:framework} and Supplementary Data~1). Unless specified, the codes assume RGB video without audio.
+
+Fifth, the AI studies in Section~\ref{sec:framework} illustrate feature families. Without systematic selection or quality appraisal, they cannot establish how common, accurate or well validated these approaches are.
+
+\section{Conclusion}
+
+Across 57 tools, an adequate recording could in principle provide all score-defining information for most entries, including visible help and support. The amount of help, usual performance, unrecorded cues and examination findings can require other sources.
+
+Fewer than half of the fully visible entries had grade boundaries that a feature could measure directly. The rest required grading a property such as steadiness or judging the overall movement pattern. Automating these judgements requires validation against rater grades.
+
+For AI-based assessment, specify which features measure a criterion directly and which serve as proxies. Record assistance, verbal cues and safety decisions separately from movement. Report replicable feature definitions and recording protocols, then test measurement accuracy, construct validity and clinical utility. Established scales remain the clinical reference.
+
+\section*{Data Availability}
+Supplementary Table~\ref{tab:supplementary_tool_library_clinical}, Supplementary Table~\ref{tab:supplementary_tool_library_motion} and Supplementary Data~1 provide the tool library and all 196 mapping entries. The accompanying material includes the coding rules and computability codes, the second-reviewer check, the feature-family mapping and the guideline screening log.
+
+\printbibliography
+
+\input{Supplementary TableS1.tex}
+\input{Supplementary Table S2.tex}
+
+\noindent Supplementary Data~1 (Excel) contains the mapping entries underlying Supplementary Table~\ref{tab:supplementary_tool_library_motion} and Fig.~\ref{fig:video_availability}. It also provides the coding rules, the second-reviewer check, the mapping of computational feature families to clinical assessment content and the guideline full-text screening log.
+\end{document}

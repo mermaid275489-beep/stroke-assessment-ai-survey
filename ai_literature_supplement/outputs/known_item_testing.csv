@@ -1,0 +1,6 @@
+﻿known_item,expected_stream,doi,pmid,retrieved_anywhere,retrieved_in_expected_stream,matched_records,matched_titles,title_term_hits_not_used_for_pass
+Alt Murphy 2011,upper_limb_dexterity,10.1177/1545968310370748,20829411,True,True,1,Kinematic variables quantifying upper-extremity performance after stroke during reaching and drinking from a glass.,89
+Tsai 2021,upper_limb_dexterity,10.1109/JTEHM.2021.3072347,33889453,True,True,1,Identifying Hand Use and Hand Roles After Stroke Using Egocentric Video.,3
+Abdollahi 2024,trunk_balance_compensation,,38339529,True,True,1,Fall Risk Assessment in Stroke Survivors: A Machine Learning Model Using Detailed Motion Data from Common Clinical Tests and Motor-Cognitive Dual-Tasking.,2
+Geerars 2025,trunk_balance_compensation,10.1093/ptj/pzaf021,39982424,True,True,1,Postural Sway Measurement Using a Body-Worn Movement Sensor in Clinical Stroke Rehabilitation: Exploring Sensitivity to Change and Responsiveness.,7
+Kristensen 2017,strength_power,10.1016/j.apmr.2016.05.023,27372002,True,True,1,Muscle Strength and Poststroke Hemiplegia: A Systematic Review of Muscle Strength Assessment and Muscle Strength Impairment.,133

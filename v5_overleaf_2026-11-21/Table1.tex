@@ -1,0 +1,50 @@
+% Main-text Table 1: movement components required by representative scales.
+% Required packages: booktabs, array, ragged2e, graphicx (for \rotatebox).
+
+\begin{table}[!htbp]
+\centering
+\caption{Score-defining movement components of representative post-stroke scales. A component is marked only when the scoring criteria grade it; shared components do not make scores interchangeable.}
+\label{tab:representative_scales_compact}
+\begingroup
+\newcommand{\mcmark}{\(\bullet\)}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\begin{tabular}{@{}l l l *{7}{c}@{}}
+\toprule
+ & & & \multicolumn{6}{c}{\textbf{Movement component}} & \textbf{Modifier} \\
+\cmidrule(lr){4-9}\cmidrule(l){10-10}
+\textbf{Scale} & \textbf{COA} & \textbf{Score output} & ROM & S/F & Coord. & Bal. & Dex. & Gait & Q/C \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Upper limb}} \\
+FMA-UE & ClinRO & Ordinal (0--66) & \mcmark & \mcmark & \mcmark &  & \mcmark &  & \mcmark \\
+ARAT & ClinRO & Ordinal (0--57) &  &  & \mcmark &  & \mcmark &  & \mcmark \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Trunk and balance}} \\
+TIS & ClinRO & Ordinal (0--23) &  &  & \mcmark & \mcmark &  &  & \mcmark \\
+BBS & ClinRO & Ordinal (0--56) &  &  &  & \mcmark &  & \mcmark & \mcmark \\
+Mini-BESTest & ClinRO & Ordinal (0--28) & \mcmark &  &  & \mcmark &  & \mcmark & \mcmark \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Lower limb and mobility}} \\
+FMA-LE & ClinRO & Ordinal (0--34) & \mcmark & \mcmark & \mcmark &  &  &  & \mcmark \\
+DGI & ClinRO & Ordinal (0--24) &  &  & \mcmark & \mcmark &  & \mcmark & \mcmark \\
+FAC & ClinRO & Category (0--5) &  &  &  & \mcmark &  & \mcmark &  \\
+10MWT & PerfO & Speed (m/s) &  &  &  &  &  & \mcmark &  \\
+6MWT & PerfO & Distance (m) &  &  &  &  &  & \mcmark &  \\
+TUG\textsuperscript{a} & PerfO & Time (s) &  &  &  &  &  & \mcmark &  \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Global outcome (movement-related items only)}} \\
+NIHSS & ClinRO & Ordinal (0--42) &  & \mcmark & \mcmark &  &  &  &  \\
+BI\textsuperscript{a} & ClinRO & Ordinal (0--100) &  &  &  &  &  & \mcmark &  \\
+\bottomrule
+\end{tabular}
+
+\vspace{3pt}
+\begin{minipage}{\linewidth}
+\footnotesize
+\textit{Notes.} \(\bullet\), at least one item's criteria grade performance in that component (rules in Supplementary Table~\ref{tab:supplementary_tool_library_motion}); components a task requires without changing the grade are not marked, such as balance in the time-scored 10MWT and TUG or trunk range in TIS items graded by completion, symmetry and compensation. Gait includes transfers and stepping (BBS, BI). S/F covers FMA items graded against examiner resistance and, for the NIHSS, holding a limb against gravity. Q/C, movement quality and compensation, is a cross-component modifier marked only when criteria grade quality, abnormal synergy or compensation. NIHSS: motor and limb-ataxia items; BI: mobility items. \textsuperscript{a}Guideline-supported tools added to the 11 SRRR-priority tools for transitional mobility (TUG) and daily activities (BI). COA is an operational classification under FDA--NIH definitions (Section~\ref{sec:scales}) \cite{FDANIH2016BESTCOA,Walton2015COAConceptualFoundation}; under a task-based reading, the task-rated ClinRO tools here (FMA-UE, ARAT, TIS, BBS, Mini-BESTest, FMA-LE, DGI) would be PerfO (Supplementary Table~\ref{tab:supplementary_tool_library_clinical}); components were informed by the ICF, guidelines and SRRR domains \cite{WHO2001ICF,S1Winstein2016AHAASARehab,S1VADoD2024StrokeRehab,S1NICE2023NG236,CoreKwakkel2017SRRRSensorimotor,CoreKwakkel2019SRRRUpperLimb,CoreVanCriekinge2024SRRRBalanceMobility}.
+ROM, joint mobility and range of motion; S/F, strength and force production; Coord., coordination and selective motor control; Bal., balance and postural control; Dex., manual dexterity and upper-limb task execution; Gait, gait and functional mobility.
+10MWT, 10-Metre Walk Test; 6MWT, 6-Minute Walk Test; ARAT, Action Research Arm Test; BBS, Berg Balance Scale; BI, Barthel Index; ClinRO, clinician-reported outcome; COA, clinical outcome assessment; DGI, Dynamic Gait Index; FAC, Functional Ambulation Category; FMA-LE/UE, Fugl--Meyer Assessment lower/upper extremity; Mini-BESTest, Mini-Balance Evaluation Systems Test; NIHSS, National Institutes of Health Stroke Scale; PerfO, performance outcome; TIS, Trunk Impairment Scale; TUG, Timed Up and Go.
+\end{minipage}
+\endgroup
+\end{table}

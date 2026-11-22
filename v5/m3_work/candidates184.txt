@@ -1,0 +1,34 @@
+0 | Activities-specific Balance Confidence gait subscale | ABC_Gait | balance | balance confidence related to gait |  
+1 | BIORescue |  | balance | standing balance |  
+2 | Balance Evaluation System Test | BESTest | balance | balance; components of postural control |  
+3 | Balance Evaluation Systems Test | BESTest | balance | balance/postural control; postural control |  
+4 | Berg Balance Score |  | balance | motor function |  
+5 | Berg Scale |  | balance | balance |  
+6 | Biodex |  | balance | balance |  
+7 | Biodex Balance System | BioBS | balance | anteroposterior sway and mediolateral sway |  
+8 | Biodex-BioSway Balance System |  | balance | standing balance |  
+9 | Brief-Balance Evaluation Systems Test | Brief-BESTest | balance | balance/postural control; postural control |  
+10 | Brunel Balance Assessment |  | balance | stepping |  
+11 | Community Balance and Mobility Scale |  | balance | mobility |  
+12 | Falls Efficacy Scale | FES | balance | fear of falling |  
+13 | Falls Efficacy Scale-International | FES-I | balance | fall risk / falls efficacy; falls efficacy; fear o |  
+14 | Fugl-Meyer balance scale |  | balance | balance; balance ability |  
+15 | Global Rating of Change scale | GRC | balance | subjective improvement in balance function |  
+16 | Good Balance System | GBS | balance | anteroposterior sway and mediolateral sway |  
+17 | Limit of Stability |  | balance | balance |  
+18 | Longitudinal Aging Study Amsterdam | LASA | balance | fall risk assessment |  
+19 | Pk254 balance function detection system | Pk254 | balance | balance function |  
+20 | Postural Assessment Scale for Stroke patients |  | balance | postural control |  
+21 | S-BESTest | S-BESTest | balance | balance assessment |  
+22 | Scale of Contraversive Pushing | SCP | balance | severity of pusher syndrome / contraversive pushin |  
+23 | Six-Spot Step Test |  | balance | dynamic balance |  
+24 | Spanish-Postural Assessment Scale |  | balance | balance |  
+25 | Step Test |  | balance | balance |  
+26 | Subjective Haptic Vertical | SHV | balance | perception of verticality; verticality perception |  
+27 | Subjective Postural Vertical | SPV | balance | perception of verticality; verticality perception |  
+28 | Subjective Visual Vertical | SVV | balance | perception of verticality; verticality perception |  
+29 | SwayStar Balance |  | balance | dynamic balance during walking |  
+30 | Tinetti Performance-Oriented Mobility Assessment-Balance | POMA-B | balance | balance |  
+31 | Tinetti performance-oriented mobility assessment |  | balance | mobility assessment; mobility/balance performance |  
+32 | Tinetti scale |  | balance | balance and gait; balance and gait / fall risk; ga |  
+33 | 

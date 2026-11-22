@@ -1,0 +1,15 @@
+{
+  "search_date": "2026-07-28",
+  "raw_source_records": 14794,
+  "unique_records": 10084,
+  "duplicates_consolidated": 4710,
+  "decisions": {
+    "exclude_title_abstract": 4782,
+    "uncertain": 4245,
+    "include_candidate_tier_b": 812,
+    "include_candidate_tier_a": 245
+  },
+  "known_item_testing_passed": true,
+  "public_database_search_status": "provisional; subscription-database exports not yet merged",
+  "figure2_status": "not locked; source file contains title/abstract candidates only"
+}
