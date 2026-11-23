@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objective Stroke Assessment</title>
+<meta name="description" content="From motion-capture data to a clinically grounded survey to an AI app: decomposing stroke rating scales into measurable movement features.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --surface-2:#efece4; --ink:#14181f; --muted:#5b6472; --line:#e2ddd2;
+  --accent:#0f766e; --accent-soft:#d5ece8; --coral:#e4572e; --coral-soft:#fbe1d8; --amber:#c98a12;
+  --ref:#9aa3ae; --ref-band:rgba(120,130,145,.16); --video:#0c1117; --video-line:#1d2632;
+  --full:#0f766e; --partial:#d9a21b; --none:#b9b3a6;
+  --direct:#0f766e; --proxy:#4f9d94; --judge:#a9cfc9;
+  --radius:18px; --shadow:0 1px 2px rgba(20,24,31,.04),0 8px 28px rgba(20,24,31,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1117; --surface:#151b23; --surface-2:#1b222c; --ink:#e8ebf0; --muted:#9aa4b2; --line:#262e38;
+    --accent:#2dd4bf; --accent-soft:#12312e; --coral:#ff7a59; --coral-soft:#3a1f17; --amber:#f4b740;
+    --ref:#7d8794; --ref-band:rgba(160,170,185,.14); --video:#080b10; --video-line:#18202b;
+    --full:#2dd4bf; --partial:#f4b740; --none:#4a5260;
+    --direct:#2dd4bf; --proxy:#1f9e8f; --judge:#155e57;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1117; --surface:#151b23; --surface-2:#1b222c; --ink:#e8ebf0; --muted:#9aa4b2; --line:#262e38;
+  --accent:#2dd4bf; --accent-soft:#12312e; --coral:#ff7a59; --coral-soft:#3a1f17; --amber:#f4b740;
+  --ref:#7d8794; --ref-band:rgba(160,170,185,.14); --video:#080b10; --video-line:#18202b;
+  --full:#2dd4bf; --partial:#f4b740; --none:#4a5260;
+  --direct:#2dd4bf; --proxy:#1f9e8f; --judge:#155e57;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.015em;line-height:1.15;margin:0}
+h2{font-size:clamp(30px,4.2vw,46px)}
+h3{font-size:21px}
+p{margin:0 0 14px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.eyebrow{font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+.lede{font-size:clamp(17px,1.6vw,19px);color:var(--muted);max-width:720px}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.chip{display:inline-block;font:500 12px/1 Inter;padding:6px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+section{padding:110px 0}
+.sec-head{display:grid;gap:18px;margin-bottom:48px}
+.note{font-size:13px;color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{font:600 15px Fraunces,serif;display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.navlinks{display:flex;gap:4px;align-items:center}
+.navlinks a{color:var(--muted);text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;transition:.2s}
+.navlinks a:hover,.navlinks a.on{color:var(--ink);background:var(--surface-2)}
+.theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+@media (max-width:820px){.navlinks a:not(.keep){display:none}}
+
+/* hero */
+.hero{padding:70px 0 90px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,72px);margin:20px 0 22px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px Inter;padding:12px 18px;border-radius:999px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hero-stage{position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:radial-gradient(120% 90% at 50% 10%,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-stage canvas{width:100%;height:100%;display:block}
+.hero-tag{position:absolute;left:18px;bottom:16px;font:500 11px "JetBrains Mono";color:var(--muted);letter-spacing:.06em}
+.hero-tag2{position:absolute;right:18px;top:16px;font:500 11px "JetBrains Mono";color:var(--accent);letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+.rec{width:7px;height:7px;border-radius:50%;background:var(--coral);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-stage{max-width:520px;width:100%;margin:0 auto}}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.journey .card{padding:28px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s}
+.journey .card:hover{transform:translateY(-3px)}
+.step-n{font:600 12px "JetBrains Mono";color:var(--muted);letter-spacing:.1em}
+.journey h3{margin:14px 0 10px}
+.journey p{color:var(--muted);font-size:15px;margin:0}
+.journey .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);margin-top:18px}
+.flowline{position:absolute;left:0;right:0;top:50%;height:2px;pointer-events:none;z-index:0}
+.problem{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.problem .card{padding:26px}
+.problem h3{font-size:18px;margin-bottom:8px}
+.problem p{color:var(--muted);font-size:15px;margin:0}
+.vs{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.dot{width:10px;height:10px;border-radius:50%}
+@media (max-width:860px){.journey,.problem{grid-template-columns:1fr}}
+
+/* gait lab */
+.lab{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.lab .card{padding:20px}
+.lab>.card:first-child{display:flex;flex-direction:column}
+.lab-canvas{width:100%;flex:1;min-height:320px;display:block;border-radius:12px;background:var(--surface-2)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:14px}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 13px Inter;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.2s}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);height:36px;padding:0 14px;border-radius:999px;cursor:pointer;font:600 13px Inter;display:inline-flex;align-items:center;gap:6px}
+.charts{display:grid;gap:12px}
+.chart{padding:14px 16px 8px}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;font-size:13px}
+.chart-head b{font:600 14px Inter}
+.chart svg{width:100%;height:120px;display:block;overflow:visible}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:4px}
+.legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.findings{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.finding{padding:18px 18px 16px;border-left:3px solid var(--coral)}
+.finding b{display:block;font-size:14px;margin-bottom:4px}
+.finding span{font-size:14px;color:var(--muted)}
+.datafacts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.fact{padding:18px}
+.fact .k{font:600 11px "JetBrains Mono";letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.fact .v{font:600 17px Inter;margin-top:6px}
+@media (max-width:960px){.lab{grid-template-columns:1fr}.findings{grid-template-columns:1fr}.datafacts{grid-template-columns:1fr 1fr}}
+
+/* survey */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
+.stat{padding:22px 20px}
+.stat .num{font:600 clamp(30px,3.6vw,44px)/1 Fraunces,serif;color:var(--ink)}
+.stat .lbl{font-size:13.5px;color:var(--muted);margin-top:8px}
+@media (max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.chain-wrap{padding:28px}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px;position:relative}
+.node{position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 14px;min-height:150px;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s,border-color .3s}
+.node.in{opacity:1;transform:none}
+.node .t{font:600 11px "JetBrains Mono";letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.node .b{font-size:14px;margin-top:8px}
+.node .x{font-size:12.5px;color:var(--coral);margin-top:8px}
+.node.arrow{position:relative}
+.node:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:12px;height:2px;background:var(--line)}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.badge{font:600 12px Inter;padding:6px 10px;border-radius:999px}
+.b-full{background:color-mix(in srgb,var(--full) 18%,transparent);color:var(--full)}
+.b-partial{background:color-mix(in srgb,var(--partial) 22%,transparent);color:color-mix(in srgb,var(--partial) 80%,var(--ink))}
+.b-direct{background:var(--accent-soft);color:var(--accent)}
+.b-proxy{background:color-mix(in srgb,var(--proxy) 20%,transparent);color:var(--proxy)}
+.b-judge{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+@media (max-width:900px){.chain{grid-template-columns:1fr}.node{min-height:0}.node:not(:last-child)::after{display:none}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.panel{padding:26px}
+.panel h3{font-size:19px;margin-bottom:6px}
+.stack{display:flex;height:46px;border-radius:12px;overflow:hidden;margin:22px 0 12px;background:var(--surface-2)}
+.stack div{height:100%;transition:flex-basis .9s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;justify-content:center;font:600 13px Inter;color:#fff;white-space:nowrap;overflow:hidden;flex-basis:0}
+.s-full{background:var(--full)} .s-partial{background:var(--partial);color:#1b1b1b!important} .s-none{background:var(--none)}
+.s-direct{background:var(--direct)} .s-proxy{background:var(--proxy)} .s-judge{background:var(--judge);color:var(--ink)!important}
+:root[data-theme="dark"] .s-full,:root[data-theme="dark"] .s-direct{color:#05201d!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .s-full,:root:not([data-theme="light"]) .s-direct{color:#05201d!important}}
+.keyrow{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.keyrow i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.bars{display:grid;gap:12px;margin-top:20px}
+.bar{display:grid;grid-template-columns:200px 1fr 54px;gap:12px;align-items:center;font-size:14px}
+.bar .track{height:12px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 60%,var(--amber)));border-radius:99px;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar .n{font:600 13px "JetBrains Mono";text-align:right}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}.bar{grid-template-columns:130px 1fr 44px;font-size:13px}}
+.components{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.comp{padding:10px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:14px}
+.v3{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.v3 div{padding:16px;font-size:13.5px;color:var(--muted);background:var(--surface);border-right:1px solid var(--line)}
+.v3 div:last-child{border-right:0}
+.v3 b{display:block;color:var(--ink);font-size:14px;margin-bottom:4px}
+@media (max-width:760px){.v3{grid-template-columns:1fr 1fr}.v3 div:nth-child(2){border-right:0}.v3 div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* app */
+.appdemo{display:grid;grid-template-columns:1.15fr .85fr;gap:0;overflow:hidden;padding:0}
+.screen{background:var(--video);position:relative;min-height:420px}
+.screen canvas{width:100%;height:100%;display:block;position:absolute;inset:0}
+.screen .hud{position:absolute;left:16px;top:14px;font:500 11px "JetBrains Mono";color:#8fe3d6;letter-spacing:.06em;display:flex;gap:14px}
+.screen .hud2{position:absolute;right:16px;top:14px;font:500 11px "JetBrains Mono";color:#7c8796}
+.screen .scan{position:absolute;left:0;right:0;height:80px;background:linear-gradient(180deg,transparent,rgba(45,212,191,.10),transparent);animation:scan 3.2s linear infinite;pointer-events:none}
+@keyframes scan{from{top:-80px}to{top:100%}}
+.report{padding:24px;display:flex;flex-direction:column;gap:14px}
+.report .rhead{display:flex;justify-content:space-between;align-items:center}
+.metrics{display:grid;gap:10px}
+.metric{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:13px}
+.metric .mbar{grid-column:1/-1;height:6px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.metric .mbar span{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--accent);transition:width .8s cubic-bezier(.2,.8,.2,1),background .3s}
+.metric .mbar em{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);opacity:.5}
+.metric .val{font:600 12.5px "JetBrains Mono"}
+.typed{font:13px/1.6 "JetBrains Mono",monospace;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:150px;white-space:pre-wrap}
+.typed .cur{display:inline-block;width:7px;height:14px;background:var(--accent);vertical-align:-2px;animation:blink 1s infinite}
+@media (max-width:900px){.appdemo{grid-template-columns:1fr}.screen{min-height:320px}}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.pillar{padding:26px}
+.pillar .pn{font:600 12px "JetBrains Mono";color:var(--accent);letter-spacing:.08em}
+.pillar h3{margin:10px 0 10px;font-size:20px}
+.pillar ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px}
+.pillar li{margin-bottom:6px}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
+/* timeline */
+.timeline{position:relative;margin-top:10px;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--line))}
+.tl{position:relative;padding:0 0 30px 18px}
+.tl::before{content:"";position:absolute;left:-27px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.tl.future::before{border-color:var(--line);border-style:dashed}
+.tl .when{font:600 12px "JetBrains Mono";color:var(--accent);letter-spacing:.06em}
+.tl.future .when{color:var(--muted)}
+.tl h3{font-size:19px;margin:4px 0 6px}
+.tl p{color:var(--muted);margin:0;font-size:15px;max-width:720px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}.node{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-dot"></span>Objective Stroke Assessment</a>
+    <div class="navlinks">
+      <a href="#journey">Overview</a>
+      <a href="#data">Data</a>
+      <a href="#survey">Survey</a>
+      <a href="#app">App</a>
+      <a href="#roadmap">Roadmap</a>
+      <button class="theme-btn keep" id="themeBtn" aria-label="Toggle colour theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stroke rehabilitation · AI motion analysis</span>
+      <h1>From clinical scores to <em>measurable movement</em></h1>
+      <p class="lede">Clinical rating scales judge movement by eye. AI can measure it frame by frame. This project builds the bridge between the two: from motion-capture data, through a survey that decomposes 57 assessment tools into computable features, toward an app that turns ordinary video into an interpretable movement report.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#journey">Explore the project ↓</a>
+        <a class="btn" href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">View on GitHub</a>
+      </div>
+    </div>
+    <div class="hero-stage">
+      <canvas id="heroCanvas" aria-label="Animated walking skeleton with motion-capture markers"></canvas>
+      <div class="hero-tag2"><span class="rec"></span>MARKER TRACKING</div>
+      <div class="hero-tag mono" id="heroTag">GAIT CYCLE 0%</div>
+    </div>
+  </div>
+</header>
+
+<section id="journey" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The journey</span>
+      <h2>One question, three stages</h2>
+      <p class="lede">Can AI assess post-stroke movement objectively, in a way clinicians can trust and interpret? We approach it from the data up.</p>
+    </div>
+    <div class="journey">
+      <a class="card reveal" href="#data">
+        <div class="step-n">STAGE 01 · DATA</div>
+        <h3>Measure how patients move</h3>
+        <p>Laboratory motion capture of post-stroke gait, compared against healthy controls across the gait cycle.</p>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><path d="M12 6v6l-3 8M12 12l3 8M8 9h8"/></svg></div>
+      </a>
+      <a class="card reveal" href="#survey">
+        <div class="step-n">STAGE 02 · SURVEY</div>
+        <h3>Decompose the clinical scales</h3>
+        <p>Map 196 scoring entries from 57 tools to what video can observe and what a computer can quantify.</p>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg></div>
+      </a>
+      <a class="card reveal" href="#app">
+        <div class="step-n">STAGE 03 · APP</div>
+        <h3>Turn video into a report</h3>
+        <p>A tool that extracts movement features from ordinary video and explains them in clinical terms.</p>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></div>
+      </a>
+    </div>
+    <div class="problem">
+      <div class="card reveal">
+        <div class="vs"><span class="dot" style="background:var(--coral)"></span><span class="mono note">THE PROBLEM WITH SCALES</span></div>
+        <h3>Subjective, expert-dependent, hard to scale</h3>
+        <p>Scores such as the Fugl-Meyer or Berg Balance Scale depend on trained raters, show ceiling effects, and are difficult to repeat often or remotely.</p>
+      </div>
+      <div class="card reveal">
+        <div class="vs"><span class="dot" style="background:var(--amber)"></span><span class="mono note">THE PROBLEM WITH END-TO-END AI</span></div>
+        <h3>Predicting the score inherits its flaws</h3>
+        <p>Most AI systems learn to predict the clinical score directly. They inherit its subjectivity and reveal little about <em>which</em> movement features drive the result.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="data" style="background:linear-gradient(180deg,transparent,var(--surface-2) 30%,var(--surface-2) 70%,transparent)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stage 01 · Data</span>
+      <h2>Seeing the deviation in post-stroke gait</h2>
+      <p class="lede">A pilot clinical gait study used optical motion capture to characterise how walking changes after stroke. Joint angles were compared with healthy controls across the whole gait cycle using statistical parametric mapping (SPM1D), which tests every percentage point of the cycle rather than a single summary value.</p>
+    </div>
+    <div class="datafacts">
+      <div class="card fact reveal"><div class="k">System</div><div class="v">Qualisys optical mocap</div></div>
+      <div class="card fact reveal"><div class="k">Signals</div><div class="v">Joint kinematics + ground reaction force</div></div>
+      <div class="card fact reveal"><div class="k">Cohorts recorded</div><div class="v">Stroke, knee OA, amputee</div></div>
+      <div class="card fact reveal"><div class="k">Analysis</div><div class="v">SPM1D curve-level tests</div></div>
+    </div>
+
+    <div class="lab">
+      <div class="card reveal">
+        <canvas id="labCanvas" class="lab-canvas" aria-label="Sagittal-plane walking model"></canvas>
+        <div class="controls">
+          <div class="seg" id="modeSeg">
+            <button data-mode="healthy" class="on">Healthy control</button>
+            <button data-mode="stroke">Post-stroke</button>
+          </div>
+          <div style="display:flex;gap:8px">
+            <div class="seg" id="limbSeg" style="opacity:.4;pointer-events:none">
+              <button data-limb="affected" class="on">Affected</button>
+              <button data-limb="unaffected">Unaffected</button>
+            </div>
+            <button class="iconbtn" id="playBtn" aria-label="Pause">❚❚</button>
+          </div>
+        </div>
+      </div>
+      <div class="charts">
+        <div class="card chart reveal"><div class="chart-head"><b>Hip</b><span class="muted mono" id="vHip">—</span></div><svg id="cHip" viewBox="0 0 400 120" preserveAspectRatio="none"></svg></div>
+        <div class="card chart reveal"><div class="chart-head"><b>Knee</b><span class="muted mono" id="vKnee">—</span></div><svg id="cKnee" viewBox="0 0 400 120" preserveAspectRatio="none"></svg></div>
+        <div class="card chart reveal"><div class="chart-head"><b>Ankle</b><span class="muted mono" id="vAnkle">—</span></div><svg id="cAnkle" viewBox="0 0 400 120" preserveAspectRatio="none"></svg></div>
+        <div class="legend"><span><i style="background:var(--ref)"></i>Healthy reference ± band</span><span id="legCur"><i style="background:var(--accent)"></i>Current limb</span><span>+ = flexion / dorsiflexion · x = % gait cycle</span></div>
+      </div>
+    </div>
+    <div class="findings" id="findings"></div>
+    <p class="note" style="margin-top:16px">Curves in this interactive model are schematic reconstructions of the reported patterns, drawn for illustration. They are not patient data.</p>
+  </div>
+</section>
+
+<section id="survey">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stage 02 · Survey</span>
+      <h2>What can a camera actually score?</h2>
+      <p class="lede">Rather than treating clinical scores as prediction targets, the survey asks how each scale's scoring criteria decompose into movement features that AI can quantify objectively. We built a library of guideline-recommended and research-standard tools and coded every scoring entry.</p>
+    </div>
+    <div class="stats">
+      <div class="card stat reveal"><div class="num" data-count="28">0</div><div class="lbl">clinical guidelines from 9 regions</div></div>
+      <div class="card stat reveal"><div class="num" data-count="57">0</div><div class="lbl">assessment tools in the library</div></div>
+      <div class="card stat reveal"><div class="num" data-count="196">0</div><div class="lbl">scoring entries coded item by item</div></div>
+      <div class="card stat reveal"><div class="num" data-count="68" data-suffix="%">0</div><div class="lbl">fully observable from ordinary video</div></div>
+      <div class="card stat reveal"><div class="num" data-count="31" data-suffix="%">0</div><div class="lbl">both fully observable and directly computable</div></div>
+    </div>
+
+    <div class="card chain-wrap reveal">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <div>
+          <h3>The decomposition chain</h3>
+          <p class="muted" style="margin:6px 0 0;font-size:15px">Every entry is traced from the clinical item to a computable feature and back to clinical meaning.</p>
+        </div>
+        <div class="seg" id="exSeg">
+          <button data-ex="tug" class="on">Timed Up and Go</button>
+          <button data-ex="bbs">BBS sit-to-stand</button>
+          <button data-ex="dgi">DGI walking item</button>
+        </div>
+      </div>
+      <div class="chain" id="chain"></div>
+      <div class="badges" id="chainBadges"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card panel reveal">
+        <h3>Availability from video</h3>
+        <p class="muted" style="font-size:14.5px">Is all grade-defining information visible in the recording? Shown for the 196 entries under three recording conditions.</p>
+        <div class="seg" id="scenSeg" style="margin-top:8px">
+          <button data-s="0" class="on">Adequate RGB video</button>
+          <button data-s="1">+ Audio</button>
+          <button data-s="2">Single routine view</button>
+        </div>
+        <div class="stack" id="availStack"><div class="s-full"></div><div class="s-partial"></div><div class="s-none"></div></div>
+        <div class="keyrow"><span><i style="background:var(--full)"></i>Full</span><span><i style="background:var(--partial)"></i>Partial (e.g. amount of help, verbal cue)</span><span><i style="background:var(--none)"></i>None (force, tone, self-report)</span></div>
+        <p class="note" style="margin-top:14px" id="scenNote"></p>
+      </div>
+      <div class="card panel reveal">
+        <h3>Computability of the visible part</h3>
+        <p class="muted" style="font-size:14.5px">For the 134 fully available entries: can a computed quantity reproduce the grade boundary?</p>
+        <div class="stack" id="compStack"><div class="s-direct"></div><div class="s-proxy"></div><div class="s-judge"></div></div>
+        <div class="keyrow"><span><i style="background:var(--direct)"></i>Direct: explicit time, distance, count, angle or event</span><span><i style="background:var(--proxy)"></i>Proxy: graded property, threshold needs validation</span><span><i style="background:var(--judge)"></i>Judgement: overall clinical impression</span></div>
+        <p class="note" style="margin-top:14px">Grading a visible movement was a more frequent obstacle than missing information: 73 fully available Proxy or Judgement entries vs 62 Partial or None.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card panel reveal">
+        <h3>Computational feature families</h3>
+        <p class="muted" style="font-size:14.5px">Scoring entries that anchor each family of computable measures.</p>
+        <div class="bars" id="famBars"></div>
+        <p class="note" style="margin-top:14px">Only six entries anchor smoothness, jerk or other movement-quality measures, so few scales offer a reference for them.</p>
+      </div>
+      <div class="card panel reveal">
+        <h3>Six movement components</h3>
+        <p class="muted" style="font-size:14.5px">Recurrent scale content, grouped with reference to the ICF and Stroke Recovery and Rehabilitation Roundtable domains.</p>
+        <div class="components">
+          <span class="comp">Joint mobility &amp; range of motion</span>
+          <span class="comp">Muscle strength &amp; force production</span>
+          <span class="comp">Coordination &amp; selective motor control</span>
+          <span class="comp">Balance &amp; postural control</span>
+          <span class="comp">Manual dexterity &amp; upper-limb tasks</span>
+          <span class="comp">Gait &amp; functional mobility</span>
+        </div>
+        <h3 style="margin-top:28px">Validating a feature profile</h3>
+        <p class="muted" style="font-size:14.5px">Adapted from the V3 framework, with clinical utility added.</p>
+        <div class="v3">
+          <div><b>Analytical</b>Accuracy and reliability against a reference</div>
+          <div><b>Task-level</b>Repeatability and responsiveness under a protocol</div>
+          <div><b>Clinical construct</b>Does it represent the intended impairment?</div>
+          <div><b>Utility</b>Does it improve assessment or decisions?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="app" style="background:linear-gradient(180deg,transparent,var(--surface-2) 25%,var(--surface-2) 75%,transparent)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stage 03 · App (concept)</span>
+      <h2>An AI report clinicians can read</h2>
+      <p class="lede">The goal is not another black-box score. Inspired by how ECG machines print an interpretable report, the app will track movement from ordinary video, compute a task-specific feature profile, and explain deviations in clinical language, flagging what the video cannot show.</p>
+    </div>
+    <div class="card appdemo reveal">
+      <div class="screen">
+        <canvas id="appCanvas" aria-label="Simulated pose-tracking video"></canvas>
+        <div class="scan"></div>
+        <div class="hud"><span>● POSE TRACKING</span><span id="appFps">30 FPS</span></div>
+        <div class="hud2" id="appClip">sample_walk_01.mp4</div>
+      </div>
+      <div class="report">
+        <div class="rhead">
+          <b style="font-family:Fraunces,serif;font-size:19px">Gait report</b>
+          <div class="seg" id="appSeg">
+            <button data-mode="healthy">Sample A</button>
+            <button data-mode="stroke" class="on">Sample B</button>
+          </div>
+        </div>
+        <div class="metrics" id="metrics"></div>
+        <div class="typed" id="typed"></div>
+        <p class="note" style="margin:0">Concept prototype running on simulated kinematics. Not a medical device.</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="card pillar reveal">
+        <div class="pn">01 · AUTOMATED GAIT REPORT</div>
+        <h3>From curves to a diagnosis-aware report</h3>
+        <ul>
+          <li>Interpreting gait biomechanics is complex and usually rule-based</li>
+          <li>Use language models to describe gait phenotypes such as knee hyperextension, insufficient ankle motion or a "frozen" hip</li>
+          <li>Benchmark general-purpose models (e.g. ChatGPT, Gemini) on describing kinematic curves</li>
+        </ul>
+      </div>
+      <div class="card pillar reveal">
+        <div class="pn">02 · MARKERLESS UPPER LIMB</div>
+        <h3>Objective upper-limb tracking</h3>
+        <ul>
+          <li>Replace therapist-dependent tests (e.g. ARAT, WMFT) with consistent, scalable measurement</li>
+          <li>Consensus tasks: drinking, planar reaching and pinching</li>
+          <li>Multi-camera markerless systems and single-camera pose estimation (e.g. MediaPipe)</li>
+        </ul>
+      </div>
+      <div class="card pillar reveal">
+        <div class="pn">03 · SYNTHETIC DATA</div>
+        <h3>More data, less identifiable</h3>
+        <ul>
+          <li>Address data scarcity in stroke and neurorehabilitation</li>
+          <li>Protect privacy: video records identifiable features</li>
+          <li>Generate labelled data for model testing and robotics simulation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Roadmap</span>
+      <h2>Where the project stands</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl reveal"><div class="when">2020 – 2023</div><h3>Clinical motion data collected</h3><p>Optical motion capture and force-plate recordings of patients with stroke (upper and lower limb), knee osteoarthritis and amputation.</p></div>
+      <div class="tl reveal"><div class="when">2025</div><h3>Pilot gait analysis</h3><p>Curve-level SPM1D comparison of post-stroke and healthy gait identified reduced hip and knee flexion on the affected side and delayed swing on the unaffected side.</p></div>
+      <div class="tl reveal"><div class="when">2026</div><h3>Survey: scales → computable features</h3><p>Guideline and literature search (to May 2026), a 57-tool library and 196 coded entries linking clinical criteria to video availability, computability and feature families.</p></div>
+      <div class="tl future reveal"><div class="when">NEXT</div><h3>Prototype app</h3><p>Video → pose tracking → task-specific feature profile → interpretable report, starting with gait and upper-limb consensus tasks.</p></div>
+      <div class="tl future reveal"><div class="when">THEN</div><h3>Validation and clinical utility</h3><p>Analytical, task-level and clinical-construct validation across severity, assistance level, devices and settings, then evaluation of whether the report improves clinical decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Nanyang Technological University · Rehabilitation Research Institute of Singapore</div>
+    <div><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">Source &amp; data on GitHub</a></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* theme toggle */
+const themeBtn = document.getElementById('themeBtn');
+try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch(e){}
+themeBtn.addEventListener('click', () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const next = dark ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch(e){}
+  colors = readColors(); drawCharts();
+});
+
+/* ---------- kinematics (schematic) ---------- */
+function cr(p0,p1,p2,p3,u){const u2=u*u,u3=u2*u;return .5*((2*p1)+(-p0+p2)*u+(2*p0-5*p1+4*p2-p3)*u2+(-p0+3*p1-3*p2+p3)*u3);}
+function periodic(pts){
+  const n=pts.length, xs=pts.map(p=>p[0]), ys=pts.map(p=>p[1]);
+  return t=>{ t=((t%100)+100)%100; let i=n-1; for(let j=0;j<n;j++){ if(xs[j]<=t) i=j; }
+    const x0=xs[i], x1 = i+1<n ? xs[i+1] : xs[0]+100; const tt = t < x0 ? t+100 : t;
+    const u=(tt-x0)/(x1-x0);
+    return cr(ys[(i-1+n)%n], ys[i], ys[(i+1)%n], ys[(i+2)%n], u); };
+}
+const H = {
+  hip:   periodic([[0,30],[12,25],[30,8],[50,-10],[60,-5],[73,16],[87,33]]),
+  knee:  periodic([[0,5],[15,18],[38,5],[50,10],[62,40],[73,62],[86,30],[95,6]]),
+  ankle: periodic([[0,0],[8,-6],[30,8],[48,12],[62,-18],[72,-6],[85,1],[95,0]])
+};
+const A = {
+  hip:   periodic([[0,14],[20,6],[50,-8],[65,0],[82,16],[93,16]]),
+  knee:  periodic([[0,3],[18,8],[40,3],[62,14],[76,27],[90,12]]),
+  ankle: periodic([[0,-6],[15,0],[40,6],[55,9],[66,2],[80,-9],[92,-7]])
+};
+const U = { hip:t=>.9*H.hip(t-6), knee:t=>.88*H.knee(t-6), ankle:t=>.95*H.ankle(t-6) };
+const RANGE = {hip:[-22,42], knee:[-6,72], ankle:[-26,20]};
+
+function curvesFor(mode, side){ // side: 'near' | 'far'
+  if(mode==='healthy') return H;
+  return side==='near' ? A : U;
+}
+
+/* ---------- skeleton ---------- */
+const rad = d => d*Math.PI/180;
+function leg(hx,hy,h,k,a,s){
+  const th=rad(h), sh=rad(h-k), fa=rad(h-k+a);
+  const knee=[hx+Math.sin(th)*s.th, hy+Math.cos(th)*s.th];
+  const ank=[knee[0]+Math.sin(sh)*s.sh, knee[1]+Math.cos(sh)*s.sh];
+  const f=[Math.cos(fa), -Math.sin(fa)], nrm=[Math.sin(fa), Math.cos(fa)];
+  const heel=[ank[0]+nrm[0]*s.ft*.28-f[0]*s.ft*.25, ank[1]+nrm[1]*s.ft*.28-f[1]*s.ft*.25];
+  const toe=[ank[0]+nrm[0]*s.ft*.28+f[0]*s.ft, ank[1]+nrm[1]*s.ft*.28+f[1]*s.ft];
+  return {hip:[hx,hy],knee,ank,heel,toe};
+}
+function pose(p, mode, s){
+  const cn=curvesFor(mode,'near'), cf=curvesFor(mode,'far');
+  const near={h:cn.hip(p),k:cn.knee(p),a:cn.ankle(p)};
+  const far ={h:cf.hip(p+50),k:cf.knee(p+50),a:cf.ankle(p+50)};
+  const L1=leg(0,0,near.h,near.k,near.a,s), L2=leg(0,0,far.h,far.k,far.a,s);
+  const low=Math.max(L1.heel[1],L1.toe[1],L2.heel[1],L2.toe[1]);
+  return {near:L1, far:L2, low, ang:{near,far}};
+}
+function strideSpeed(mode,s,dur){
+  const c=curvesFor(mode,'near');
+  const x=t=>leg(0,0,c.hip(t),c.knee(t),c.ankle(t),s).ank[0];
+  return (x(8)-x(48))/(0.4*dur); // px per second
+}
+function drawFigure(ctx, cx, groundY, p, mode, s, o){
+  const P=pose(p,mode,s); const dy=groundY-P.low;
+  const T=pt=>[cx+pt[0], dy+pt[1]];
+  const hip=T([0,0]);
+  const trunkTop=[hip[0]+s.th*.10, hip[1]-s.trunk];
+  const head=[trunkTop[0]+s.th*.05, trunkTop[1]-s.head*1.6];
+  const armSwing = d=>rad(-0.55*(d-8));
+  const arm=(hipAng, col, w)=>{
+    const ua=armSwing(hipAng); const sh=[trunkTop[0],trunkTop[1]+s.head*.4];
+    const el=[sh[0]+Math.sin(ua)*s.ua, sh[1]+Math.cos(ua)*s.ua];
+    const fa=ua+rad(18); const wr=[el[0]+Math.sin(fa)*s.fa, el[1]+Math.cos(fa)*s.fa];
+    line(ctx,[sh,el,wr],col,w); return [sh,el,wr];
+  };
+  const L = (lg,col,w)=>{ const pts=[T(lg.hip),T(lg.knee),T(lg.ank),T(lg.heel),T(lg.toe),T(lg.ank)]; line(ctx,pts.slice(0,3),col,w); line(ctx,[pts[2],pts[3],pts[4],pts[2]],col,w*.8); return pts; };
+  const farCol=o.farCol, nearCol=o.nearCol;
+  // far side
+  const farArm=arm(P.ang.near.h, farCol, s.w*.85);
+  const farPts=L(P.far, farCol, s.w*.9);
+  // trunk + head
+  line(ctx,[hip,trunkTop],o.bodyCol,s.w*1.15);
+  ctx.beginPath(); ctx.arc(head[0],head[1],s.head,0,Math.PI*2); ctx.strokeStyle=o.bodyCol; ctx.lineWidth=s.w; ctx.stroke();
+  // near side
+  const nearPts=L(P.near, nearCol, s.w);
+  const nearArm=arm(P.ang.far.h, o.bodyCol, s.w*.95);
+  // markers
+  if(o.markers){
+    const mk=[...nearPts.slice(0,3),nearPts[3],nearPts[4],...farPts.slice(1,3),trunkTop,head,nearArm[1],nearArm[2]];
+    for(const m of mk){ ctx.beginPath(); ctx.arc(m[0],m[1],s.mk,0,Math.PI*2); ctx.fillStyle=o.markCol; ctx.shadowColor=o.markCol; ctx.shadowBlur=o.glow||0; ctx.fill(); }
+    ctx.shadowBlur=0;
+  }
+  return {P, hip, nearPts, farPts, dy};
+}
+function line(ctx,pts,col,w){ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();}
+
+function fitCanvas(c){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);const w=Math.max(1,Math.round(r.width*d)),h=Math.max(1,Math.round(r.height*d));if(c.width!==w||c.height!==h){c.width=w;c.height=h;}const ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,0,0);return {ctx,w:r.width,h:r.height};}
+function readColors(){return {ink:css('--ink'),muted:css('--muted'),line:css('--line'),accent:css('--accent'),coral:css('--coral'),amber:css('--amber'),ref:css('--ref'),band:css('--ref-band'),s2:css('--surface-2'),surface:css('--surface')};}
+let colors=readColors();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{colors=readColors();drawCharts();});
+
+function scaleFor(h){const u=h/360;return {th:78*u,sh:76*u,ft:30*u,trunk:96*u,head:15*u,ua:52*u,fa:46*u,w:Math.max(2.5,6*u),mk:Math.max(2.5,4.6*u)};}
+
+/* ---------- hero ---------- */
+const hero=document.getElementById('heroCanvas'), heroTag=document.getElementById('heroTag');
+let heroGround=0; const trail=[];
+function drawHero(t,dt){
+  const {ctx,w,h}=fitCanvas(hero); ctx.clearRect(0,0,w,h);
+  const s=scaleFor(h*.74), dur=1.25, p=(t/dur*100)%100, gy=h*.82;
+  heroGround=(heroGround+strideSpeed('healthy',s,dur)*dt)%60;
+  // grid floor
+  ctx.strokeStyle=colors.line; ctx.lineWidth=1;
+  for(let x=-heroGround; x<w+60; x+=60){ ctx.beginPath(); ctx.moveTo(x,gy); ctx.lineTo(x-40,h); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(w,gy); ctx.strokeStyle=colors.muted; ctx.globalAlpha=.35; ctx.stroke(); ctx.globalAlpha=1;
+  // capture volume
+  ctx.setLineDash([4,6]); ctx.strokeStyle=colors.accent; ctx.globalAlpha=.25; ctx.strokeRect(w*.12,h*.08,w*.76,gy-h*.08); ctx.setLineDash([]); ctx.globalAlpha=1;
+  const r=drawFigure(ctx,w*.5,gy,p,'healthy',s,{nearCol:colors.ink,farCol:colors.ref,bodyCol:colors.ink,markers:true,markCol:colors.accent,glow:10});
+  // trail of ankle marker
+  const sp=strideSpeed('healthy',s,dur);
+  for(const q of trail) q[0]-=sp*dt;
+  trail.push([...r.nearPts[2]]); if(trail.length>70) trail.shift();
+  ctx.beginPath(); trail.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));
+  ctx.strokeStyle=colors.accent; ctx.globalAlpha=.45; ctx.lineWidth=1.5; ctx.stroke(); ctx.globalAlpha=1;
+  heroTag.textContent='GAIT CYCLE '+String(Math.floor(p)).padStart(2,'0')+'%  ·  KNEE '+H.knee(p).toFixed(0)+'°';
+}
+
+/* ---------- lab ---------- */
+const lab=document.getElementById('labCanvas');
+let mode='healthy', limb='affected', playing=!reduce, labPhase=0, labGround=0;
+const charts={hip:document.getElementById('cHip'),knee:document.getElementById('cKnee'),ankle:document.getElementById('cAnkle')};
+const vals={hip:document.getElementById('vHip'),knee:document.getElementById('vKnee'),ankle:document.getElementById('vAnkle')};
+const ns='http://www.w3.org/2000/svg';
+function curPath(fn,j,off=0){const [lo,hi]=RANGE[j];let d='';for(let t=0;t<=100;t+=1){const x=t*4,y=120-(fn(t+off)-lo)/(hi-lo)*120;d+=(t?'L':'M')+x.toFixed(1)+','+y.toFixed(1);}return d;}
+function bandPath(fn,j,w){const [lo,hi]=RANGE[j];let up='',dn='';for(let t=0;t<=100;t++){const x=t*4;up+=(t?'L':'M')+x+','+(120-(fn(t)+w-lo)/(hi-lo)*120).toFixed(1);}for(let t=100;t>=0;t--){const x=t*4;dn+='L'+x+','+(120-(fn(t)-w-lo)/(hi-lo)*120).toFixed(1);}return up+dn+'Z';}
+function limbCurves(){ if(mode==='healthy') return H; return limb==='affected'?A:U; }
+function limbColor(){ if(mode==='healthy') return colors.accent; return limb==='affected'?colors.coral:colors.amber; }
+function drawCharts(){
+  for(const j of ['hip','knee','ankle']){
+    const svg=charts[j]; svg.innerHTML='';
+    const [lo,hi]=RANGE[j]; const z=120-(0-lo)/(hi-lo)*120;
+    svg.insertAdjacentHTML('beforeend',`<rect x="240" y="0" width="160" height="120" fill="${colors.s2}" opacity=".6"/><text x="6" y="12" font-size="10" fill="${colors.muted}" font-family="JetBrains Mono">STANCE</text><text x="246" y="12" font-size="10" fill="${colors.muted}" font-family="JetBrains Mono">SWING</text><line x1="0" x2="400" y1="${z}" y2="${z}" stroke="${colors.line}" stroke-dasharray="3 4"/>`);
+    svg.insertAdjacentHTML('beforeend',`<path d="${bandPath(H[j],j,5)}" fill="${colors.band}"/><path d="${curPath(H[j],j)}" fill="none" stroke="${colors.ref}" stroke-width="2" vector-effect="non-scaling-stroke"/>`);
+    const c=document.createElementNS(ns,'path'); c.setAttribute('d',curPath(limbCurves()[j],j)); c.setAttribute('fill','none'); c.setAttribute('stroke',limbColor()); c.setAttribute('stroke-width','3'); c.setAttribute('vector-effect','non-scaling-stroke'); c.setAttribute('stroke-linecap','round');
+    const len=1200; c.style.strokeDasharray=len; c.style.strokeDashoffset=reduce?0:len; c.style.transition='stroke-dashoffset 1.1s ease'; svg.appendChild(c);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>c.style.strokeDashoffset=0));
+    svg.insertAdjacentHTML('beforeend',`<line class="cur" x1="0" x2="0" y1="0" y2="120" stroke="${colors.ink}" stroke-opacity=".35" vector-effect="non-scaling-stroke"/><circle class="cdot" r="4" fill="${limbColor()}" stroke="${colors.surface}" stroke-width="2"/>`);
+  }
+  document.querySelector('#legCur i').style.background=limbColor();
+  document.querySelector('#legCur').lastChild.textContent = mode==='healthy'?'Healthy limb':(limb==='affected'?'Affected limb':'Unaffected limb');
+}
+function updateCursor(p){
+  for(const j of ['hip','knee','ankle']){
+    const svg=charts[j], [lo,hi]=RANGE[j], v=limbCurves()[j](p);
+    const l=svg.querySelector('.cur'), d=svg.querySelector('.cdot'); if(!l) continue;
+    l.setAttribute('x1',p*4); l.setAttribute('x2',p*4); d.setAttribute('cx',p*4); d.setAttribute('cy',120-(v-lo)/(hi-lo)*120);
+    vals[j].textContent=(v>=0?'+':'')+v.toFixed(0)+'°';
+  }
+}
+const FIND={
+  healthy:[['Reference pattern','Hip flexes ~30° at initial contact and extends through stance before swinging forward.'],['Knee','Two flexion peaks: a small loading response and ~60° in swing for toe clearance.'],['Ankle','Plantarflexion push-off near toe-off, then dorsiflexion to clear the foot.']],
+  affected:[['Hip: limited flexion','Reduced hip flexion at initial contact (early stance) and during swing on the affected side.'],['Knee: limited flexion','Markedly reduced knee flexion in early swing around toe-off; a stiff-knee pattern.'],['Ankle: altered push-off','Absent or abnormal ankle motion around toe-off, as seen in individual patients.']],
+  unaffected:[['Compensation?','The unaffected hip and knee show a later swing phase than healthy controls.'],['Smaller flexion','Some patients also show smaller knee flexion on the unaffected side.'],['Why it matters','Deviations are bilateral: assessment should not look at the affected limb alone.']]
+};
+function renderFindings(){
+  const key=mode==='healthy'?'healthy':limb; const col=mode==='healthy'?colors.accent:(limb==='affected'?colors.coral:colors.amber);
+  document.getElementById('findings').innerHTML=FIND[key].map(f=>`<div class="card finding" style="border-left-color:${col}"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
+}
+document.getElementById('modeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;mode=b.dataset.mode;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));const ls=document.getElementById('limbSeg');ls.style.opacity=mode==='stroke'?1:.4;ls.style.pointerEvents=mode==='stroke'?'auto':'none';drawCharts();renderFindings();});
+document.getElementById('limbSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;limb=b.dataset.limb;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));drawCharts();renderFindings();});
+const playBtn=document.getElementById('playBtn');
+function setPlay(v){playing=v;playBtn.textContent=v?'❚❚':'▶';playBtn.setAttribute('aria-label',v?'Pause':'Play');}
+playBtn.addEventListener('click',()=>setPlay(!playing)); setPlay(playing);
+lab.addEventListener('pointermove',e=>{ if(playing) return; const r=lab.getBoundingClientRect(); labPhase=((e.clientX-r.left)/r.width)*100; });
+
+function drawLab(dt){
+  const {ctx,w,h}=fitCanvas(lab); ctx.clearRect(0,0,w,h);
+  const dur=mode==='healthy'?1.25:1.8; const s=scaleFor(h*.86);
+  if(playing){ labPhase=(labPhase+dt/dur*100)%100; labGround=(labGround+strideSpeed(mode,s,dur)*dt)%40; }
+  const gy=h*.86;
+  ctx.fillStyle=colors.line; for(let x=-labGround;x<w;x+=40){ctx.fillRect(x,gy+6,18,2);}
+  ctx.fillStyle=colors.ink; ctx.globalAlpha=.08; ctx.fillRect(0,gy,w,2); ctx.globalAlpha=1;
+  const nearCol = mode==='healthy'?colors.accent:colors.coral, farCol = mode==='healthy'?colors.ref:colors.amber;
+  const r=drawFigure(ctx,w*.46,gy,labPhase,mode,s,{nearCol,farCol,bodyCol:colors.ink,markers:true,markCol:colors.ink});
+  // knee angle arc on highlighted limb
+  const pts = (mode==='stroke' && limb==='unaffected') ? r.farPts : r.nearPts;
+  const [hp,kn,an]=pts; const a1=Math.atan2(hp[1]-kn[1],hp[0]-kn[0]), a2=Math.atan2(an[1]-kn[1],an[0]-kn[0]);
+  ctx.beginPath(); ctx.arc(kn[0],kn[1],18,a1,a2,a2<a1); ctx.strokeStyle=mode==='healthy'?colors.accent:(limb==='affected'?colors.coral:colors.amber); ctx.lineWidth=2; ctx.stroke();
+  // phase readout
+  ctx.font='600 12px "JetBrains Mono", monospace'; ctx.fillStyle=colors.muted;
+  ctx.fillText((labPhase<60?'STANCE':'SWING')+'  '+labPhase.toFixed(0).padStart(2,'0')+'%', 14, 22);
+  ctx.fillText(mode==='healthy'?'HEALTHY CONTROL':'POST-STROKE · NEAR = AFFECTED', 14, 40);
+  // phase bar
+  ctx.fillStyle=colors.line; ctx.fillRect(14,h-16,w-28,4); ctx.fillStyle=nearCol; ctx.fillRect(14,h-16,(w-28)*labPhase/100,4);
+  updateCursor(labPhase);
+}
+
+/* ---------- app demo ---------- */
+const app=document.getElementById('appCanvas'); let appMode='stroke', appGround=0, appTrail=[];
+function stats(c){let kmax=-99,kt=0,hmin=99,hmax=-99,ato=0;for(let t=0;t<100;t+=.5){const k=c.knee(t);if(t>50&&k>kmax){kmax=k;kt=t;}hmin=Math.min(hmin,c.hip(t));hmax=Math.max(hmax,c.hip(t));}let amin=99;for(let t=50;t<75;t+=.5)amin=Math.min(amin,c.ankle(t));return {kmax,kt,hrom:hmax-hmin,ato:amin};}
+const SH=stats(H);
+function renderMetrics(){
+  const near=curvesFor(appMode,'near'), far=curvesFor(appMode,'far'); const sn=stats(near), sf=stats(far);
+  const rows=[
+    ['Peak knee flexion in swing · R', sn.kmax, SH.kmax, 80,'°'],
+    ['Peak knee flexion in swing · L', sf.kmax, SH.kmax, 80,'°'],
+    ['Hip range of motion · R', sn.hrom, SH.hrom, 60,'°'],
+    ['Ankle plantarflexion at push-off · R', -sn.ato, -SH.ato, 25,'°'],
+  ];
+  document.getElementById('metrics').innerHTML=rows.map(r=>{const ok=Math.abs(r[1]-r[2])<r[2]*.2;return `<div class="metric"><span>${r[0]}</span><span class="val" style="color:${ok?'var(--accent)':'var(--coral)'}">${r[1].toFixed(0)}${r[4]} <span class="muted">/ ${r[2].toFixed(0)}</span></span><div class="mbar"><span style="width:0;background:${ok?'var(--accent)':'var(--coral)'}" data-w="${Math.max(2,Math.min(100,r[1]/r[3]*100))}"></span><em style="left:${r[2]/r[3]*100}%"></em></div></div>`;}).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('#metrics .mbar span').forEach(s=>s.style.width=s.dataset.w+'%'));
+  const txt = appMode==='healthy'
+    ? `FINDINGS\n• Knee flexion in swing within reference range (R ${sn.kmax.toFixed(0)}°, L ${sf.kmax.toFixed(0)}°).\n• Symmetric hip excursion; normal push-off.\n\nIMPRESSION\nNo gait deviation detected in the sagittal plane.\n\nSCOPE\nVideo: Full · Computability: Direct`
+    : `FINDINGS\n• R knee: reduced swing flexion (${sn.kmax.toFixed(0)}° vs ${SH.kmax.toFixed(0)}°): stiff-knee pattern.\n• R hip: reduced range of motion (${sn.hrom.toFixed(0)}° vs ${SH.hrom.toFixed(0)}°).\n• R ankle: weak plantarflexion push-off.\n• L limb: swing peak delayed (${sf.kt.toFixed(0)}% vs ${SH.kt.toFixed(0)}% of cycle): possible compensation.\n\nSCOPE\nVideo: Full · Assistance level and force: not observable`;
+  typeText(txt);
+}
+let typeTimer=null;
+function typeText(s){const el=document.getElementById('typed');clearInterval(typeTimer);if(reduce){el.textContent=s;return;}let i=0;el.innerHTML='<span class="cur"></span>';typeTimer=setInterval(()=>{i+=2;el.innerHTML='';el.textContent=s.slice(0,i);el.insertAdjacentHTML('beforeend','<span class="cur"></span>');if(i>=s.length)clearInterval(typeTimer);},18);}
+document.getElementById('appSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;appMode=b.dataset.mode;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));document.getElementById('appClip').textContent=appMode==='healthy'?'sample_walk_A.mp4':'sample_walk_B.mp4';appTrail=[];renderMetrics();});
+let appT=0;
+function drawApp(dt){
+  const {ctx,w,h}=fitCanvas(app); ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='#18212c'; ctx.lineWidth=1; for(let x=0;x<w;x+=32){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();} for(let y=0;y<h;y+=32){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  const dur=appMode==='healthy'?1.25:1.8; appT+=dt; const p=(appT/dur*100)%100; const s=scaleFor(h*.78); const gy=h*.86;
+  const sp=strideSpeed(appMode,s,dur); appGround=(appGround+sp*dt)%48;
+  ctx.fillStyle='#223040'; for(let x=-appGround;x<w;x+=48) ctx.fillRect(x,gy+4,24,2);
+  const r=drawFigure(ctx,w*.5,gy,p,appMode,s,{nearCol:appMode==='healthy'?'#2dd4bf':'#ff7a59',farCol:'#3b8f86',bodyCol:'#cfe9e5',markers:true,markCol:'#2dd4bf',glow:12});
+  // bounding box
+  const xs=[...r.nearPts,...r.farPts].map(q=>q[0]); const minx=Math.min(...xs)-30,maxx=Math.max(...xs)+30; const top=r.dy-s.trunk-s.head*3.2;
+  ctx.strokeStyle='rgba(45,212,191,.55)'; ctx.lineWidth=1.2; ctx.setLineDash([6,5]); ctx.strokeRect(minx,top,maxx-minx,gy-top+4); ctx.setLineDash([]);
+  ctx.font='600 11px "JetBrains Mono", monospace'; ctx.fillStyle='#2dd4bf'; ctx.fillText('person 0.98',minx,top-6);
+  // trail
+  for(const q of appTrail) q[0]-=sp*dt; appTrail.push([...r.nearPts[2]]); if(appTrail.length>60) appTrail.shift();
+  ctx.beginPath(); appTrail.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])); ctx.strokeStyle=appMode==='healthy'?'rgba(45,212,191,.5)':'rgba(255,122,89,.55)'; ctx.lineWidth=1.5; ctx.stroke();
+  // knee label
+  const kn=r.nearPts[1]; const kv=curvesFor(appMode,'near').knee(p);
+  ctx.fillStyle='rgba(8,11,16,.75)'; ctx.fillRect(kn[0]+12,kn[1]-11,82,20); ctx.fillStyle=appMode==='healthy'?'#2dd4bf':'#ff7a59'; ctx.fillText('R KNEE '+kv.toFixed(0)+'°',kn[0]+18,kn[1]+3);
+}
+
+/* ---------- survey interactions ---------- */
+const EX={
+  tug:{nodes:[['Clinical item','Timed Up and Go: rise, walk 3 m, turn, return and sit.'],['Scoring criterion','Total time from rising to returning seated.'],['Observable information','Onset and return to sitting are visible in video.'],['Computational feature','Temporal & event: total time, phase durations, turning steps.'],['Clinical interpretation','Same total time can hide slow rising or slow turning: report phases as a profile.']],badges:[['Availability: Full','b-full'],['Computability: Direct','b-direct']]},
+  bbs:{nodes:[['Clinical item','Berg Balance Scale: sit to stand.'],['Scoring criterion','Grades range from standing independently without hands to needing minimal, moderate or maximal assistance.'],['Observable information','Hand push-off, transition time and instability are visible.','Not visible: how much help the examiner gives.'],['Computational feature','Relational (hand use), temporal (transition time), spatial (sway).'],['Clinical interpretation','Video quantifies the movement; assistance level needs another source.']],badges:[['Availability: Partial','b-partial'],['Visible part: Direct','b-direct']]},
+  dgi:{nodes:[['Clinical item','Dynamic Gait Index: walking items.'],['Scoring criterion','Gait graded as normal or abnormal pattern, with deviation and speed.'],['Observable information','The whole walking pattern is visible in an adequate recording.'],['Computational feature','Joint kinematics, inter-segment symmetry, trajectory quality.'],['Clinical interpretation','No explicit threshold: "normal pattern" needs validation against rater grades.']],badges:[['Availability: Full','b-full'],['Computability: Judgement','b-judge']]}
+};
+function renderChain(k){
+  const el=document.getElementById('chain');
+  el.innerHTML=EX[k].nodes.map(n=>`<div class="node"><div class="t">${n[0]}</div><div class="b">${n[1]}</div>${n[2]?`<div class="x">${n[2]}</div>`:''}</div>`).join('');
+  document.getElementById('chainBadges').innerHTML=EX[k].badges.map(b=>`<span class="badge ${b[1]}">${b[0]}</span>`).join('');
+  [...el.children].forEach((n,i)=>setTimeout(()=>n.classList.add('in'),reduce?0:120*i+40));
+}
+document.getElementById('exSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderChain(b.dataset.ex);});
+
+const SCEN=[[134,36,26,'134 of 196 entries (68%) are fully observable when the task is framed well by one RGB camera.'],[139,31,26,'Adding audio recovers five entries that lacked only a verbal cue or response, e.g. BBS transfers and the Mini-BESTest dual task.'],[104,66,26,'With one routine viewpoint, no hand close-up and no calibration reference, 30 entries drop from Full to Partial.']];
+function setStack(id,vals,labels){const st=document.getElementById(id);const tot=vals.reduce((a,b)=>a+b,0);[...st.children].forEach((d,i)=>{d.style.flexBasis=(vals[i]/tot*100)+'%';const sh=vals[i]/tot;d.textContent=sh>.24?labels(i,vals[i],tot):(sh>.07?String(vals[i]):'');d.title=labels(i,vals[i],tot);});}
+let scen=0;
+function renderScen(){const v=SCEN[scen];setStack('availStack',v.slice(0,3),(i,n,t)=>`${n} · ${Math.round(n/t*100)}%`);document.getElementById('scenNote').textContent=v[3];}
+document.getElementById('scenSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;scen=+b.dataset.s;[...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));renderScen();});
+const FAM=[['Temporal & event',153,42],['Spatial & trajectory',81,24],['Joint & segment kinematics',52,21],['Inter-segment & relational',46,19],['Trajectory-derived quality',6,6]];
+document.getElementById('famBars').innerHTML=FAM.map(f=>`<div class="bar"><span>${f[0]}<br><span class="note">${f[2]} tools</span></span><div class="track"><div class="fill" data-w="${f[1]/196*100}"></div></div><span class="n">${f[1]}</span></div>`).join('');
+
+/* ---------- reveal / counters ---------- */
+const io=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;const t=e.target;t.classList.add('in');io.unobserve(t);
+  if(t.classList.contains('stat')) countUp(t.querySelector('.num'));
+  if(t.querySelector('#availStack')) renderScen();
+  if(t.querySelector('#compStack')) setStack('compStack',[61,57,16],(i,n,tot)=>['Direct','Proxy','Judgement'][i]+' · '+n);
+  if(t.querySelector('#famBars')) t.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');
+  if(t.querySelector('#chain')) renderChain('tug');
+  if(t.classList.contains('appdemo')) renderMetrics();
+}},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+function countUp(el){const end=+el.dataset.count,suf=el.dataset.suffix||'';if(reduce){el.textContent=end+suf;return;}const t0=performance.now(),D=1300;const f=now=>{const k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,3);el.textContent=Math.round(end*e)+suf;if(k<1)requestAnimationFrame(f);};requestAnimationFrame(f);}
+
+/* nav highlight */
+const links=[...document.querySelectorAll('.navlinks a')];
+const so=new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}}},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
+
+/* ---------- main loop ---------- */
+const vis=new Map(); const vo=new IntersectionObserver(es=>es.forEach(e=>vis.set(e.target,e.isIntersecting)));
+[hero,lab,app].forEach(c=>{vis.set(c,true);vo.observe(c);});
+drawCharts(); renderFindings();
+let last=performance.now(), T=0;
+function loop(now){const dt=Math.min(.05,(now-last)/1000); last=now; if(!reduce) T+=dt;
+  if(vis.get(hero)) drawHero(T,reduce?0:dt); else trail.length=0;
+  if(vis.get(lab)) drawLab(reduce?0:dt);
+  if(vis.get(app)) drawApp(reduce?0:dt); else appTrail.length=0;
+  requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

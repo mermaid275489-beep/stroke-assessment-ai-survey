@@ -1,5 +1,7 @@
 # Toward Objective Stroke Assessment
 
+**Project website:** https://mermaid275489-beep.github.io/stroke-assessment-ai-survey/
+
 Working repository for the methods survey *"Toward Objective Stroke Assessment: An Item-Level Analysis of Clinical Rating Scales for AI-Based Motion Analysis"*.
 
 ## Contents

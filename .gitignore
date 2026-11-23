@@ -3,6 +3,9 @@
 !/.gitignore
 !/README.md
 
+# Project website (GitHub Pages)
+!/docs/
+
 # Final manuscript and submission package
 !/v5/
 !/v5_overleaf_2026-11-21/
