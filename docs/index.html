@@ -80,6 +80,54 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;heig
 .hero .actions{margin-top:28px;display:flex;gap:26px;font:500 15px var(--sans);flex-wrap:wrap}
 .hero .actions a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
 @media (max-width:880px){.hero-body{grid-template-columns:1fr;gap:28px}}
+.thesis{font:400 clamp(20px,2vw,24px)/1.4 var(--display);color:var(--ink);margin:0 0 6px}
+.heronums{display:flex;flex-wrap:wrap;margin-top:26px;border-top:1px solid var(--rule)}
+.heronums div{padding:14px 20px 0 0;margin-right:20px;border-right:1px solid var(--rule)}
+.heronums div:last-child{border-right:0;margin-right:0;padding-right:0}
+.heronums b{display:block;font:400 40px/1 var(--display);letter-spacing:-.02em}
+.heronums span{font:13.5px/1.4 var(--sans);color:var(--muted)}
+.status{font:500 12.5px var(--sans);color:var(--muted);display:inline-flex;align-items:center;gap:7px;margin-top:12px}
+.status i{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--accent)}
+.status.prior i{background:var(--ref)}
+.status.plan i{background:transparent;border:1px solid var(--muted)}
+.contrib{display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px;margin-top:20px}
+.contrib>div{border-top:1px solid var(--ink);padding-top:14px}
+.contrib .n{font:italic 400 26px/1 var(--display);color:var(--accent)}
+.contrib b{display:block;font:600 15.5px/1.4 var(--sans);margin:10px 0 6px}
+.contrib p{font-size:16px;color:var(--ink-2);margin:0}
+@media (max-width:900px){.contrib{grid-template-columns:1fr 1fr;gap:24px 28px}}
+@media (max-width:560px){.contrib{grid-template-columns:1fr}}
+.provenance{font:14.5px/1.55 var(--sans);color:var(--ink-2);border-left:2px solid var(--ref);padding:2px 0 2px 14px;margin:18px 0 0}
+.finding-head{font:400 clamp(28px,3.4vw,40px)/1.15 var(--display);margin:0 0 8px}
+.gapfig svg{width:100%;height:auto;display:block}
+/* explorer */
+.explorer{margin-top:72px;border-top:1px solid var(--ink);padding-top:16px}
+.ex-controls{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin:16px 0 10px}
+.ex-controls input,.ex-controls select{font:15px var(--sans);color:var(--ink);background:var(--paper);border:0;border-bottom:1px solid var(--rule);padding:6px 2px;min-width:220px;outline:none}
+.ex-controls input:focus,.ex-controls select:focus{border-bottom-color:var(--ink)}
+.ex-count{font:14px var(--sans);color:var(--muted);margin:6px 0 8px}
+.ex-row{display:grid;grid-template-columns:64px 1.1fr 1.6fr 92px 104px;gap:14px;align-items:baseline;padding:11px 0;border-top:1px solid var(--rule-2);font:15px/1.4 var(--sans);cursor:pointer}
+.ex-row:hover{background:var(--hl)}
+.ex-row .id{font:500 12.5px var(--mono);color:var(--muted)}
+.ex-row .tool{color:var(--ink-2)}
+.ex-head{cursor:default;font:500 12.5px var(--sans);color:var(--muted);border-top:1px solid var(--ink)}
+.ex-head:hover{background:none}
+.tagA{font:500 13px var(--sans);display:inline-flex;align-items:center;gap:6px}
+.tagA i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.ex-detail{display:grid;grid-template-columns:1fr 1fr;gap:12px 36px;padding:6px 0 18px 78px;font:14.5px/1.55 var(--sans);color:var(--ink-2)}
+.ex-detail b{display:block;font-weight:600;color:var(--ink);font-size:13px;margin-bottom:2px}
+.ex-more{margin-top:14px}
+@media (max-width:760px){.ex-row{grid-template-columns:54px 1fr;gap:4px 10px}.ex-row .tool{grid-column:2}.ex-row .task{grid-column:2}.ex-row .a,.ex-row .c{grid-column:2}.ex-head{display:none}.ex-detail{grid-template-columns:1fr;padding-left:0}}
+/* methods & resources */
+.resources{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;margin-top:72px;border-top:1px solid var(--ink);padding-top:16px}
+.resources ol{margin:10px 0 0;padding-left:20px;font:14.5px/1.55 var(--sans);color:var(--ink-2)}
+.resources ol li{margin-bottom:8px}
+.resources ul.dl{list-style:none;margin:10px 0 0;padding:0;font:15px/1.5 var(--sans)}
+.resources ul.dl li{border-top:1px solid var(--rule-2);padding:10px 0}
+.resources ul.dl li span{display:block;color:var(--muted);font-size:13px}
+.methods{font-size:16.5px;color:var(--ink-2)}
+@media (max-width:860px){.resources{grid-template-columns:1fr;gap:30px}}
+.report .sec-t{font:600 12.5px var(--sans);color:var(--muted);margin-top:6px}
 
 /* research flow */
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:10px;position:relative}
@@ -249,13 +297,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="hero-meta"><span>A research project in stroke rehabilitation</span><span>·</span><span>Motion capture → survey → app</span></div>
+    <div class="hero-meta"><span>A research project in stroke rehabilitation</span><span>·</span><span>Clinical assessment × motion analysis × interpretable AI</span></div>
     <h1>From clinical scores to <em>measurable movement</em></h1>
     <div class="hero-body">
       <div>
-        <p class="dek">Clinical rating scales judge movement by eye. AI can measure it frame by frame. This project asks what lies between the two, and builds the bridge one scoring criterion at a time.</p>
-        <p style="color:var(--ink-2)">It begins with laboratory motion-capture data from people after stroke, continues with a survey that decomposes 57 assessment tools into features a computer can quantify, and points toward an app that turns ordinary video into a report clinicians can read.</p>
-        <div class="actions"><a href="#flow">Read the overview</a><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">Source and data on GitHub</a></div>
+        <p class="thesis">A component-level framework connecting clinical assessment, human motion analysis and interpretable AI.</p>
+        <p class="dek" style="font-size:19px">Clinical rating scales judge movement by eye; AI can measure it frame by frame. Rather than training AI to predict the score, we decompose each scale into the movement features it actually grades.</p>
+        <div class="heronums">
+          <div><b>57</b><span>assessment tools</span></div>
+          <div><b>196</b><span>coded scoring entries</span></div>
+          <div><b>134</b><span>fully observable on video</span></div>
+        </div>
+        <div class="actions"><a href="#flow">Explore the research</a><a href="#explorer">Browse the 196 entries</a><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">GitHub</a></div>
       </div>
       <figure class="hero-fig" style="margin:0">
         <canvas id="heroCanvas" aria-label="Animated sagittal-plane walking model with motion-capture markers"></canvas>
@@ -269,13 +322,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="wrap">
     <div class="sec-head reveal"><div class="sec-no">0</div><div><p class="kicker">Overview</p><h2>One question, three stages</h2><p class="dek col" style="margin-top:16px">Can AI assess post-stroke movement objectively, in a way clinicians can trust and interpret?</p></div></div>
     <div class="flow reveal">
-      <div class="st"><div class="ln"><span>1</span><i></i></div><div class="tag">Data</div><h3><a href="#data">Measure how patients move</a></h3><p>Optical motion capture of post-stroke gait, compared with healthy controls across the entire gait cycle.</p></div>
-      <div class="st"><div class="ln"><span>2</span><i></i></div><div class="tag">Survey</div><h3><a href="#survey">Decompose the scales</a></h3><p>Trace 196 scoring entries from 57 tools to what video can observe and what a computer can quantify.</p></div>
-      <div class="st"><div class="ln"><span>3</span><i></i></div><div class="tag">App</div><h3><a href="#app">Turn video into a report</a></h3><p>Extract movement features from ordinary video and explain them in clinical language.</p></div>
+      <div class="st"><div class="ln"><span>1</span><i></i></div><div class="tag">Data</div><h3><a href="#data">Understand how patients move</a></h3><p>Optical motion capture of post-stroke gait, compared with healthy controls across the entire gait cycle.</p><div class="status prior"><i></i>Prior work at RRIS · motivates the project</div></div>
+      <div class="st"><div class="ln"><span>2</span><i></i></div><div class="tag">Survey</div><h3><a href="#survey">Map scales to computable features</a></h3><p>Trace 196 scoring entries from 57 tools to what video can observe and what a computer can quantify.</p><div class="status"><i></i>Completed · manuscript in preparation</div></div>
+      <div class="st"><div class="ln"><span>3</span><i></i></div><div class="tag">Application</div><h3><a href="#app">Turn video into a report</a></h3><p>Extract movement features from ordinary video and explain them in clinical language, with explicit limits.</p><div class="status plan"><i></i>Concept prototype</div></div>
     </div>
     <div class="contrast reveal">
-      <div><div class="q">The limits of scales</div><h3>Subjective, expert-dependent, hard to repeat</h3><p>Scores such as the Fugl-Meyer Assessment or the Berg Balance Scale rely on trained raters, show ceiling effects, and are difficult to administer often or remotely.</p></div>
-      <div><div class="q">The limits of end-to-end AI</div><h3>Predicting the score inherits its flaws</h3><p>Most systems learn to predict the clinical score directly. They inherit its subjectivity and reveal little about <em>which</em> movement features drive the result.</p></div>
+      <div><div class="q">The limits of scales</div><h3>Rater-dependent and hard to repeat</h3><p>Scores such as the Fugl-Meyer Assessment or the Berg Balance Scale rely on trained raters, show ceiling effects, and are difficult to administer often or remotely.</p></div>
+      <div><div class="q">The limits of end-to-end AI</div><h3>Score prediction may inherit the limitations of the scales</h3><p>Most systems learn to predict the clinical score directly. They may inherit its subjectivity, and they reveal little about <em>which</em> movement features drive the result.</p></div>
+    </div>
+    <div class="reveal" style="margin-top:64px">
+      <h3 style="font-size:26px">What this project contributes</h3>
+      <div class="contrib">
+        <div><div class="n">1</div><b>A component-level framework</b><p>Clinical item → scoring criterion → observable information → computational feature → clinical interpretation.</p></div>
+        <div><div class="n">2</div><b>An openly released coding of 196 entries</b><p>From 57 guideline-recommended and research-standard tools, with rules, rationale and verification history.</p></div>
+        <div><div class="n">3</div><b>Evidence that visibility is not computability</b><p>Of 134 fully observable entries, only 61 can be reproduced by a direct measurement.</p></div>
+        <div><div class="n">4</div><b>A blueprint for interpretable reports</b><p>Reports that separate what was measured from what it may mean, what video cannot show, and what still needs validation.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -288,6 +350,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <p class="dek">A pilot clinical gait study used optical motion capture to characterise how walking changes after stroke.</p>
         <p>Joint angles of the hip, knee and ankle were compared with those of healthy controls across the whole gait cycle. Instead of reducing each curve to a single peak or range, statistical parametric mapping (SPM1D) tests every percentage point of the cycle, showing <em>when</em> in stance or swing a deviation occurs, not only whether it exists.</p>
         <p>The pattern that emerged is the starting point for everything that follows: deviations are specific to phases, they differ between patients, and they appear on <em>both</em> sides of the body.</p>
+        <p class="provenance">Data collection (2020–2023) and the pilot analysis were carried out at the Rehabilitation Research Institute of Singapore (RRIS) before this project began. They are summarised here because they motivate it; the raw data are not part of this repository.</p>
       </div>
       <aside class="margin">
         <dl>
@@ -302,14 +365,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <figure class="reveal">
       <div class="figbar">
         <div class="toggle" id="modeSeg"><span class="lbl">Subject</span><button data-mode="healthy" class="on">Healthy control</button><button data-mode="stroke">Post-stroke</button></div>
-        <div class="toggle" id="limbSeg" style="opacity:.35;pointer-events:none"><span class="lbl">Limb</span><button data-limb="affected" class="on">Affected</button><button data-limb="unaffected">Unaffected</button></div>
+        <div class="toggle" id="limbSeg" style="opacity:.35;pointer-events:none"><span class="lbl">Limb</span><button data-limb="affected" class="on">Affected</button><button data-limb="unaffected">Unaffected</button><button data-limb="both">Both</button></div>
         <button class="linkbtn" id="playBtn">Pause</button>
       </div>
       <div class="fig1">
         <div class="pa"><div class="plab">a</div><canvas id="labCanvas" aria-label="Sagittal-plane walking model"></canvas></div>
         <div><svg id="fig1svg" viewBox="0 0 520 452" aria-label="Hip, knee and ankle angle curves"></svg></div>
       </div>
-      <figcaption class="cap"><b>Figure 1 | Sagittal-plane gait model.</b> <b>a,</b> Walking model; the highlighted limb is the one plotted. <b>b–d,</b> Hip, knee and ankle angles over the normalised gait cycle (positive = flexion or dorsiflexion). Grey line and band, healthy reference; coloured line, selected limb; shaded region, swing phase. Pause the animation and move the pointer across panel a to scrub through the cycle. Curves are schematic reconstructions of the patterns reported in the pilot study, drawn for illustration; they are not patient data.</figcaption>
+      <figcaption class="cap"><b>Figure 1 | Sagittal-plane gait model.</b> <b>a,</b> Walking model; the highlighted limb is the one plotted. <b>b–d,</b> Hip, knee and ankle angles over the normalised gait cycle (positive = flexion or dorsiflexion). Grey line and band, healthy reference; coloured line, selected limb (red, affected; amber, unaffected); shaded region, swing phase. Short notes mark the main deviations. Pause the animation and move the pointer across panel a to scrub through the cycle. Curves are schematic reconstructions of the patterns reported in the pilot study, drawn for illustration; they are not patient data.</figcaption>
     </figure>
     <div class="findings" id="findings"></div>
   </div>
@@ -330,7 +393,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       </dl></aside>
     </div>
 
-    <div class="numbers reveal">
+    <figure class="gapfig reveal" style="margin-top:56px">
+      <p class="small" style="margin:0 0 6px">Core finding</p>
+      <p class="finding-head">Visibility does not guarantee computability.</p>
+      <p class="col" style="color:var(--ink-2)">Video can show everything that defines the grade for 134 of 196 entries. Yet for 73 of those, the grade still rests on a named property without a threshold, or on an overall clinical judgement. Only 61 can be reproduced by a direct measurement today.</p>
+      <svg id="gapFig" viewBox="0 0 1000 250" role="img" aria-label="196 entries, 134 fully observable, 61 directly computable"></svg>
+      <figcaption class="cap"><b>Figure 2 | The gap between observation and computation.</b> Bars are proportional to the number of scoring entries. Direct means every grade boundary is an explicit time, distance, count, angle or visible event.</figcaption>
+    </figure>
+
+    <div class="numbers reveal" style="margin-top:56px">
       <div><div class="v" data-count="28">0</div><div class="l">clinical guidelines from nine regions</div></div>
       <div><div class="v" data-count="57">0</div><div class="l">assessment tools in the library</div></div>
       <div><div class="v" data-count="196">0</div><div class="l">scoring entries, coded item by item</div></div>
@@ -341,7 +412,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <figure class="mainfig reveal">
       <div class="figscroll"><svg id="sankey" class="sankey" viewBox="0 0 1000 470" role="img" aria-label="Flow of 196 scoring entries from video availability to computability"></svg></div>
       <div class="readout" id="sankeyRead">Hover over a flow to read it. <span>Each band is proportional to the number of scoring entries.</span></div>
-      <figcaption class="cap"><b>Figure 2 | From scoring entries to computable criteria.</b> All 196 entries are split by whether ordinary RGB video can supply the information that defines their grades (Full, Partial, None), and then by how directly a computed quantity could reproduce the grade boundary. <b>Direct:</b> every boundary is an explicit time, distance, count, angle or visible event. <b>Proxy:</b> a boundary grades a named property such as steadiness or symmetry, so its threshold needs validation. <b>Judgement:</b> a boundary needs an overall clinical impression. For Partial entries, computability refers only to the visible part.</figcaption>
+      <figcaption class="cap"><b>Figure 3 | From scoring entries to computable criteria.</b> All 196 entries are split by whether ordinary RGB video can supply the information that defines their grades (Full, Partial, None), and then by how directly a computed quantity could reproduce the grade boundary. <b>Direct:</b> every boundary is an explicit time, distance, count, angle or visible event. <b>Proxy:</b> a boundary grades a named property such as steadiness or symmetry, so its threshold needs validation. <b>Judgement:</b> a boundary needs an overall clinical impression. For Partial entries, computability refers only to the visible part.</figcaption>
     </figure>
 
     <div class="around reveal">
@@ -356,7 +427,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       </div>
       <div class="chain" id="chain"></div>
       <div class="verdict" id="verdict"></div>
-      <figcaption class="cap"><b>Figure 3 | Tracing one entry.</b> Each entry is followed from the clinical item to a computable feature and back to clinical meaning. Text in italics marks information that video alone cannot supply.</figcaption>
+      <figcaption class="cap"><b>Figure 4 | Tracing one entry.</b> Each entry is followed from the clinical item to a computable feature and back to clinical meaning. Text in italics marks information that video alone cannot supply.</figcaption>
     </figure>
 
     <div class="pair">
@@ -364,13 +435,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <h3>Recording conditions matter</h3>
         <p class="small">Entries fully observable (Full) under four recording conditions, out of 196.</p>
         <svg id="condFig" viewBox="0 0 520 250"></svg>
-        <figcaption class="cap"><b>Figure 4 |</b> Adding audio recovers entries that lack only a verbal cue. A single routine viewpoint without a hand close-up or calibration reference moves 30 entries from Full to Partial.</figcaption>
+        <figcaption class="cap"><b>Figure 5 |</b> Adding audio recovers entries that lack only a verbal cue. A single routine viewpoint without a hand close-up or calibration reference moves 30 entries from Full to Partial.</figcaption>
       </figure>
       <figure class="reveal" style="margin:0">
         <h3>Which features do scales anchor?</h3>
         <p class="small">Scoring entries linked to each computational feature family; an entry can link to several.</p>
         <svg id="famFig" viewBox="0 0 520 250"></svg>
-        <figcaption class="cap"><b>Figure 5 |</b> Temporal and event measures are anchored most often. Only six entries anchor smoothness, jerk or other trajectory-derived quality measures.</figcaption>
+        <figcaption class="cap"><b>Figure 6 |</b> Temporal and event measures are anchored most often. Only six entries anchor smoothness, jerk or other trajectory-derived quality measures.</figcaption>
       </figure>
     </div>
 
@@ -395,14 +466,61 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         </div>
       </div>
     </div>
+
+    <div class="explorer reveal" id="explorer">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+        <h3 style="font-size:26px">Assessment explorer</h3>
+        <a class="small" href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey/raw/main/v5/Supplementary%20Data%201.xlsx">Download the full coding table (Supplementary Data 1, .xlsx)</a>
+      </div>
+      <p class="small col" style="margin-top:6px">All 196 coded entries. Filter by video availability or computability, search by tool or task, and open a row to read the coding rationale. Full scoring criteria and sources are in the downloadable table.</p>
+      <div class="ex-controls">
+        <input id="exSearch" type="search" placeholder="Search tool, task or feature" aria-label="Search entries">
+        <div class="toggle" id="exAvail"><span class="lbl">Video</span><button data-v="" class="on">All</button><button data-v="Full">Full</button><button data-v="Partial">Partial</button><button data-v="None">None</button></div>
+        <div class="toggle" id="exComp"><span class="lbl">Computability</span><button data-v="" class="on">All</button><button data-v="Direct">Direct</button><button data-v="Proxy">Proxy</button><button data-v="Judgement">Judgement</button></div>
+        <select id="exTool" aria-label="Filter by tool"><option value="">All 57 tools</option></select>
+      </div>
+      <div class="ex-count" id="exCount">Loading entries…</div>
+      <div id="exList"></div>
+      <button class="linkbtn ex-more" id="exMore" hidden>Show more</button>
+    </div>
+
+    <div class="resources reveal" id="methods">
+      <div>
+        <h3 style="font-size:26px">Methods in brief</h3>
+        <div class="methods">
+          <p><strong>Tool library.</strong> Adult-stroke guidelines were searched in PubMed, Embase, the Guidelines International Network, TRIP, WHO resources and issuing-body websites (to May 2026). Two reviewers screened independently; 28 guidelines from nine regions named 37 tools. A supplementary search of 2022–2026 stroke studies added 22 research-standard tools, giving 57.</p>
+          <p><strong>Coding.</strong> Each tool was mapped at the level where its scoring rules differ (196 entries) and coded for movement component, score-defining information type, availability from ordinary video, computational feature families and computability of the visible criteria.</p>
+          <p><strong>Verification.</strong> Two reviewers independently coded initial availability (77.2% agreement, Cohen’s κ = 0.63), resolved disagreements against the scoring manuals, and every later rule change is traced entry by entry in Supplementary Data 1.</p>
+          <p class="small">Survey manuscript in preparation. Numbers on this page follow manuscript version 5.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:22px">Data and code</h3>
+        <ul class="dl">
+          <li><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey/raw/main/v5/Supplementary%20Data%201.xlsx">Supplementary Data 1</a><span>Coding table, rules, search strategy, reviewer checks and history</span></li>
+          <li><a href="data/entries.json">entries.json</a><span>Machine-readable subset used by the explorer; built by data/build_entries.py</span></li>
+          <li><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">GitHub repository</a><span>Manuscript sources, literature-search scripts and this website</span></li>
+        </ul>
+        <h3 style="font-size:22px;margin-top:28px">Key methodological sources</h3>
+        <ol>
+          <li>Kwakkel G, et al. Standardized measurement of sensorimotor recovery in stroke trials (SRRR). <em>Int J Stroke</em> 2017. <a href="https://doi.org/10.1177/1747493017711813">doi</a></li>
+          <li>Kwakkel G, et al. Standardized measurement of quality of upper limb movement after stroke (SRRR). <em>Int J Stroke</em> 2019. <a href="https://doi.org/10.1177/1747493019873519">doi</a></li>
+          <li>Van Criekinge T, et al. Standardized measurement of balance and mobility post-stroke (SRRR). <em>Int J Stroke</em> 2024. <a href="https://doi.org/10.1177/17474930231205207">doi</a></li>
+          <li>Walton MK, et al. Clinical outcome assessments: conceptual foundation. <em>Value Health</em> 2015. <a href="https://doi.org/10.1016/j.jval.2015.08.006">doi</a></li>
+          <li>Goldsack JC, et al. Verification, analytical validation and clinical validation (V3). <em>npj Digit Med</em> 2020.</li>
+          <li>Mokkink LB, et al. The COSMIN taxonomy of measurement properties. <em>J Clin Epidemiol</em> 2010.</li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="app">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="sec-no">3</div><div><p class="kicker">App, in development</p><h2>A report clinicians can read</h2></div></div>
+    <div class="sec-head reveal"><div class="sec-no">3</div><div><p class="kicker">Application · concept prototype</p><h2>A report clinicians can read</h2></div></div>
     <div class="twocol reveal">
-      <div><p class="dek">The aim is not another black-box score. Like an ECG machine that prints an interpretable trace, the app should track movement from ordinary video, compute a task-specific feature profile, and explain each deviation, while stating plainly what the video cannot show.</p></div>
+      <div><p class="dek">The aim is not another black-box score. Like an ECG machine that prints an interpretable trace, the application should track movement from ordinary video, compute a task-specific feature profile, and explain each deviation, while stating plainly what the video cannot show.</p>
+      <p style="color:var(--ink-2)">The report is organised around the survey’s findings: <em>what was measured</em>, <em>what it may mean</em>, <em>what cannot be inferred</em> from video, and <em>what still requires validation</em>.</p></div>
     </div>
     <div class="demo reveal">
       <div class="screen">
@@ -421,7 +539,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <div class="zig reveal">
         <div class="zt">
           <div class="zn">Direction 1</div>
-          <h3>From curves to a diagnosis-aware gait report</h3>
+          <h3>From curves to a clinically interpretable movement report</h3>
           <p>Interpreting gait biomechanics is complex, and current reports are built from hand-written rules. Taking inspiration from automated ECG interpretation, we will test whether language models can describe gait phenotypes such as knee hyperextension, insufficient ankle motion or a “frozen” hip, beginning by benchmarking general-purpose models on kinematic curves.</p>
         </div>
         <figure style="margin:0"><svg id="ecgFig" viewBox="0 0 520 300" aria-label="Knee angle trace on ECG-style grid"></svg><figcaption class="cap" style="margin-top:8px"><b>Knee angle on an ECG-style grid.</b> The report annotates where, in the cycle, the trace leaves the reference.</figcaption></figure>
@@ -430,7 +548,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <div class="zt">
           <div class="zn">Direction 2</div>
           <h3>Objective upper-limb tracking</h3>
-          <p>Upper-limb tests such as the Action Research Arm Test and Wolf Motor Function Test depend on the therapist. Markerless capture, from multi-camera systems to a single camera running pose estimation, can make consensus tasks like drinking, planar reaching and pinching consistent and scalable, and can show <em>how</em> a task was completed, not only whether.</p>
+          <p>Markerless tracking could complement conventional therapist-administered tests such as the Action Research Arm Test and Wolf Motor Function Test. Capture from multi-camera systems to a single camera running pose estimation, can make consensus tasks like drinking, planar reaching and pinching consistent and scalable, and can show <em>how</em> a task was completed, not only whether.</p>
           <div class="toggle" id="armSeg" style="margin-top:6px"><span class="lbl">Strategy</span><button data-a="0" class="on">Elbow extension</button><button data-a="1">Trunk compensation</button></div>
         </div>
         <figure style="margin:0"><canvas id="armCanvas" aria-label="Seated drinking task with wrist trajectory"></canvas><figcaption class="cap" style="margin-top:8px"><b>A drinking task, seen from the side.</b> Two strategies can reach the same cup; the trunk angle and the wrist path tell them apart.</figcaption></figure>
@@ -450,18 +568,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section id="roadmap">
   <div class="wrap">
     <div class="sec-head reveal"><div class="sec-no">4</div><div><p class="kicker">Roadmap</p><h2>Where the project stands</h2></div></div>
-    <div class="tl reveal"><div class="when">2020–23</div><div><h3>Clinical motion data collected</h3><p>Optical motion capture and force-plate recordings of people with stroke, knee osteoarthritis and amputation.</p></div></div>
-    <div class="tl reveal"><div class="when">2025</div><div><h3>Pilot gait analysis</h3><p>Curve-level SPM1D comparison identified reduced hip and knee flexion on the affected side and a delayed swing on the unaffected side.</p></div></div>
-    <div class="tl reveal"><div class="when">2026</div><div><h3>Survey: scales to computable features</h3><p>A 57-tool library and 196 coded entries linking clinical criteria to video availability, computability and feature families.</p></div></div>
-    <div class="tl future reveal"><div class="when">Next</div><div><h3>Prototype app</h3><p>Video to pose tracking to a task-specific feature profile to an interpretable report, starting with gait and upper-limb consensus tasks.</p></div></div>
-    <div class="tl future reveal" style="border-bottom:1px solid var(--rule)"><div class="when">Then</div><div><h3>Validation and clinical utility</h3><p>Analytical, task-level and clinical-construct validation across severity, assistance, devices and settings, followed by tests of whether the report improves clinical decisions.</p></div></div>
+    <div class="tl reveal"><div class="when">2020–23</div><div><h3>Clinical motion data collected</h3><p>Optical motion capture and force-plate recordings of people with stroke, knee osteoarthritis and amputation.</p><div class="status prior"><i></i>Prior work at RRIS</div></div></div>
+    <div class="tl reveal"><div class="when">2025</div><div><h3>Pilot gait analysis</h3><p>Curve-level SPM1D comparison identified reduced hip and knee flexion on the affected side and a delayed swing on the unaffected side.</p><div class="status prior"><i></i>Prior work at RRIS</div></div></div>
+    <div class="tl reveal"><div class="when">2026</div><div><h3>Survey: scales to computable features</h3><p>A 57-tool library and 196 coded entries linking clinical criteria to video availability, computability and feature families.</p><div class="status"><i></i>Completed · manuscript in preparation</div></div></div>
+    <div class="tl future reveal"><div class="when">Next</div><div><h3>Prototype application</h3><p>Video to pose tracking to a task-specific feature profile to an interpretable report, starting with gait and upper-limb consensus tasks.</p><div class="status plan"><i></i>Planned · concept shown above</div></div></div>
+    <div class="tl future reveal" style="border-bottom:1px solid var(--rule)"><div class="when">Then</div><div><h3>Validation and clinical utility</h3><p>Analytical, task-level and clinical-construct validation across severity, assistance, devices and settings, followed by tests of whether the report improves clinical decisions.</p><div class="status plan"><i></i>Planned</div></div></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div>Nanyang Technological University · Rehabilitation Research Institute of Singapore</div>
-    <div><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">Source and data on GitHub</a></div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="#methods">Methods and sources</a><a href="#explorer">Assessment explorer</a><a href="https://github.com/mermaid275489-beep/stroke-assessment-ai-survey">GitHub</a></div>
   </div>
 </footer>
 
@@ -475,7 +593,7 @@ readColors();
 
 /* theme */
 try { const t = localStorage.getItem('theme'); if (t) { document.documentElement.dataset.theme = t; readColors(); } } catch(e){}
-function rerenderStatic(){ readColors(); drawFig1(); buildSankey(false); drawCond(); drawFam(); drawEcg(); }
+function rerenderStatic(){ readColors(); drawFig1(); buildSankey(false); drawCond(); drawFam(); drawEcg(); drawGap(false); }
 document.getElementById('themeBtn').addEventListener('click', () => {
   const cur = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   const next = cur === 'dark' ? 'light' : 'dark';
@@ -559,8 +677,12 @@ const RANGE={hip:[-25,45],knee:[-5,75],ankle:[-25,20]}, TICKS={hip:[-20,0,20,40]
 const PX0=52, PX1=508, PH=112, PY=[24,166,308];
 const xs=t=>PX0+(PX1-PX0)*t/100;
 const ys=(j,v,i)=>{const [lo,hi]=RANGE[j];return PY[i]+PH-(v-lo)/(hi-lo)*PH;};
-const limbC=()=> mode==='healthy'?H:(limb==='affected'?A:U);
-const limbCol=()=> mode==='healthy'?C.accent:(limb==='affected'?C.coral:C.amber);
+function series(){
+  if(mode==='healthy') return [{c:H,col:C.accent,k:'h'}];
+  const a={c:A,col:C.coral,k:'a'}, u={c:U,col:C.amber,k:'u'};
+  return limb==='both'?[a,u]:(limb==='affected'?[a]:[u]);
+}
+const NOTES={a:[['hip',6,'less flexion at contact',18],['knee',74,'reduced swing flexion',16],['ankle',63,'little push-off',-12]],u:[['knee',80,'later swing',-12]]};
 function pathOf(fn,j,i,off=0){let d='';for(let t=0;t<=100;t++){d+=(t?'L':'M')+xs(t).toFixed(1)+','+ys(j,fn(t+off),i).toFixed(1);}return d;}
 function bandOf(fn,j,i,w){let d='';for(let t=0;t<=100;t++)d+=(t?'L':'M')+xs(t).toFixed(1)+','+ys(j,fn(t)+w,i).toFixed(1);for(let t=100;t>=0;t--)d+='L'+xs(t).toFixed(1)+','+ys(j,fn(t)-w,i).toFixed(1);return d+'Z';}
 function drawFig1(){
@@ -573,8 +695,12 @@ function drawFig1(){
     g+=`<text x="12" y="${y0+PH/2}" transform="rotate(-90 12 ${y0+PH/2})" text-anchor="middle" fill="${C.ink2}">${j[0].toUpperCase()+j.slice(1)} (°)</text>`;
     g+=`<text x="${PX0-40}" y="${y0-8}" font-size="15" font-weight="600" fill="${C.ink}">${'bcd'[i]}</text>`;
     g+=`<path d="${bandOf(H[j],j,i,5)}" fill="${C.band}"/><path d="${pathOf(H[j],j,i)}" fill="none" stroke="${C.ref}" stroke-width="1.6"/>`;
-    g+=`<path class="cv" d="${pathOf(limbC()[j],j,i)}" fill="none" stroke="${limbCol()}" stroke-width="2.4" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${reduce?0:1};transition:stroke-dashoffset 1.1s ease ${i*.12}s"/>`;
-    g+=`<circle class="dot" data-j="${j}" data-i="${i}" r="4" fill="${limbCol()}" stroke="${C.paper}" stroke-width="1.5"/>`;
+    series().forEach((sr,si)=>{
+      g+=`<path class="cv" d="${pathOf(sr.c[j],j,i)}" fill="none" stroke="${sr.col}" stroke-width="2.4" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${reduce?0:1};transition:stroke-dashoffset 1.1s ease ${i*.12+si*.2}s"/>`;
+      g+=`<circle class="dot" data-j="${j}" data-i="${i}" data-s="${si}" r="4" fill="${sr.col}" stroke="${C.paper}" stroke-width="1.5"/>`;
+      for(const [nj,t,txt,dy] of (NOTES[sr.k]||[])){ if(nj!==j) continue; const x=xs(t), y=ys(j,sr.c[j](t),i);
+        g+=`<circle cx="${x}" cy="${y}" r="2.5" fill="none" stroke="${sr.col}"/><text x="${x}" y="${y+dy}" text-anchor="middle" font-size="10.5" font-style="italic" fill="${sr.col}" stroke="${C.paper}" stroke-width="3" paint-order="stroke">${txt}</text>`; }
+    });
     g+=`<text class="val" data-i="${i}" x="${PX1}" y="${y0-8}" text-anchor="end" font-family="JetBrains Mono,monospace" fill="${C.ink}"></text>`;
   });
   g+=`<text x="${xs(30)}" y="${PY[0]+12}" text-anchor="middle">stance</text><text x="${xs(80)}" y="${PY[0]+12}" text-anchor="middle">swing</text>`;
@@ -587,15 +713,18 @@ function drawFig1(){
 }
 function cursor(p){
   const c=fsvg.querySelector('#cursor'); if(!c) return; c.setAttribute('x1',xs(p)); c.setAttribute('x2',xs(p));
-  fsvg.querySelectorAll('.dot').forEach(d=>{const j=d.dataset.j,i=+d.dataset.i,v=limbC()[j](p);d.setAttribute('cx',xs(p));d.setAttribute('cy',ys(j,v,i));fsvg.querySelectorAll('.val')[i].textContent=(v>=0?'+':'')+v.toFixed(0)+'°';});
+  const S=series(), vals=[[],[],[]];
+  fsvg.querySelectorAll('.dot').forEach(d=>{const j=d.dataset.j,i=+d.dataset.i,sr=S[+d.dataset.s];if(!sr)return;const v=sr.c[j](p);d.setAttribute('cx',xs(p));d.setAttribute('cy',ys(j,v,i));vals[i].push((v>=0?'+':'')+v.toFixed(0)+'°');});
+  fsvg.querySelectorAll('.val').forEach((t,i)=>t.textContent=vals[i].join('  '));
 }
 const FIND={
   healthy:[['Hip','Flexes about 30° at initial contact, extends through stance, then swings forward.'],['Knee','Two flexion peaks: a small one at loading and about 60° in swing to clear the foot.'],['Ankle','Plantarflexes to push off near toe-off, then dorsiflexes so the foot clears the ground.']],
   affected:[['Limited hip flexion','Reduced on the affected side at initial contact (early stance) and through swing.'],['Limited knee flexion','Markedly reduced in early swing around toe-off: a stiff-knee pattern.'],['Altered ankle motion','Absent or abnormal dorsiflexion around toe-off in individual patients.']],
-  unaffected:[['A later swing','The unaffected hip and knee swing later than in healthy controls.'],['Smaller flexion','Some patients also show smaller knee flexion on the unaffected side.'],['Why it matters','Deviations are bilateral; assessing the affected limb alone misses part of the picture.']]
+  unaffected:[['A later swing','The unaffected hip and knee swing later than in healthy controls.'],['Smaller flexion','Some patients also show smaller knee flexion on the unaffected side.'],['Why it matters','Deviations are bilateral; assessing the affected limb alone misses part of the picture.']],
+  both:[['Affected side','Reduced hip and knee flexion, most clearly in early swing.'],['Unaffected side','Near-normal amplitude but a later swing: a possible compensation.'],['Why it matters','Deviations are bilateral; assessing the affected limb alone misses part of the picture.']]
 };
-function renderFindings(){const k=mode==='healthy'?'healthy':limb, col=mode==='healthy'?'var(--accent)':(limb==='affected'?'var(--coral)':'var(--amber)');
-  const head = mode==='healthy' ? 'Reference pattern' : (limb==='affected'?'Affected limb vs healthy':'Unaffected limb vs healthy');
+function renderFindings(){const k=mode==='healthy'?'healthy':limb, col=mode==='healthy'?'var(--accent)':({affected:'var(--coral)',unaffected:'var(--amber)',both:'var(--ink)'})[limb];
+  const head = mode==='healthy' ? 'Reference pattern' : limb+' limb vs healthy';
   document.getElementById('findings').innerHTML=FIND[k].map((f,i)=>`<div class="f"><div class="n" style="color:${col}">${i+1}</div><b>${f[0]}</b><span>${f[1]}</span></div>`).join('');
   document.getElementById('findings').setAttribute('aria-label',head);}
 function seg(id,fn){document.getElementById(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...e.currentTarget.querySelectorAll('button')].forEach(x=>x.classList.toggle('on',x===b));fn(b);});}
@@ -609,8 +738,8 @@ function drawLab(dt){
   const dur=mode==='healthy'?1.25:1.8, s=scaleFor(Math.min(h,w*1.1)*.82), pr=pair(mode);
   if(playing){phase=(phase+dt/dur*100)%100; lg=(lg+speedOf(pr.near,s,dur)*dt)%46;}
   const gy=h*.9; ctx.fillStyle=C.rule; ctx.fillRect(0,gy+1,w,1); for(let x=w-lg;x>-10;x-=46) ctx.fillRect(x,gy+8,1,5);
-  const hiNear = !(mode==='stroke' && limb==='unaffected');
-  const nearCol = mode==='healthy'?C.accent:(hiNear?C.coral:C.ref), farCol = mode==='healthy'?C.ref:(hiNear?C.ref:C.amber);
+  const showA = mode==='stroke' && limb!=='unaffected', showU = mode==='stroke' && limb!=='affected';
+  const nearCol = mode==='healthy'?C.accent:(showA?C.coral:C.ref), farCol = mode==='healthy'?C.ref:(showU?C.amber:C.ref);
   drawFigure(ctx,w*.5,gy,phase,pr,s,{near:nearCol,far:farCol,body:C.ink,markers:true,mark:C.paper,markRing:C.ink});
   ctx.font='500 11px "JetBrains Mono", monospace'; ctx.fillStyle=C.muted;
   ctx.fillText((phase<60?'stance':'swing')+'  '+phase.toFixed(0).padStart(2,'0')+'%', 2, 14);
@@ -669,7 +798,60 @@ function buildSankey(animate){
   if(animate&&!reduce){const r=SK.querySelector('#skrect');const t0=performance.now();const step=now=>{const q=Math.min(1,(now-t0)/1600);r.setAttribute('width',W*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(step);};requestAnimationFrame(step);}
 }
 
-/* ---------- Figure 3: chain ---------- */
+/* ---------- Figure 2: observation vs computation gap ---------- */
+function drawGap(animate){
+  const X0=330,X1=960,sx=v=>X0+(X1-X0)*v/196, bh=38;
+  const rows=[['All scoring entries','57 tools',196,C.ref],['Fully observable from video','Availability: Full',134,C.accent2],['Observable and directly computable','Full and Direct',61,C.accent]];
+  let s=`<g font-family="Inter,sans-serif">`;
+  rows.forEach((r,i)=>{const y=24+i*80, w=sx(r[2])-X0, an=animate&&!reduce;
+    s+=`<text x="0" y="${y+16}" font-size="15" fill="${C.ink}">${r[0]}</text><text x="0" y="${y+35}" font-size="12.5" fill="${C.muted}">${r[1]}</text>`;
+    s+=`<text x="${X0-16}" y="${y+31}" text-anchor="end" font-family="Fraunces,serif" font-size="36" fill="${C.ink}">${r[2]}</text>`;
+    s+=`<rect class="gb" x="${X0}" y="${y}" height="${bh}" width="${an?0:w}" data-w="${w}" fill="${r[3]}"/>`;
+  });
+  const dash=(y,a,b,txt)=>`<rect x="${sx(a)}" y="${y}" width="${sx(b)-sx(a)}" height="${bh}" fill="none" stroke="${C.muted}" stroke-dasharray="4 4"/><text x="${(sx(a)+sx(b))/2}" y="${y+bh/2+5}" text-anchor="middle" font-size="13" fill="${C.ink2}">${txt}</text>`;
+  s+=dash(104,134,196,'62 partial or none');
+  s+=dash(184,61,134,'73 need a proxy or a judgement');
+  s+=`</g>`;
+  const el=document.getElementById('gapFig'); el.innerHTML=s;
+  if(animate&&!reduce) requestAnimationFrame(()=>el.querySelectorAll('.gb').forEach((b,i)=>{b.style.transition=`width 1.1s cubic-bezier(.2,.8,.2,1) ${i*.25}s`;b.style.width=b.dataset.w+'px';}));
+}
+
+/* ---------- Assessment explorer ---------- */
+let EXD=[], exShown=25; const exOpen=new Set(); const exF={q:'',avail:'',comp:'',tool:''};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const AV_COL={Full:'var(--accent)',Partial:'var(--amber)',None:'var(--none)'};
+function exFiltered(){const q=exF.q.toLowerCase();return EXD.filter(e=>(!exF.avail||e.avail===exF.avail)&&(!exF.comp||e.comp===exF.comp)&&(!exF.tool||e.tool===exF.tool)&&(!q||[e.tool,e.task,e.features,e.info,e.id].join(' ').toLowerCase().includes(q)));}
+function renderEx(){
+  const list=document.getElementById('exList'), rows=exFiltered(), shown=rows.slice(0,exShown);
+  document.getElementById('exCount').textContent=`Showing ${shown.length} of ${rows.length} matching entries (${EXD.length} in total)`;
+  let h=`<div class="ex-row ex-head"><span>ID</span><span>Tool</span><span>Item / task</span><span>Video</span><span>Computability</span></div>`;
+  for(const e of shown){
+    h+=`<div class="ex-row" data-id="${e.id}" role="button" tabindex="0" aria-expanded="${exOpen.has(e.id)}"><span class="id">${e.id}</span><span class="tool">${esc(e.tool)}</span><span class="task">${esc(e.task||e.item)}</span><span class="a tagA"><i style="background:${AV_COL[e.avail]||'var(--rule)'}"></i>${esc(e.avail)}</span><span class="c" style="color:var(--ink-2)">${e.comp==='Not applicable'?'—':esc(e.comp)}</span></div>`;
+    if(exOpen.has(e.id)){
+      const f=(t,v)=>v?`<div><b>${t}</b>${esc(v)}</div>`:'';
+      h+=`<div class="ex-detail">${f('Score-defining information',e.info)}${f('Feature families',e.families.join(', '))}${f('Why this availability code',e.availWhy)}${f('Not available from video',e.missing)}${f('Alternative source',e.altSource)}${f('Why this computability code',e.compWhy)}${f('Representative machine-observable features',e.features)}${f('Recording requirements',e.recording)}</div>`;
+    }
+  }
+  list.innerHTML=h;
+  document.getElementById('exMore').hidden=rows.length<=exShown;
+}
+function initExplorer(){
+  fetch('data/entries.json').then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>{
+    EXD=d.entries; const sel=document.getElementById('exTool');
+    [...new Set(EXD.map(e=>e.tool))].sort().forEach(t=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(t)}">${esc(t)}</option>`));
+    renderEx();
+  }).catch(()=>{document.getElementById('exCount').innerHTML='The entry list could not be loaded here. Use the downloadable table above.';});
+  document.getElementById('exSearch').addEventListener('input',e=>{exF.q=e.target.value.trim();exShown=25;renderEx();});
+  document.getElementById('exTool').addEventListener('change',e=>{exF.tool=e.target.value;exShown=25;renderEx();});
+  seg('exAvail',b=>{exF.avail=b.dataset.v;exShown=25;renderEx();});
+  seg('exComp',b=>{exF.comp=b.dataset.v;exShown=25;renderEx();});
+  document.getElementById('exMore').addEventListener('click',()=>{exShown+=50;renderEx();});
+  const toggle=row=>{const id=row.dataset.id;exOpen.has(id)?exOpen.delete(id):exOpen.add(id);renderEx();};
+  document.getElementById('exList').addEventListener('click',e=>{const r=e.target.closest('.ex-row[data-id]');if(r)toggle(r);});
+  document.getElementById('exList').addEventListener('keydown',e=>{const r=e.target.closest('.ex-row[data-id]');if(r&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggle(r);}});
+}
+
+/* ---------- Figure 4: chain ---------- */
 const EX={
   tug:{n:[['Clinical item','Timed Up and Go: rise, walk 3 m, turn, return and sit.'],['Scoring criterion','Total time from rising to returning seated.'],['Observable information','Onset and return to sitting are both visible.'],['Computational feature','Temporal and event: total time, phase durations, turning steps.'],['Clinical interpretation','The same total time can hide slow rising or slow turning, so phases are reported as a profile.']],v:'Availability <b>Full</b> · Computability <b>Direct</b>'},
   bbs:{n:[['Clinical item','Berg Balance Scale: sit to stand.'],['Scoring criterion','From standing independently without hands to needing minimal, moderate or maximal assistance.'],['Observable information','Hand push-off, transition time and instability are visible.','Not visible: how much help the examiner gives.'],['Computational feature','Relational (hand use), temporal (transition time), spatial (sway).'],['Clinical interpretation','Video quantifies the movement; the level of assistance needs another source.']],v:'Availability <b>Partial</b> · Visible part <b>Direct</b>'},
@@ -708,12 +890,13 @@ function stats(c){let kmax=-99,kt=0,hmin=99,hmax=-99,amin=99;for(let t=0;t<100;t
 const SH=stats(H);
 function renderMetrics(){
   const pr=pair(appMode), sn=stats(pr.near), sf=stats(pr.far);
-  const rows=[['Peak knee flexion in swing · right',sn.kmax,SH.kmax,80],['Peak knee flexion in swing · left',sf.kmax,SH.kmax,80],['Hip range of motion · right',sn.hrom,SH.hrom,60],['Plantarflexion at push-off · right',-sn.ato,-SH.ato,25]];
-  document.getElementById('metrics').innerHTML=rows.map(r=>{const ok=Math.abs(r[1]-r[2])<r[2]*.2, col=ok?'var(--accent)':'var(--coral)';return `<div class="metric"><span>${r[0]}</span><span class="val" style="color:${col}">${r[1].toFixed(0)}° <span style="color:var(--muted)">ref ${r[2].toFixed(0)}°</span></span><div class="mbar"><span style="width:0;background:${col}" data-w="${Math.max(2,Math.min(100,r[1]/r[3]*100))}"></span><em style="left:${r[2]/r[3]*100}%"></em></div></div>`;}).join('');
+  const cad=120/(appMode==='healthy'?1.25:1.8), cadRef=120/1.25;
+  const rows=[['Cadence',cad,cadRef,130,' steps/min'],['Peak knee flexion in swing · right',sn.kmax,SH.kmax,80,'°'],['Peak knee flexion in swing · left',sf.kmax,SH.kmax,80,'°'],['Hip range of motion · right',sn.hrom,SH.hrom,60,'°'],['Plantarflexion at push-off · right',-sn.ato,-SH.ato,25,'°']];
+  document.getElementById('metrics').innerHTML=rows.map(r=>{const ok=Math.abs(r[1]-r[2])<r[2]*.2, col=ok?'var(--accent)':'var(--coral)';return `<div class="metric"><span>${r[0]}</span><span class="val" style="color:${col}">${r[1].toFixed(0)}${r[4]} <span style="color:var(--muted)">ref ${r[2].toFixed(0)}</span></span><div class="mbar"><span style="width:0;background:${col}" data-w="${Math.max(2,Math.min(100,r[1]/r[3]*100))}"></span><em style="left:${r[2]/r[3]*100}%"></em></div></div>`;}).join('');
   requestAnimationFrame(()=>document.querySelectorAll('#metrics .mbar span').forEach(s=>s.style.width=s.dataset.w+'%'));
   typeText(appMode==='healthy'
-    ? `Findings\n  Swing knee flexion within reference (R ${sn.kmax.toFixed(0)}°, L ${sf.kmax.toFixed(0)}°).\n  Symmetric hip excursion; normal push-off.\n\nImpression\n  No sagittal-plane gait deviation detected.\n\nScope\n  Video: full · Computability: direct`
-    : `Findings\n  R knee: reduced swing flexion (${sn.kmax.toFixed(0)}° vs ${SH.kmax.toFixed(0)}°), stiff-knee pattern.\n  R hip: reduced range of motion (${sn.hrom.toFixed(0)}° vs ${SH.hrom.toFixed(0)}°).\n  R ankle: weak plantarflexion push-off.\n  L limb: swing peak later (${sf.kt.toFixed(0)}% vs ${SH.kt.toFixed(0)}% of cycle), possible compensation.\n\nScope\n  Video: full · Assistance and force: not observable`);
+    ? `What we measured\n  Cadence ${cad.toFixed(0)} steps/min; swing knee flexion R ${sn.kmax.toFixed(0)}°, L ${sf.kmax.toFixed(0)}°;\n  hip range of motion ${sn.hrom.toFixed(0)}°.\n\nWhat it may mean\n  Sagittal-plane pattern within the reference range.\n\nWhat cannot be inferred\n  Muscle tone, strength, sensation, pain and need for supervision.\n\nWhat requires validation\n  Reference ranges for this camera set-up and walking speed.`
+    : `What we measured\n  Cadence ${cad.toFixed(0)} steps/min (ref ${cadRef.toFixed(0)}).\n  R swing knee flexion ${sn.kmax.toFixed(0)}° (ref ${SH.kmax.toFixed(0)}°); R hip range ${sn.hrom.toFixed(0)}° (ref ${SH.hrom.toFixed(0)}°).\n  L swing peak at ${sf.kt.toFixed(0)}% of cycle (ref ${SH.kt.toFixed(0)}%).\n\nWhat it may mean\n  A stiff-knee pattern on the right, with weak push-off;\n  a later swing on the left, possibly compensatory.\n\nWhat cannot be inferred\n  Spasticity, muscle tone, strength, or how much help was given.\n\nWhat requires validation\n  Whether these features track recovery or match rater grades.`);
 }
 let tt=null;
 function typeText(s){const el=document.getElementById('typed');clearInterval(tt);if(reduce){el.textContent=s;return;}let i=0;tt=setInterval(()=>{i+=2;el.textContent=s.slice(0,i);el.insertAdjacentHTML('beforeend','<span class="cur"></span>');if(i>=s.length)clearInterval(tt);},16);}
@@ -825,6 +1008,7 @@ function countUp(el){const end=+el.dataset.count,suf=el.dataset.suffix?`<sup>${e
 const io=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;const t=e.target;t.classList.add('in');io.unobserve(t);
   t.querySelectorAll('[data-count]').forEach(countUp);
   if(t.querySelector('#sankey')){skDrawn=true;buildSankey(true);}
+  if(t.querySelector('#gapFig')) drawGap(true);
   if(t.querySelector('#chain')) renderChain('tug');
   if(t.querySelector('#condFig')) drawCond(true);
   if(t.querySelector('#famFig')) drawFam(true);
@@ -836,7 +1020,7 @@ const so=new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting)li
 document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
 
 /* initial static renders */
-drawFig1(); renderFindings(); drawEcg(); drawCond(false); drawFam(false); buildSankey(false);
+drawFig1(); renderFindings(); drawEcg(); drawCond(false); drawFam(false); buildSankey(false); drawGap(false); initExplorer();
 
 /* ---------- loop ---------- */
 const vis=new Map(), canv=[hero,lab,app,arm,syn]; const vo=new IntersectionObserver(es=>es.forEach(e=>vis.set(e.target,e.isIntersecting)));
