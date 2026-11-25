@@ -936,8 +936,9 @@ function drawEcg(){
 const arm=document.getElementById('armCanvas'); let armMode=0, armT=0; const wtrail=[];
 seg('armSeg',b=>{armMode=+b.dataset.a; wtrail.length=0;});
 const sm=u=>u*u*u*(10+u*(-15+6*u));
-function handAt(q){ // q in 0..1; returns [x,y,phaseFlag] relative to hip in units, cup held?
-  const R=[0.95,-0.52], CUP=[2.05,-0.52], MOUTH=[0.62,-1.78];
+const TABLE_Y=-0.75, CUP_Y=TABLE_Y-0.1, CUP_X=1.45;
+function handAt(q){ // q in 0..1; hand target relative to hip (units), and whether the cup is held
+  const R=[0.7,CUP_Y], CUP=[CUP_X,CUP_Y], MOUTH=[0.2,-1.64];
   const K=[[0,R],[.12,R],[.32,CUP],[.40,CUP],[.58,MOUTH],[.66,MOUTH],[.82,CUP],[.88,CUP],[1,R]];
   for(let i=0;i<K.length-1;i++){const [t0,a]=K[i],[t1,b]=K[i+1];if(q>=t0&&q<=t1){const u=t1===t0?0:sm((q-t0)/(t1-t0));return [a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u, q>.36&&q<.86];}}
   return [R[0],R[1],false];
@@ -946,29 +947,28 @@ function drawArm(dt){
   const {ctx,w,h}=fit(arm); ctx.clearRect(0,0,w,h); armT=(armT+dt/6.5)%1;
   const U_=Math.min(w/3.5,h/3.2), ox=w*.2, oy=h*.05+1.95*U_; const P=(x,y)=>[ox+x*U_, oy+y*U_];
   const [hx,hy,held]=handAt(armT);
-  const reachAmt=Math.max(0,Math.min(1,(hx-1.1)/0.9));
-  const phi = armMode? rad(24*reachAmt) : rad(3*reachAmt);
   const T=1.45, Lu=.82, Lf=.80;
+  // Elbow extension strategy: the arm can almost fully extend. Trunk compensation: elbow extension is
+  // limited, so the trunk leans forward just enough to bring the target within reach.
+  const maxd=(armMode?0.68:0.99)*(Lu+Lf);
+  let phi=0;
+  for(let a=0;a<=45;a+=0.25){phi=rad(a);const s0=[Math.sin(phi)*T,-Math.cos(phi)*T];if(Math.hypot(hx-s0[0],hy-s0[1])<=maxd)break;}
   const sh=[Math.sin(phi)*T, -Math.cos(phi)*T];
-  // IK
-  let tx=hx-sh[0], ty=hy-sh[1]; let d=Math.hypot(tx,ty); const maxd=(armMode?0.88:0.995)*(Lu+Lf);
-  let hand=[hx,hy]; if(d>maxd){tx*=maxd/d;ty*=maxd/d;d=maxd;hand=[sh[0]+tx,sh[1]+ty];}
+  // IK: the hand always lands exactly on the target
+  const tx=hx-sh[0], ty=hy-sh[1], d=Math.hypot(tx,ty); const hand=[hx,hy];
   const base=Math.atan2(ty,tx), al=Math.acos(Math.max(-1,Math.min(1,(Lu*Lu+d*d-Lf*Lf)/(2*Lu*d))));
   const e1=[sh[0]+Lu*Math.cos(base+al),sh[1]+Lu*Math.sin(base+al)], e2=[sh[0]+Lu*Math.cos(base-al),sh[1]+Lu*Math.sin(base-al)];
   const el=e1[1]>e2[1]?e1:e2;
   const elbowAng=180-Math.acos(Math.max(-1,Math.min(1,(Lu*Lu+Lf*Lf-d*d)/(2*Lu*Lf))))*180/Math.PI;
   // scene
-  const tableY=-0.42; ctx.strokeStyle=C.rule; ctx.lineWidth=1.2;
-  const t0=P(0.75,tableY), t1=P(2.6,tableY); ctx.beginPath(); ctx.moveTo(t0[0],t0[1]); ctx.lineTo(t1[0],t1[1]); ctx.stroke();
-  [[0.9],[2.45]].forEach(([x])=>{const a=P(x,tableY),b=P(x,1.05);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();});
+  const tableY=TABLE_Y; ctx.strokeStyle=C.rule; ctx.lineWidth=1.2;
+  const t0=P(0.5,tableY), t1=P(2.55,tableY); ctx.beginPath(); ctx.moveTo(t0[0],t0[1]); ctx.lineTo(t1[0],t1[1]); ctx.stroke();
+  [[1.25],[2.45]].forEach(([x])=>{const a=P(x,tableY),b=P(x,1.05);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();});
   const fl=P(-0.6,1.05), fr=P(2.9,1.05); ctx.beginPath(); ctx.moveTo(fl[0],fl[1]); ctx.lineTo(fr[0],fr[1]); ctx.stroke();
   const seatA=P(-0.35,0.06), seatB=P(0.35,0.06); ctx.beginPath(); ctx.moveTo(seatA[0],seatA[1]); ctx.lineTo(seatB[0],seatB[1]); ctx.moveTo(...P(-0.3,0.06)); ctx.lineTo(...P(-0.3,1.05)); ctx.moveTo(...P(-0.35,0.06)); ctx.lineTo(...P(-0.42,-0.9)); ctx.stroke();
   const wpx=Math.max(1.8,U_*.045);
   // legs
   line(ctx,[P(0,0),P(0.82,0.02),P(0.86,1.0),P(1.08,1.02)],C.ref,wpx);
-  // cup
-  const cupPos = held? hand : [2.05,-0.52]; const cp=P(cupPos[0],cupPos[1]);
-  ctx.strokeStyle=C.ink2; ctx.lineWidth=1.4; ctx.strokeRect(cp[0]-U_*.07, cp[1]-U_*.1, U_*.14, U_*.2);
   // trail
   const hp=P(hand[0],hand[1]); wtrail.push(hp); while(wtrail.length>420) wtrail.shift();
   ctx.beginPath(); wtrail.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])); ctx.strokeStyle=armMode?C.coral:C.accent; ctx.lineWidth=1; ctx.globalAlpha=.7; ctx.stroke(); ctx.globalAlpha=1;
@@ -977,7 +977,9 @@ function drawArm(dt){
   const hd=P(sh[0]+Math.sin(phi)*.32, sh[1]-Math.cos(phi)*.32); ctx.beginPath(); ctx.arc(hd[0],hd[1],U_*.15,0,Math.PI*2); ctx.strokeStyle=C.ink; ctx.lineWidth=wpx*.9; ctx.stroke();
   line(ctx,[S0,P(el[0],el[1]),hp],armMode?C.coral:C.accent,wpx);
   for(const m of [H0,S0,P(el[0],el[1]),hp]){ctx.beginPath();ctx.arc(m[0],m[1],Math.max(2.5,U_*.035),0,Math.PI*2);ctx.fillStyle=C.paper;ctx.fill();ctx.strokeStyle=C.ink;ctx.lineWidth=1.2;ctx.stroke();}
-  // trunk angle arc
+  // cup: rests on the table until grasped, then moves with the hand (hand and cup coincide at grasp and release)
+  const cupPos = held? hand : [CUP_X,CUP_Y]; const cp=P(cupPos[0],cupPos[1]);
+  ctx.strokeStyle=C.ink2; ctx.lineWidth=1.4; ctx.strokeRect(cp[0]-U_*.07, cp[1]-U_*.1, U_*.14, U_*.2);  // trunk angle arc
   const vt=P(0,-0.55); ctx.setLineDash([3,3]); ctx.strokeStyle=C.muted; ctx.beginPath(); ctx.moveTo(H0[0],H0[1]); ctx.lineTo(vt[0],vt[1]); ctx.stroke(); ctx.setLineDash([]);
   ctx.font='500 11px "JetBrains Mono", monospace'; ctx.fillStyle=C.muted; ctx.textAlign='right';
   ctx.fillText(`trunk flexion ${(phi*180/Math.PI).toFixed(0)}°`, w-4, 14);
